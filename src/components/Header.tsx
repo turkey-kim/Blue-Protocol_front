@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as LogoIcon } from "../assets/icons/blue-protocol.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,16 +11,13 @@ const Header = () => {
   return (
     <Container>
       <Inner>
-        <Logo
-          src={process.env.PUBLIC_URL + "/icons/blue-protocol.png"}
-          onClick={goHome}
-        ></Logo>
+        <Logo onClick={goHome}></Logo>
         <Nav>
-          <Link to="/home">HOME</Link>
-          <Link to="/news">NEWS</Link>
-          <Link to="/game">GAME</Link>
-          <Link to="/guide">GUIDE</Link>
-          <Link to="/database">DATABASE</Link>
+          <StyledLink to="/home">HOME</StyledLink>
+          <StyledLink to="/news">NEWS</StyledLink>
+          <StyledLink to="/game">GAME</StyledLink>
+          <StyledLink to="/guide">GUIDE</StyledLink>
+          <StyledLink to="/database">DATABASE</StyledLink>
         </Nav>
         <Search
           style={{
@@ -49,12 +47,20 @@ const Inner = styled.div`
   padding: 1.5rem;
 `;
 
-const Logo = styled.img`
+const Logo = styled(LogoIcon)`
   cursor: pointer;
   transition: all 0.5s;
+  path {
+    fill: #68c3c4;
+    transition: fill 0.5s;
+  }
 
   &:hover {
-    transform: scale(1.07);
+    transform: scale(1.02);
+    path {
+      transition: fill 0.5s;
+      fill: url(#paint0_linear_143_128);
+    }
   }
 `;
 
@@ -64,20 +70,26 @@ const Nav = styled.div`
   color: gray;
   font-size: 1rem;
   margin: 0 1rem;
+`;
 
-  a {
-    cursor: pointer;
-    padding: 0 1rem;
-    transition: all 0.5s;
-    text-decoration: none;
-    color: inherit;
-  }
-  a:hover {
-    color: #68c3c4;
+const StyledLink = styled(Link)`
+  cursor: pointer;
+  padding: 5px 20px;
+  transition: all ease-in-out 0.1s;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: black;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #68c3c4 30%, #001fa9 100%);
+    border-image-slice: 1;
   }
 `;
 
 const Search = styled.input`
+  opacity: 0.6;
   background-color: #68c3c4;
   outline: none;
   border: none;
@@ -92,6 +104,7 @@ const Search = styled.input`
   background-repeat: no-repeat;
   box-sizing: border-box;
   margin-left: 200px;
+  text-align: center;
 
   &:focus {
     width: 290px;
