@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as LogoIcon } from "../assets/icons/blue-protocol.svg";
+import { publicPath } from "../constant";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,9 +22,10 @@ const Header = () => {
         </Nav>
         <Search
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/icons/search.png)`,
+            backgroundImage: `url(${publicPath}/icons/search.png)`,
           }}
           spellCheck="false"
+          placeholder="SEARCH"
         ></Search>
       </Inner>
     </Container>
@@ -45,6 +47,9 @@ const Inner = styled.div`
   margin: 0 5rem;
   width: 1320px;
   padding: 1.5rem;
+  @media screen and (max-width: 990px) {
+    width: 80%;
+  }
 `;
 
 const Logo = styled(LogoIcon)`
@@ -70,6 +75,10 @@ const Nav = styled.div`
   color: gray;
   font-size: 1rem;
   margin: 0 1rem;
+
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -105,6 +114,9 @@ const Search = styled.input`
   box-sizing: border-box;
   margin-left: 200px;
   text-align: center;
+  &::placeholder {
+    color: transparent;
+  }
 
   &:focus {
     width: 290px;
@@ -112,5 +124,13 @@ const Search = styled.input`
     color: white;
     margin: 0;
     padding: 0 3rem;
+    &::placeholder {
+      color: white;
+      font-weight: 500;
+    }
+  }
+
+  @media screen and (max-width: 990px) {
+    display: none;
   }
 `;
