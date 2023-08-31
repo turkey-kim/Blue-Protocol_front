@@ -7,14 +7,14 @@ import { publicPath } from "../constant";
 const Header = () => {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   return (
     <Container>
       <Inner>
         <Logo onClick={goHome}></Logo>
         <Nav>
-          <StyledLink to="/home">HOME</StyledLink>
+          <StyledLink to="/">HOME</StyledLink>
           <StyledLink to="/news">NEWS</StyledLink>
           <StyledLink to="/game">GAME</StyledLink>
           <StyledLink to="/guide">GUIDE</StyledLink>
