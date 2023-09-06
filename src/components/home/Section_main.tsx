@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { publicPath } from "../../constant";
 import { ReactComponent as MainLogo } from "../../assets/icons/main-logo.svg";
@@ -8,7 +7,10 @@ const Section_main = () => {
     <Container>
       <LogoContainer>
         <Logo></Logo>
-        <Title>KR DATABASE</Title>
+        <Title>뮤리의 서재</Title>
+        <SubTitle>
+          기억을 잃은 채 별의 파멸이라는 거대한 운명에 맞서는 당신을 위한 도서관
+        </SubTitle>
       </LogoContainer>
     </Container>
   );
@@ -16,10 +18,10 @@ const Section_main = () => {
 
 export default Section_main;
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
   width: 100vw;
-  height: 925px;
+  height: 85vh;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -40,21 +42,31 @@ const Container = styled.div`
 const LogoContainer = styled.div`
   z-index: 1000;
   position: absolute;
-  top: 20%;
+  top: 26%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Logo = styled(MainLogo)``;
+const Logo = styled(MainLogo)`
+  width: 180px;
+  height: 180px;
+`;
 
 const Title = styled.h1`
   color: white;
   font-weight: 700;
   font-size: 50px;
-  margin-top: 0;
+  margin: 0;
 
   @media screen and (max-width: 990px) {
     font-size: 2.5rem;
   }
+`;
+
+const SubTitle = styled.p`
+  color: white;
+  opacity: 0.8;
+  margin: 0.5rem 0;
+  font-size: 20px;
 `;
