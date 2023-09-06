@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import React from "react";
 import Section_main from "../components/home/Section_main";
+import Section_news from "../components/home/Section_news";
 
 const Home = () => {
   return (
     <Container>
       <Section_main></Section_main>
+      <Section_news></Section_news>
     </Container>
   );
 };
