@@ -2,11 +2,14 @@ import styled, { useTheme } from "styled-components";
 import { submitLogin } from "../api";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { loginState } from "../states/atoms";
 
 const Login = () => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -20,6 +23,7 @@ const Login = () => {
     e.preventDefault();
     const token: any = await submitLogin({ id, pw });
     if (token.data) {
+      setIsLoggedIn(true);
       localStorage.setItem("jwt", token.data);
       alert("관리자로 로그인함");
       navigate("/");

@@ -13,6 +13,8 @@ import Database from "./pages/Database";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import { checkToken } from "./api/auth";
+import { useRecoilState } from "recoil";
+import { loginState } from "./states/atoms";
 
 const arr = [
   {
@@ -52,11 +54,23 @@ function Dashboard() {
 }
 
 function App() {
+  let [admin, setAdmin] = useRecoilState(loginState);
+
   useEffect(() => {
-    checkToken();
+    async function adminVerify() {
+      let result = await checkToken();
+      if (result == true) {
+        setAdmin(true);
+        console.log("관리자 로그인 상태입니다");
+      } else {
+        setAdmin(false);
+      }
+    }
+    adminVerify();
   }, []);
+
   return (
-    <div className="App">
+    <>
       <MyGlobalStyle theme={myTheme} />
       <ThemeProvider theme={myTheme}>
         <Routes>
@@ -70,7 +84,7 @@ function App() {
           </Route>
         </Routes>
       </ThemeProvider>
-    </div>
+    </>
   );
 }
 
