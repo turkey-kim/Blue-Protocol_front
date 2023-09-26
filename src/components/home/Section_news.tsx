@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 import { ReactComponent as BoundaryIcon } from "../../assets/icons/boundary.svg";
 import { ReactComponent as DotIcon } from "../../assets/icons/dot.svg";
 import { useNavigate } from "react-router";
-import test from "../../api/test";
 
 const Section_news = () => {
   let [arr, setArr] = useState<any>([{}]);
   let navigate = useNavigate();
 
   const goToNews = () => {
-    test();
+    navigate("/news");
   };
 
   useEffect(() => {

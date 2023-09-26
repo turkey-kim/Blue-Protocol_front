@@ -56,7 +56,7 @@ const Logo = styled(MainLogo)`
 const Title = styled.h1`
   color: white;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 35px;
   margin: 0;
 
   @media screen and (max-width: 990px) {
