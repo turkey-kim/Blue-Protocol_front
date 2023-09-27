@@ -45,7 +45,13 @@ const Footer = () => {
                   }}
                 ></Discord>
               </Logo1>
-              <KakaoLogo></KakaoLogo>
+              <Logo2>
+                <KakaoTalk
+                  onClick={() => {
+                    window.open(discordUrl);
+                  }}
+                ></KakaoTalk>
+              </Logo2>
             </LogoContainer>
           </NavContainer>
         </Nav>
@@ -81,6 +87,10 @@ const Inner = styled.div`
   margin: 0 5rem;
   justify-content: space-around;
   padding: 0 1.5rem 0 2rem;
+
+  @media screen and (max-width: 990px) {
+    display: block;
+  }
 `;
 
 const Nav = styled.nav`
