@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import Section_main from "../components/home/Section_main";
-import Section_news from "../components/home/Section_news";
+import styled from 'styled-components';
+import Section_main from '../components/home/Section_main';
+import Section_news from '../components/home/Section_news';
+import Section_info from '../components/home/Section_info';
 
 const Home = () => {
   return (

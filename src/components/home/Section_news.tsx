@@ -1,21 +1,22 @@
-import styled from "styled-components";
-import { publicPath } from "../../constant";
-import NewsCard from "./NewsCard";
-import { useEffect, useState } from "react";
-import { ReactComponent as BoundaryIcon } from "../../assets/icons/boundary.svg";
-import { ReactComponent as DotIcon } from "../../assets/icons/dot.svg";
-import { useNavigate } from "react-router";
+import styled from 'styled-components';
+import { publicPath } from '../../constant';
+import NewsCard from './NewsCard';
+import Info from './Section_info';
+import { useEffect, useState } from 'react';
+import { ReactComponent as BoundaryIcon } from '../../assets/icons/boundary.svg';
+import { ReactComponent as DotIcon } from '../../assets/icons/dot.svg';
+import { useNavigate } from 'react-router';
 
 const Section_news = () => {
   let [arr, setArr] = useState<any>([{}]);
   let navigate = useNavigate();
 
   const goToNews = () => {
-    navigate("/news");
+    navigate('/news');
   };
 
   useEffect(() => {
-    const news = JSON.parse(localStorage.getItem("news") || "");
+    const news = JSON.parse(localStorage.getItem('news') || '');
     setArr(news);
   }, []);
   return (
@@ -39,8 +40,10 @@ const Section_news = () => {
           <Dot></Dot>
           <Button onClick={goToNews}>더 많은 소식 보러가기</Button>
           <Dot></Dot>
-          <Boundary style={{ transform: "rotate(180deg)" }}></Boundary>
+          <Boundary style={{ transform: 'rotate(180deg)' }}></Boundary>
         </GoToNews>
+        <Border />
+        <Info />
       </InnerContainer>
     </Container>
   );
@@ -76,7 +79,7 @@ const Header = styled.div`
   margin-bottom: 3rem;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -87,7 +90,7 @@ const Header = styled.div`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -134,7 +137,15 @@ const GoToNews = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3rem 0;
+  padding: 3rem 0 8rem 0;
+  width: 100%;
+`;
+
+const Border = styled.div`
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #b2dfe1 25%, #8193d5 100%);
 `;
 
 const Button = styled.span`
