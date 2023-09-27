@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as LogoIcon } from "../assets/icons/blue-protocol.svg";
+import { ReactComponent as TextLogo } from "../assets/icons/text-logo.svg";
 import { publicPath } from "../constant";
 
 const Header = () => {
@@ -14,11 +14,11 @@ const Header = () => {
       <Inner>
         <Logo onClick={goHome}></Logo>
         <Nav>
-          <StyledLink to="/">HOME</StyledLink>
-          <StyledLink to="/news">NEWS</StyledLink>
-          <StyledLink to="/game">GAME</StyledLink>
-          <StyledLink to="/guide">GUIDE</StyledLink>
-          <StyledLink to="/database">DATABASE</StyledLink>
+          <StyledLink to="/">홈</StyledLink>
+          <StyledLink to="/news">뉴스</StyledLink>
+          <StyledLink to="/game">게임</StyledLink>
+          <StyledLink to="/guide">가이드</StyledLink>
+          <StyledLink to="/database">데이터베이스</StyledLink>
         </Nav>
         <Search
           style={{
@@ -52,20 +52,12 @@ const Inner = styled.div`
   }
 `;
 
-const Logo = styled(LogoIcon)`
+const Logo = styled(TextLogo)`
   cursor: pointer;
-  transition: all 0.5s;
-  path {
-    fill: #68c3c4;
-    transition: fill 0.5s;
-  }
+  height: 30px;
 
-  &:hover {
-    transform: scale(1.02);
-    path {
-      transition: fill 0.5s;
-      fill: url(#paint0_linear_143_128);
-    }
+  path {
+    fill: ${({ theme }) => theme.color.bg100};
   }
 `;
 
