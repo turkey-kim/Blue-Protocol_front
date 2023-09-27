@@ -25,6 +25,7 @@ const Section_news = () => {
         {arr.length
           ? arr.map((element: any, index: number) => (
               <NewsCard
+                key={element.title}
                 imgUrl={element.img}
                 category={element.category}
                 title={element.title}
@@ -67,7 +68,7 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #b2dfe1 50%, #8193d5 100%);
+  background: linear-gradient(to right, #b2dfe1 25%, #8193d5 100%);
   position: relative;
   color: white;
   font-weight: 500;

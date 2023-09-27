@@ -30,7 +30,7 @@ interface Theme {
 
 const color = {
   bg50: "#b2dfe1",
-  bg100: "#b2dfe1",
+  bg100: "#68c3c4",
   bg150: "#b2dfe1",
   bg200: "#b2dfe1",
   dark100: "#585858",
