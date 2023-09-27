@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import { publicPath } from "../../constant";
 import { ReactComponent as MainLogo } from "../../assets/icons/main-logo.svg";
+import { ReactComponent as TextLogo } from "../../assets/icons/text-logo.svg";
 
 const Section_main = () => {
   return (
     <Container>
       <LogoContainer>
         <Logo></Logo>
-        <Title>뮤리의 서재</Title>
+        <Title>
+          <TextLogo />
+        </Title>
         <SubTitle>
           기억을 잃은 채 별의 파멸이라는 거대한 운명에 맞서는 당신을 위한 도서관
         </SubTitle>
@@ -67,6 +70,6 @@ const Title = styled.h1`
 const SubTitle = styled.p`
   color: white;
   opacity: 0.8;
-  margin: 0.5rem 0;
+  margin: 1.2rem 0;
   font-size: 20px;
 `;
