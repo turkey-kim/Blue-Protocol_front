@@ -48,7 +48,7 @@ const Inner = styled.div`
   width: 1320px;
   padding: 1.5rem;
   @media screen and (max-width: 990px) {
-    width: 80%;
+    width: auto;
   }
 `;
 
@@ -66,7 +66,7 @@ const Nav = styled.div`
   justify-content: center;
   color: gray;
   font-size: 1rem;
-  margin: 0 1rem;
+  width: 450px;
 
   @media screen and (max-width: 990px) {
     display: none;

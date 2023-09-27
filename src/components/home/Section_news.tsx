@@ -60,6 +60,10 @@ const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 70%;
+  padding-bottom: 7rem;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #68c3c4 30%, #001fa9 100%);
+  border-image-slice: 1;
 `;
 
 const Header = styled.div`
@@ -98,38 +102,6 @@ const Header = styled.div`
   }
 `;
 
-const NewsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: auto;
-
-  margin: 2rem 0;
-`;
-
-const NewsImage = styled.div`
-  border-radius: 1rem;
-  width: 40%;
-  min-width: 450px;
-  height: 200px;
-  background: url(${publicPath}/images/news01.png);
-  background-size: cover;
-  background-position: center;
-`;
-
-const NewsOutlines = styled.div`
-  border-radius: 1rem;
-  width: 40%;
-  min-width: 450px;
-  height: 200px;
-  margin-left: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-`;
-
 const GoToNews = styled.div`
   display: flex;
   justify-content: center;
@@ -141,10 +113,15 @@ const Button = styled.span`
   width: 156px;
   font-weight: 700;
   font-size: 1rem;
+  text-align: center;
   cursor: pointer;
 `;
 
-const Boundary = styled(BoundaryIcon)``;
+const Boundary = styled(BoundaryIcon)`
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
+`;
 const Dot = styled(DotIcon)`
   margin: 0.5rem;
 `;
