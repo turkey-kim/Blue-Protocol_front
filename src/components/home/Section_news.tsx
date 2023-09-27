@@ -35,11 +35,14 @@ const Section_news = () => {
             ))
           : null}
         <GoToNews>
-          <Boundary></Boundary>
-          <Dot></Dot>
+          <Boundary className="arrow-icon" />
+          <Dot className="dot-icon" />
           <Button onClick={goToNews}>더 많은 소식 보러가기</Button>
-          <Dot></Dot>
-          <Boundary style={{ transform: "rotate(180deg)" }}></Boundary>
+          <Dot className="dot-icon" />
+          <Boundary
+            className="arrow-icon"
+            style={{ transform: "rotate(180deg)" }}
+          />
         </GoToNews>
       </InnerContainer>
     </Container>
@@ -107,6 +110,24 @@ const GoToNews = styled.div`
   justify-content: center;
   align-items: center;
   margin: 3rem 0;
+
+  path {
+    fill: #68c3c4;
+  }
+
+  &:hover .arrow-icon {
+    path {
+      transition: fill 1s;
+      fill: url(#paint0_linear_293_214);
+    }
+  }
+
+  &:hover .dot-icon {
+    path {
+      transition: fill 1s;
+      fill: #001fa9;
+    }
+  }
 `;
 
 const Button = styled.span`
@@ -118,6 +139,7 @@ const Button = styled.span`
 `;
 
 const Boundary = styled(BoundaryIcon)`
+  width: 450px;
   @media screen and (max-width: 990px) {
     display: none;
   }
