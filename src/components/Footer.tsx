@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import React from 'react';
-import { ReactComponent as ProtocolLogo } from '../assets/icons/blue-protocol.svg';
-import { ReactComponent as DiscordLogo } from '../assets/icons/discord-logo.svg';
-import { ReactComponent as KakaoLogo } from '../assets/icons/kakao-logo.svg';
+import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
+import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
+import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -34,9 +34,7 @@ const Footer = () => {
         <Nav>
           <NavTitle>커뮤니티</NavTitle>
           <NavContainer>
-            <FooterTextCommunity>
-              뮤리의 서재는 플레이어분들과 소통하며 활동하고 있습니다.
-            </FooterTextCommunity>
+            <FooterTextCommunity>뮤리의 서재는 플레이어분들과 소통하며 활동하고 있습니다.</FooterTextCommunity>
             <LogoContainer>
               <Logo1>
                 <Discord
@@ -77,7 +75,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   background-color: #0000001a;
-  padding-bottom: 30vh;
+  padding-bottom: 20vh;
 `;
 
 const Inner = styled.div`
@@ -96,6 +94,7 @@ const Inner = styled.div`
 const Nav = styled.nav`
   display: block;
   cursor: default;
+  color: #4d4d4d;
 `;
 
 const NavTitle = styled.div`
@@ -108,11 +107,6 @@ const NavTitle = styled.div`
 
 const NavContainer = styled.div`
   padding-top: 3rem;
-  StyledLink {
-    &:last-child {
-      background-color: red;
-    }
-  }
 `;
 
 const StyledLink = styled(Link)`

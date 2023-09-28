@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import NewsCarousel from './NewsCarousel';
+import React, {useEffect, useState} from 'react';
+import CarouselImg from './CarouselImg';
 import styled from 'styled-components';
 
 const NewsMain = () => {
@@ -15,14 +15,14 @@ const NewsMain = () => {
       <Carousel>
         {Arr.length
           ? Arr.map((element: any, key: number) => (
-              <NewsCarousel
+              <CarouselImg
                 key={element.title}
                 imgUrl={element.img}
                 category={element.category}
                 title={element.title}
                 content={element.content}
                 time={element.time}
-              ></NewsCarousel>
+              ></CarouselImg>
             ))
           : null}
       </Carousel>
