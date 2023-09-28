@@ -1,21 +1,20 @@
-import styled from "styled-components";
-import { publicPath } from "../../constant";
-import NewsCard from "./NewsCard";
-import { useEffect, useState } from "react";
-import { ReactComponent as BoundaryIcon } from "../../assets/icons/boundary.svg";
-import { ReactComponent as DotIcon } from "../../assets/icons/dot.svg";
-import { useNavigate } from "react-router";
+import styled from 'styled-components';
+import NewsCard from './NewsCard';
+import { useEffect, useState } from 'react';
+import { ReactComponent as BoundaryIcon } from '../../assets/icons/boundary.svg';
+import { ReactComponent as DotIcon } from '../../assets/icons/dot.svg';
+import { useNavigate } from 'react-router';
 
-const Section_news = () => {
+const SectionNews = () => {
   let [arr, setArr] = useState<any>([{}]);
   let navigate = useNavigate();
 
   const goToNews = () => {
-    navigate("/news");
+    navigate('/news');
   };
 
   useEffect(() => {
-    const news = JSON.parse(localStorage.getItem("news") || "");
+    const news = JSON.parse(localStorage.getItem('news') || '');
     setArr(news);
   }, []);
   return (
@@ -41,7 +40,7 @@ const Section_news = () => {
           <Dot className="dot-icon" />
           <Boundary
             className="arrow-icon"
-            style={{ transform: "rotate(180deg)" }}
+            style={{ transform: 'rotate(180deg)' }}
           />
         </GoToNews>
       </InnerContainer>
@@ -49,7 +48,7 @@ const Section_news = () => {
   );
 };
 
-export default Section_news;
+export default SectionNews;
 
 const Container = styled.section`
   display: flex;
@@ -83,7 +82,7 @@ const Header = styled.div`
   margin-bottom: 3rem;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -94,7 +93,7 @@ const Header = styled.div`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
