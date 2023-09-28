@@ -1,8 +1,13 @@
-import styled from "styled-components";
-import React from "react";
+import styled from 'styled-components';
+import NewsMain from '../components/news/NewsMain';
+import React from 'react';
 
 const News = () => {
-  return <Container>This is News!</Container>;
+  return (
+    <Container>
+      <NewsMain></NewsMain>
+    </Container>
+  );
 };
 
 export default News;
