@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-import { publicPath } from '../../constant';
 import NewsCard from './NewsCard';
-import Info from './Section_info';
 import { useEffect, useState } from 'react';
 import { ReactComponent as BoundaryIcon } from '../../assets/icons/boundary.svg';
 import { ReactComponent as DotIcon } from '../../assets/icons/dot.svg';
 import { useNavigate } from 'react-router';
 
-const Section_news = () => {
+const SectionNews = () => {
   let [arr, setArr] = useState<any>([{}]);
   let navigate = useNavigate();
 
@@ -36,20 +34,21 @@ const Section_news = () => {
             ))
           : null}
         <GoToNews>
-          <Boundary></Boundary>
-          <Dot></Dot>
+          <Boundary className="arrow-icon" />
+          <Dot className="dot-icon" />
           <Button onClick={goToNews}>더 많은 소식 보러가기</Button>
-          <Dot></Dot>
-          <Boundary style={{ transform: 'rotate(180deg)' }}></Boundary>
+          <Dot className="dot-icon" />
+          <Boundary
+            className="arrow-icon"
+            style={{ transform: 'rotate(180deg)' }}
+          />
         </GoToNews>
-        <Border />
-        <Info />
       </InnerContainer>
     </Container>
   );
 };
 
-export default Section_news;
+export default SectionNews;
 
 const Container = styled.section`
   display: flex;
@@ -63,6 +62,10 @@ const InnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 70%;
+  padding-bottom: 7rem;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #68c3c4 30%, #001fa9 100%);
+  border-image-slice: 1;
 `;
 
 const Header = styled.div`
@@ -101,61 +104,45 @@ const Header = styled.div`
   }
 `;
 
-const NewsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: auto;
-
-  margin: 2rem 0;
-`;
-
-const NewsImage = styled.div`
-  border-radius: 1rem;
-  width: 40%;
-  min-width: 450px;
-  height: 200px;
-  background: url(${publicPath}/images/news01.png);
-  background-size: cover;
-  background-position: center;
-`;
-
-const NewsOutlines = styled.div`
-  border-radius: 1rem;
-  width: 40%;
-  min-width: 450px;
-  height: 200px;
-  margin-left: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-`;
-
 const GoToNews = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 0 8rem 0;
-  width: 100%;
-`;
+  margin: 3rem 0;
 
-const Border = styled.div`
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(to right, #b2dfe1 25%, #8193d5 100%);
+  path {
+    fill: #68c3c4;
+  }
+
+  &:hover .arrow-icon {
+    path {
+      transition: fill 1s;
+      fill: url(#paint0_linear_293_214);
+    }
+  }
+
+  &:hover .dot-icon {
+    path {
+      transition: fill 1s;
+      fill: #001fa9;
+    }
+  }
 `;
 
 const Button = styled.span`
   width: 156px;
   font-weight: 700;
   font-size: 1rem;
+  text-align: center;
   cursor: pointer;
 `;
 
-const Boundary = styled(BoundaryIcon)``;
+const Boundary = styled(BoundaryIcon)`
+  width: 450px;
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
+`;
 const Dot = styled(DotIcon)`
   margin: 0.5rem;
 `;

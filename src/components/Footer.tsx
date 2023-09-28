@@ -131,6 +131,9 @@ const FooterTextCommunity = styled.span`
 
 const FooterTextHeader = styled(FooterTextCommunity)`
   cursor: pointer;
+  &:hover {
+    color: black;
+  }
 `;
 
 const Url = styled(ProtocolLogo)`

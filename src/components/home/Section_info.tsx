@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as BookLogo } from '../../assets/icons/main-logo.svg';
 import { ReactComponent as TextLogo } from '../../assets/icons/text-logo.svg';
 import styled from 'styled-components';
-const Info = () => {
+const SectionInfo = () => {
   return (
     <Container>
       <Logo1 />
@@ -24,14 +24,14 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default SectionInfo;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3rem;
+  margin: 1rem 0 7rem 0;
 `;
 
 const Logo1 = styled(BookLogo)`

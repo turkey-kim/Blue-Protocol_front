@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { publicPath } from "../../constant";
-import { ReactComponent as MainLogo } from "../../assets/icons/main-logo.svg";
-import { ReactComponent as TextLogo } from "../../assets/icons/text-logo.svg";
+import styled from 'styled-components';
+import { publicPath } from '../../constant';
+import { ReactComponent as MainLogo } from '../../assets/icons/main-logo.svg';
+import { ReactComponent as TextLogo } from '../../assets/icons/text-logo.svg';
 
-const Section_main = () => {
+const SectionMain = () => {
   return (
     <Container>
       <LogoContainer>
@@ -19,7 +19,7 @@ const Section_main = () => {
   );
 };
 
-export default Section_main;
+export default SectionMain;
 
 const Container = styled.section`
   display: flex;
