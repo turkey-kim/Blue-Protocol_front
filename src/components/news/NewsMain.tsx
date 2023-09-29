@@ -11,20 +11,35 @@ interface Props {
   time?: string;
 }
 const NewsMain = () => {
+  const [check, setCheck] = useState('');
   const [arr, setarr] = useState<any>([{}]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    console.log('check:', check);
     const news = JSON.parse(localStorage.getItem('news') || '[]');
     setarr(news);
-    const interval = setInterval(() => {
-      setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
-    }, 3500);
+    let intervals: NodeJS.Timeout[] = [];
+
+    if (check.length === 0) {
+      console.log('Starting interval...');
+      const interval = setInterval(() => {
+        setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
+      }, 3500);
+      intervals.push(interval);
+    } else {
+      console.log('Stopping intervals...');
+      intervals.forEach(interval => clearInterval(interval));
+      const newInterval = setInterval(() => {
+        setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
+      }, 3500);
+      intervals.push(newInterval);
+    }
 
     return () => {
-      clearInterval(interval);
+      intervals.forEach(interval => clearInterval(interval));
     };
-  }, [arr.length]);
+  }, [arr.length, check]);
 
   const totalLen = arr.length;
 
@@ -44,6 +59,11 @@ const NewsMain = () => {
     console.log('clicked');
   };
 
+  const handleDotClick = (index: number, check: string) => {
+    setCurrentIndex(index);
+    setCheck(check);
+  };
+
   return (
     <Container>
       <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}} onClick={TestFunc}>
@@ -57,11 +77,7 @@ const NewsMain = () => {
                   <CarouselContent key={element.title}>{element.content}</CarouselContent>
                   <CarouselTime key={element.title}>{element.time}</CarouselTime>
                   <CarouselDotContainer key={element.title}>
-                    <CreateDots
-                      length={totalLen}
-                      curr={currentIndex}
-                      onDotClick={(currentIndex: number) => setCurrentIndex(currentIndex)}
-                    ></CreateDots>
+                    <CreateDots length={totalLen} curr={currentIndex} onDotClick={handleDotClick}></CreateDots>
                   </CarouselDotContainer>
                 </CarouselTextContainer>
                 <CarouselImageContainer key={element.title}>

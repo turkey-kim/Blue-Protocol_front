@@ -1,10 +1,11 @@
+import {v4 as uuidv4} from 'uuid';
 import React from 'react';
 import styled from 'styled-components';
 interface Props {
   active?: any;
   length?: any;
   curr?: number;
-  onDotClick?: (currentIndex: number) => void;
+  onDotClick?: (currentIndex: number, check: string) => void;
 }
 const CreateDots = ({length, curr, onDotClick}: Props) => {
   const dots = [];
@@ -17,7 +18,7 @@ const CreateDots = ({length, curr, onDotClick}: Props) => {
         <Dot
           active={isActive}
           onClick={() => {
-            onDotClick?.(i);
+            onDotClick?.(i, uuidv4());
           }}
         />
       </DotsContainer>,
