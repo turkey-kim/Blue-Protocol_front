@@ -8,5 +8,4 @@ export default NewsList;
 
 const Container = styled.div`
   width: 100vw;
-  background-color: red;
 `;
