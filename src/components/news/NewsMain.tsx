@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {ReactComponent as RightBtn} from '../../assets/icons/화살표_우.svg';
-import {ReactComponent as LeftBtn} from '../../assets/icons/화살표_좌.svg';
+import {ReactComponent as RightBtn} from '../../assets/icons/rightarrow-logo.svg';
+import {ReactComponent as LeftBtn} from '../../assets/icons/leftarrow-logo.svg';
+import CreateDots from './CreateDots';
 import styled from 'styled-components';
 interface Props {
   imgUrl?: string;
@@ -10,12 +11,12 @@ interface Props {
   time?: string;
 }
 const NewsMain = () => {
-  const [Arr, setArr] = useState<any>([{}]);
+  const [arr, setarr] = useState<any>([{}]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const news = JSON.parse(localStorage.getItem('news') || '[]');
-    setArr(news);
+    setarr(news);
     const interval = setInterval(() => {
       setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
     }, 3500);
@@ -23,9 +24,9 @@ const NewsMain = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [Arr.length]);
+  }, [arr.length]);
 
-  const totalLen = Arr.length;
+  const totalLen = arr.length;
 
   const RightFunc = () => {
     if (totalLen > 0) {
@@ -40,14 +41,14 @@ const NewsMain = () => {
   };
 
   const TestFunc = () => {
-    console.log(1);
+    console.log('clicked');
   };
 
   return (
     <Container>
       <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}} onClick={TestFunc}>
-        {Arr.length
-          ? Arr.map((element: any, key: number) => (
+        {arr.length
+          ? arr.map((element: any, key: number) => (
               <CarouselContainer key={element.title}>
                 <CarouselImg key={element.title} src={element.img}></CarouselImg>
                 <CarouselTextContainer key={element.title}>
@@ -55,6 +56,13 @@ const NewsMain = () => {
                   <CarouselTitle key={element.title}>{element.title}</CarouselTitle>
                   <CarouselContent key={element.title}>{element.content}</CarouselContent>
                   <CarouselTime key={element.title}>{element.time}</CarouselTime>
+                  <CarouselDotContainer key={element.title}>
+                    <CreateDots
+                      length={totalLen}
+                      curr={currentIndex}
+                      onDotClick={(currentIndex: number) => setCurrentIndex(currentIndex)}
+                    ></CreateDots>
+                  </CarouselDotContainer>
                 </CarouselTextContainer>
                 <CarouselImageContainer key={element.title}>
                   <CarouselPreview key={element.title} src={element.img}></CarouselPreview>
@@ -85,7 +93,7 @@ const Container = styled.div`
 
 const Carousel = styled.div`
   display: flex;
-  height: 90%;
+  height: 95%;
   transition: transform 0.5s ease;
   cursor: pointer;
 `;
@@ -105,7 +113,7 @@ const CarouselImg = styled.img<Props>`
 const CarouselTextContainer = styled.div<Props>`
   position: absolute;
   top: 55%;
-  left: 15rem;
+  left: 16vw;
   z-index: 1;
 `;
 
@@ -141,6 +149,11 @@ const CarouselTime = styled.span<Props>`
   font-family: 'Roboto';
 `;
 
+const CarouselDotContainer = styled.div<Props>`
+  position: absolute;
+  margin-top: 2vh;
+`;
+
 const CarouselImageContainer = styled.div<Props>`
   position: absolute;
   top: 20%;
@@ -169,7 +182,7 @@ const CarouselImageBorder = styled.div`
 const LeftContainer = styled.button`
   position: absolute;
   top: 50%;
-  left: 7rem;
+  left: 5vw;
   background: none;
   border: none;
   cursor: pointer;
@@ -178,7 +191,7 @@ const LeftContainer = styled.button`
 const RightContainer = styled.button`
   position: absolute;
   top: 50%;
-  right: 7rem;
+  right: 5vw;
   background: none;
   border: none;
   cursor: pointer;
