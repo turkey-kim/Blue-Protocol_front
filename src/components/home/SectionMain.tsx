@@ -70,4 +70,9 @@ const SubTitle = styled.p`
   opacity: 0.8;
   margin: 1.2rem 0;
   font-size: 20px;
+  text-align: center;
+
+  @media screen and (max-width: 990px) {
+    padding: 1rem;
+  }
 `;
