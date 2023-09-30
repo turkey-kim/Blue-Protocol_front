@@ -8,6 +8,8 @@ import styled from 'styled-components';
 const Footer = () => {
   const officialUrl = 'https://blueprotocol.game.onstove.com';
   const discordUrl = 'https://discord.gg/p6ruJWERbH';
+  const kakaoUrl = 'https://open.kakao.com/o/g4OwxAOe';
+
   return (
     <Container>
       <Inner>
@@ -46,7 +48,7 @@ const Footer = () => {
               <Logo2>
                 <KakaoTalk
                   onClick={() => {
-                    window.open(discordUrl);
+                    window.open(kakaoUrl);
                   }}
                 ></KakaoTalk>
               </Logo2>
