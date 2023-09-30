@@ -3,19 +3,21 @@ import './font.css';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-import { Outlet } from 'react-router';
-import { Routes, Route } from 'react-router';
-import { MyGlobalStyle, myTheme } from './style';
-import { ThemeProvider } from 'styled-components';
+import {Outlet} from 'react-router';
+import {Routes, Route} from 'react-router';
+import {MyGlobalStyle, myTheme} from './style';
+import {ThemeProvider} from 'styled-components';
 import News from './pages/News';
 import Game from './pages/Game';
 import Guide from './pages/Guide';
 import Database from './pages/Database';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import Login from './pages/Login';
-import { checkToken } from './api/auth';
-import { useRecoilState } from 'recoil';
-import { loginState } from './states/atoms';
+import {checkToken} from './api/auth';
+import {useRecoilState} from 'recoil';
+import {loginState} from './states/atoms';
+import PrivateRoute from './routes/PrivateRoute';
+import PostNews from './pages/PostNews';
 
 const arr = [
   {
@@ -83,6 +85,15 @@ function App() {
             <Route path="guide" element={<Guide />}></Route>
             <Route path="database" element={<Database />}></Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
+
+            <Route
+              path="news/post"
+              element={
+                <PrivateRoute>
+                  <PostNews />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
         </Routes>
       </ThemeProvider>
