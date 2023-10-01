@@ -11,25 +11,27 @@ interface Props {
   time?: string;
 }
 const NewsMain = () => {
-  const [check, setCheck] = useState('');
   const [arr, setarr] = useState<any>([{}]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [intervalcheck, setIntervalcheck] = useState(0);
+
+  let intervals: NodeJS.Timeout[] = [];
 
   useEffect(() => {
-    console.log('check:', check);
     const news = JSON.parse(localStorage.getItem('news') || '[]');
     setarr(news);
-    let intervals: NodeJS.Timeout[] = [];
+    console.log('체크 수:', intervalcheck);
 
-    if (check.length === 0) {
-      console.log('Starting interval...');
+    if (intervalcheck === 0) {
+      console.log('첫 인터벌...');
       const interval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
       intervals.push(interval);
     } else {
-      console.log('Stopping intervals...');
+      console.log('인터벌 삭제...');
       intervals.forEach(interval => clearInterval(interval));
+      console.log('바뀐 인터벌...');
       const newInterval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
@@ -39,29 +41,32 @@ const NewsMain = () => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, [arr.length, check]);
+  }, [arr.length, intervalcheck]);
 
   const totalLen = arr.length;
 
   const RightFunc = () => {
     if (totalLen > 0) {
       setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
+      setIntervalcheck(intervalcheck + 1);
+      console.log(intervalcheck);
     }
   };
 
   const LeftFunc = () => {
     if (totalLen > 0) {
       setCurrentIndex(prevCurr => (prevCurr - 1 + totalLen) % totalLen);
+      setIntervalcheck(intervalcheck + 1);
     }
+  };
+
+  const handleDotClick = (index: number, intervalcheck: number) => {
+    setCurrentIndex(index);
+    setIntervalcheck(intervalcheck);
   };
 
   const TestFunc = () => {
     console.log('clicked');
-  };
-
-  const handleDotClick = (index: number, check: string) => {
-    setCurrentIndex(index);
-    setCheck(check);
   };
 
   return (
@@ -77,7 +82,12 @@ const NewsMain = () => {
                   <CarouselContent key={element.title}>{element.content}</CarouselContent>
                   <CarouselTime key={element.title}>{element.time}</CarouselTime>
                   <CarouselDotContainer key={element.title}>
-                    <CreateDots length={totalLen} curr={currentIndex} onDotClick={handleDotClick}></CreateDots>
+                    <CreateDots
+                      length={totalLen}
+                      curr={currentIndex}
+                      onDotClick={handleDotClick}
+                      intervalcheck={intervalcheck}
+                    ></CreateDots>
                   </CarouselDotContainer>
                 </CarouselTextContainer>
                 <CarouselImageContainer key={element.title}>
@@ -202,6 +212,9 @@ const LeftContainer = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
 
 const RightContainer = styled.button`
@@ -211,6 +224,9 @@ const RightContainer = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
 
 const Left = styled(LeftBtn)``;

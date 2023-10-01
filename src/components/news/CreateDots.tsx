@@ -1,13 +1,13 @@
-import {v4 as uuidv4} from 'uuid';
 import React from 'react';
 import styled from 'styled-components';
 interface Props {
   active?: any;
   length?: any;
   curr?: number;
-  onDotClick?: (currentIndex: number, check: string) => void;
+  onDotClick?: (currentIndex: number, intervalcheck: number) => void;
+  intervalcheck?: any;
 }
-const CreateDots = ({length, curr, onDotClick}: Props) => {
+const CreateDots = ({length, curr, onDotClick, intervalcheck}: Props) => {
   const dots = [];
 
   for (let i = 0; i < length; i++) {
@@ -18,7 +18,7 @@ const CreateDots = ({length, curr, onDotClick}: Props) => {
         <Dot
           active={isActive}
           onClick={() => {
-            onDotClick?.(i, uuidv4());
+            onDotClick?.(i, intervalcheck + 1);
           }}
         />
       </DotsContainer>,

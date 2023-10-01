@@ -7,7 +7,7 @@ const NewsList = () => {
 export default NewsList;
 
 const Container = styled.div`
-  height: auto;
-  margin: 5vh 13vw 7vh 5vw;
+  height: 100px;
+  margin: 5vh 30vw 7vh 15vw;
   background-color: red;
 `;
