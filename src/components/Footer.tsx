@@ -3,13 +3,10 @@ import React from 'react';
 import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
 import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
 import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
+import {officialUrl as OFFICIAL_URL, discordUrl as DISCORD_URL, kakaoUrl as KAKAO_URL} from '../constant';
 import styled from 'styled-components';
 
 const Footer = () => {
-  const officialUrl = 'https://blueprotocol.game.onstove.com';
-  const discordUrl = 'https://discord.gg/p6ruJWERbH';
-  const kakaoUrl = 'https://open.kakao.com/o/g4OwxAOe';
-
   return (
     <Container>
       <Inner>
@@ -41,14 +38,14 @@ const Footer = () => {
               <Logo1>
                 <Discord
                   onClick={() => {
-                    window.open(discordUrl);
+                    window.open(DISCORD_URL);
                   }}
                 ></Discord>
               </Logo1>
               <Logo2>
                 <KakaoTalk
                   onClick={() => {
-                    window.open(kakaoUrl);
+                    window.open(KAKAO_URL);
                   }}
                 ></KakaoTalk>
               </Logo2>
@@ -60,7 +57,7 @@ const Footer = () => {
           <NavContainer>
             <Url
               onClick={() => {
-                window.open(officialUrl);
+                window.open(OFFICIAL_URL);
               }}
             ></Url>
           </NavContainer>
