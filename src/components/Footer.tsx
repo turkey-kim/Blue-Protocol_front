@@ -33,7 +33,11 @@ const Footer = () => {
         <Nav>
           <NavTitle>커뮤니티</NavTitle>
           <NavContainer>
-            <FooterTextCommunity>뮤리의 서재는 플레이어분들과 소통하며 활동하고 있습니다.</FooterTextCommunity>
+            <FooterTextCommunity>
+              뮤리의 서재는 플레이어분들과
+              {window.innerWidth <= 990 && <FooterTextCommunityBR />}
+              소통하며 활동하고 있습니다.
+            </FooterTextCommunity>
             <LogoContainer>
               <Logo1>
                 <Discord
@@ -87,6 +91,8 @@ const Inner = styled.div`
 
   @media screen and (max-width: 990px) {
     display: block;
+    right: 10%;
+    transform: translateX(10%);
   }
 `;
 
@@ -94,6 +100,9 @@ const Nav = styled.nav`
   display: block;
   cursor: default;
   color: #4d4d4d;
+  @media screen and (max-width: 990px) {
+    width: 100vw;
+  }
 `;
 
 const NavTitle = styled.div`
@@ -102,6 +111,9 @@ const NavTitle = styled.div`
   font-weight: 600;
   font-family: 'Roboto';
   line-height: 32px;
+  @media screen and (max-width: 990px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const NavContainer = styled.div`
@@ -114,18 +126,29 @@ const StyledLink = styled(Link)`
   cursor: default;
 `;
 
-const FooterTextCommunity = styled.span`
+const FooterTextCommunity = styled.div`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 40px;
   font-family: 'Roboto';
   color: gray;
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
+`;
+
+const FooterTextCommunityBR = styled.br`
+  @media screen and (max-width: 990px) {
+  }
 `;
 
 const FooterTextHeader = styled(FooterTextCommunity)`
   cursor: pointer;
   &:hover {
     color: black;
+  }
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
   }
 `;
 
@@ -139,15 +162,28 @@ const Url = styled(ProtocolLogo)`
 const LogoContainer = styled.div`
   display: flex;
   margin-top: 4rem;
+  right: 10%;
+  @media screen and (max-width: 990px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const Logo1 = styled.div`
   display: flex;
+  @media screen and (max-width: 990px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const Logo2 = styled.div`
   display: flex;
   margin-left: 1rem;
+  @media screen and (max-width: 990px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const Discord = styled(DiscordLogo)`

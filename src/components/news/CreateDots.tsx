@@ -46,4 +46,8 @@ const Dot = styled.div<Props>`
   border: 2px solid #ffffff;
   cursor: pointer;
   background-color: ${props => (props.active ? '#FFFFFF' : 'transparent')};
+  @media screen and (max-width: 990px) {
+    width: 10px;
+    height: 10px;
+  }
 `;

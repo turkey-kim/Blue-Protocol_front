@@ -71,7 +71,7 @@ const NewsMain = () => {
 
   return (
     <Container>
-      <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}} onClick={TestFunc}>
+      <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
         {arr.length
           ? arr.map((element: any, key: number) => (
               <CarouselContainer key={element.title}>
@@ -91,7 +91,7 @@ const NewsMain = () => {
                   </CarouselDotContainer>
                 </CarouselTextContainer>
                 <CarouselImageContainer key={element.title}>
-                  <CarouselPreview key={element.title} src={element.img}></CarouselPreview>
+                  <CarouselPreview key={element.title} src={element.img} onClick={TestFunc}></CarouselPreview>
                   <CarouselImageBorder key={element.title}></CarouselImageBorder>
                 </CarouselImageContainer>
               </CarouselContainer>
@@ -115,6 +115,9 @@ const Container = styled.div`
   width: 100vw;
   height: 60vh;
   overflow: hidden;
+  @media screen and (max-width: 990px) {
+    height: 100vh;
+  }
 `;
 
 const Carousel = styled.div`
@@ -127,6 +130,10 @@ const Carousel = styled.div`
 const CarouselContainer = styled.div<Props>`
   position: relative;
   flex: 0 0 100vw;
+  @media screen and (max-width: 990px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const CarouselImg = styled.img<Props>`
@@ -141,6 +148,11 @@ const CarouselTextContainer = styled.div<Props>`
   top: 55%;
   left: 16vw;
   z-index: 1;
+  @media screen and (max-width: 990px) {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
 `;
 
 const CarouselCategory = styled.div<Props>`
@@ -149,6 +161,9 @@ const CarouselCategory = styled.div<Props>`
   line-height: 16.41px;
   font-weight: 600;
   font-family: 'Roboto';
+  @media screen and (max-width: 990px) {
+    margin-bottom: 3vh;
+  }
 `;
 
 const CarouselTitle = styled.div<Props>`
@@ -157,6 +172,10 @@ const CarouselTitle = styled.div<Props>`
   line-height: 37.5px;
   font-weight: 600;
   font-family: 'Roboto';
+  @media screen and (max-width: 990px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 
 const CarouselContent = styled.p<Props>`
@@ -165,6 +184,11 @@ const CarouselContent = styled.p<Props>`
   line-height: 18.75px;
   font-weight: 500;
   font-family: 'Roboto';
+  @media screen and (max-width: 990px) {
+    font-size: 11px;
+    line-height: 11px;
+    width: 60vw;
+  }
 `;
 
 const CarouselTime = styled.span<Props>`
@@ -173,19 +197,37 @@ const CarouselTime = styled.span<Props>`
   line-height: 14.06px;
   font-weight: 600;
   font-family: 'Roboto';
+  @media screen and (max-width: 990px) {
+    line-height: 11px;
+    font-size: 11px;
+  }
 `;
 
 const CarouselDotContainer = styled.div<Props>`
   position: absolute;
   margin-top: 2vh;
+  @media screen and (max-width: 990px) {
+    margin-top: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const CarouselImageContainer = styled.div<Props>`
   position: absolute;
   top: 20%;
-  right: 15rem;
+  right: 15vw;
   width: 40vw;
   z-index: 1;
+  @media screen and (max-width: 990px) {
+    right: 50%;
+    transform: translateX(50%);
+    min-width: 300px;
+    max-width: 65%;
+    margin-top: -5%;
+  }
 `;
 
 const CarouselPreview = styled.img<Props>`
@@ -193,16 +235,26 @@ const CarouselPreview = styled.img<Props>`
   height: auto;
   object-fit: cover;
   background-position: center;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const CarouselImageBorder = styled.div`
   position: absolute;
-  top: -3%;
-  right: -0.5rem;
+  top: -3vh;
+  right: -0.5vw;
   width: 40vw;
   height: 100%;
   border: 2px solid #ffffff;
   z-index: 2;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    right: -1vw;
+    top: -2vh;
+    max-height: 80vh;
+  }
 `;
 
 const LeftContainer = styled.button`
