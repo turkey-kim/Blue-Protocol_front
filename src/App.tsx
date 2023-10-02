@@ -22,6 +22,7 @@ import PostNews from './pages/PostNews';
 const arr = [
   {
     img: '/images/news01.png',
+    newscard: '/images/newsImage1.png',
     category: '캐릭터',
     title: '엄청난 소식!',
     content: '에린제의 호위기사 티라스가 어쩌고 저쩌고',
@@ -30,6 +31,7 @@ const arr = [
 
   {
     img: '/images/news02.png',
+    newscard: '/images/newsImage2.png',
     category: '캐릭터',
     title: '멋진 소식',
     content: '의문의 방랑자 멜로프, 멜로프 멜로프 멜로프!',
@@ -37,6 +39,7 @@ const arr = [
   },
   {
     img: '/images/news03.png',
+    newscard: '/images/newsImage3.png',
     category: '캐릭터',
     title: '엄청난 소식!',
     content: '미래에서 온 예린제! 예린제!',

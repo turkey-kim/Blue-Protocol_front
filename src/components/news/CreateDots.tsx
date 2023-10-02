@@ -37,6 +37,10 @@ const Dots = styled.div`
 const DotsContainer = styled.div`
   display: flex;
   margin-right: 1vw;
+  @media screen and (max-width: 990px) {
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
 `;
 
 const Dot = styled.div<Props>`
@@ -46,8 +50,4 @@ const Dot = styled.div<Props>`
   border: 2px solid #ffffff;
   cursor: pointer;
   background-color: ${props => (props.active ? '#FFFFFF' : 'transparent')};
-  @media screen and (max-width: 990px) {
-    width: 10px;
-    height: 10px;
-  }
 `;

@@ -34,8 +34,7 @@ const Footer = () => {
           <NavTitle>커뮤니티</NavTitle>
           <NavContainer>
             <FooterTextCommunity>
-              뮤리의 서재는 플레이어분들과
-              {window.innerWidth <= 990 && <FooterTextCommunityBR />}
+              뮤리의 서재는 플레이어분들과 <FooterTextCommunityBR></FooterTextCommunityBR>
               소통하며 활동하고 있습니다.
             </FooterTextCommunity>
             <LogoContainer>
@@ -138,7 +137,9 @@ const FooterTextCommunity = styled.div`
 `;
 
 const FooterTextCommunityBR = styled.br`
+  display: none;
   @media screen and (max-width: 990px) {
+    display: flex;
   }
 `;
 

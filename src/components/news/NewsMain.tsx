@@ -3,6 +3,7 @@ import {ReactComponent as RightBtn} from '../../assets/icons/rightarrow-logo.svg
 import {ReactComponent as LeftBtn} from '../../assets/icons/leftarrow-logo.svg';
 import CreateDots from './CreateDots';
 import styled from 'styled-components';
+import NewsList from './NewsList';
 interface Props {
   imgUrl?: string;
   category?: string;
@@ -60,7 +61,7 @@ const NewsMain = () => {
     }
   };
 
-  const handleDotClick = (index: number, intervalcheck: number) => {
+  const HandleDotClick = (index: number, intervalcheck: number) => {
     setCurrentIndex(index);
     setIntervalcheck(intervalcheck);
   };
@@ -69,42 +70,64 @@ const NewsMain = () => {
     console.log('clicked');
   };
 
+  const List = React.memo(() => {
+    return arr.length
+      ? arr.map((element: any, key: number) => (
+          <NewsList
+            newscard={element.newscard}
+            category={element.category}
+            title={element.title}
+            content={element.content}
+            time={element.time}
+          ></NewsList>
+        ))
+      : null;
+  });
+
   return (
-    <Container>
-      <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
-        {arr.length
-          ? arr.map((element: any, key: number) => (
-              <CarouselContainer key={element.title}>
-                <CarouselImg key={element.title} src={element.img}></CarouselImg>
-                <CarouselTextContainer key={element.title}>
-                  <CarouselCategory key={element.title}>{element.category}</CarouselCategory>
-                  <CarouselTitle key={element.title}>{element.title}</CarouselTitle>
-                  <CarouselContent key={element.title}>{element.content}</CarouselContent>
-                  <CarouselTime key={element.title}>{element.time}</CarouselTime>
-                  <CarouselDotContainer key={element.title}>
-                    <CreateDots
-                      length={totalLen}
-                      curr={currentIndex}
-                      onDotClick={handleDotClick}
-                      intervalcheck={intervalcheck}
-                    ></CreateDots>
-                  </CarouselDotContainer>
-                </CarouselTextContainer>
-                <CarouselImageContainer key={element.title}>
-                  <CarouselPreview key={element.title} src={element.img} onClick={TestFunc}></CarouselPreview>
-                  <CarouselImageBorder key={element.title}></CarouselImageBorder>
-                </CarouselImageContainer>
-              </CarouselContainer>
-            ))
-          : null}
-      </Carousel>
-      <LeftContainer onClick={LeftFunc}>
-        <Left />
-      </LeftContainer>
-      <RightContainer onClick={RightFunc}>
-        <Right />
-      </RightContainer>
-    </Container>
+    <>
+      <Container>
+        <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
+          {arr.length
+            ? arr.map((element: any, key: number) => (
+                <CarouselContainer key={element.title}>
+                  <CarouselImg key={element.title} src={element.img}></CarouselImg>
+                  <CarouselTextContainer key={element.title}>
+                    <CarouselCategory key={element.title}>{element.category}</CarouselCategory>
+                    <CarouselTitle key={element.title}>{element.title}</CarouselTitle>
+                    <CarouselContent key={element.title}>{element.content}</CarouselContent>
+                    <CarouselTime key={element.title}>{element.time}</CarouselTime>
+                    <CarouselDotContainer key={element.title}>
+                      <CreateDots
+                        length={totalLen}
+                        curr={currentIndex}
+                        onDotClick={HandleDotClick}
+                        intervalcheck={intervalcheck}
+                      ></CreateDots>
+                    </CarouselDotContainer>
+                  </CarouselTextContainer>
+                  <CarouselImageContainer key={element.title}>
+                    <CarouselPreview key={element.title} src={element.img} onClick={TestFunc}></CarouselPreview>
+                    <CarouselImageBorder key={element.title}></CarouselImageBorder>
+                  </CarouselImageContainer>
+                </CarouselContainer>
+              ))
+            : null}
+        </Carousel>
+        <LeftContainer onClick={LeftFunc}>
+          <Left />
+        </LeftContainer>
+        <RightContainer onClick={RightFunc}>
+          <Right />
+        </RightContainer>
+      </Container>
+      <NewsListContainer>
+        <List />
+      </NewsListContainer>
+      <BtnContainer>
+        <MoreBtn>더보기</MoreBtn>
+      </BtnContainer>
+    </>
   );
 };
 
@@ -116,14 +139,14 @@ const Container = styled.div`
   height: 60vh;
   overflow: hidden;
   @media screen and (max-width: 990px) {
-    height: 100vh;
+    height: 80vh;
   }
 `;
 
 const Carousel = styled.div`
   display: flex;
   height: 95%;
-  transition: transform 0.5s ease;
+  transition: opacity 0.3s ease;
   cursor: pointer;
 `;
 
@@ -149,6 +172,7 @@ const CarouselTextContainer = styled.div<Props>`
   left: 16vw;
   z-index: 1;
   @media screen and (max-width: 990px) {
+    margin-top: 4vh;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -187,7 +211,7 @@ const CarouselContent = styled.p<Props>`
   @media screen and (max-width: 990px) {
     font-size: 11px;
     line-height: 11px;
-    width: 60vw;
+    width: 65vw;
   }
 `;
 
@@ -207,7 +231,7 @@ const CarouselDotContainer = styled.div<Props>`
   position: absolute;
   margin-top: 2vh;
   @media screen and (max-width: 990px) {
-    margin-top: 1vh;
+    margin-top: 3vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -284,3 +308,48 @@ const RightContainer = styled.button`
 const Left = styled(LeftBtn)``;
 
 const Right = styled(RightBtn)``;
+
+const NewsListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10vh 30vw 10vh 15vw;
+  border-right: 2px solid;
+  border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
+  border-image-slice: 1;
+
+  @media screen and (max-width: 990px) {
+    border: none;
+    margin: 10vh 15vw 10vh 15vw;
+  }
+`;
+
+const BtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15vh;
+`;
+
+const MoreBtn = styled.button`
+  width: 300px;
+  height: 60px;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(104, 195, 196, 0.5) 0%, rgba(0, 31, 169, 0.5) 100%);
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
+  }
+  @media screen and (max-width: 990px) {
+    width: 150px;
+    heightL 40px;
+    font-size: 12px;
+  }
+`;

@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import NewsMain from '../components/news/NewsMain';
-import NewsList from '../components/news/NewsList';
 import React from 'react';
 
 const News = () => {
   return (
     <Container>
       <NewsMain></NewsMain>
-      <NewsList></NewsList>
     </Container>
   );
 };
