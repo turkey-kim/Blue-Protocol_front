@@ -16,6 +16,8 @@ import Login from './pages/Login';
 import {checkToken} from './api/auth';
 import {useRecoilState} from 'recoil';
 import {loginState} from './states/atoms';
+import PrivateRoute from './routes/PrivateRoute';
+import PostNews from './pages/PostNews';
 
 const arr = [
   {
@@ -86,6 +88,15 @@ function App() {
             <Route path="guide" element={<Guide />}></Route>
             <Route path="database" element={<Database />}></Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
+
+            <Route
+              path="news/post"
+              element={
+                <PrivateRoute>
+                  <PostNews />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
         </Routes>
       </ThemeProvider>
