@@ -207,7 +207,7 @@ const CarouselDotContainer = styled.div<Props>`
   position: absolute;
   margin-top: 2vh;
   @media screen and (max-width: 990px) {
-    margin-top: 1vh;
+    margin-top: 3vh;
     width: 100%;
     display: flex;
     justify-content: center;
