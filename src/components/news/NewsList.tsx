@@ -12,10 +12,8 @@ interface Props {
 const NewsList = ({newscard, category, title, content, time}: Props) => {
   return (
     <Container>
-      <ImgContainer>
-        <Img src={newscard} />
-        <Border />
-      </ImgContainer>
+      <Img src={newscard} />
+      <Border />
       <TextContainer>
         <Category>{category}</Category>
         <Title>{title}</Title>
@@ -29,9 +27,12 @@ const NewsList = ({newscard, category, title, content, time}: Props) => {
 export default NewsList;
 
 const Container = styled.div`
+position: relative;
   display: flex;
   border-radius: 1rem;
   cursor: pointer;
+  height: 35vh;
+  margin-bottom: 10vh;
   &:hover {
     transition: all 0.5s ease-in;
     background: linear-gradient(
@@ -44,6 +45,8 @@ const Container = styled.div`
   
   @media screen and (max-width: 990px) {
     flex-direction: column;
+    height: 100%;
+    margin-bottom: 10vh;
     &:hover {
       background: linear-gradient(
         to bottom,
@@ -54,11 +57,6 @@ const Container = styled.div`
   }
 `;
 
-const ImgContainer = styled.div`
-  position: relative;
-  margin: 10vh 0 10vh 0;
-`;
-
 const Img = styled.img`
   width: 11vw;
   height: 35vh;
@@ -66,6 +64,7 @@ const Img = styled.img`
   object-fit: cover;
   background-position: center;
   @media screen and (max-width: 990px) {
+    margin-bottom: 5vh;
     width: 100%;
   }
 `;
@@ -73,12 +72,15 @@ const Img = styled.img`
 const Border = styled.div`
   position: absolute;
   border: 2px solid #000000;
-  width: 100%;
-  height: 100%;
+  width: 11vw;
+  height: 35vh;
   box-sizing: border-box;
   border-radius: 10px;
-  top: -2vh;
-  left: 1vw;
+  top: -1vh;
+  left: 0.5vw;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+  }
 `;
 
 const TextContainer = styled.div`
