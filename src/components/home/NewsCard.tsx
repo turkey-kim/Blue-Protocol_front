@@ -28,14 +28,7 @@ const NewsCard = ({imgUrl, category, title, content, time}: Props) => {
 export default NewsCard;
 
 const NewsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  margin: 3rem 0;
   cursor: pointer;
-  border-radius: 1rem;
-
   &:hover {
     transition: all 0.5s ease-in;
     background: linear-gradient(

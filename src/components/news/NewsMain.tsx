@@ -139,7 +139,7 @@ const Container = styled.div`
   height: 60vh;
   overflow: hidden;
   @media screen and (max-width: 990px) {
-    height: 100vh;
+    height: 80vh;
   }
 `;
 
@@ -172,6 +172,7 @@ const CarouselTextContainer = styled.div<Props>`
   left: 16vw;
   z-index: 1;
   @media screen and (max-width: 990px) {
+    margin-top: 4vh;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -309,10 +310,18 @@ const Left = styled(LeftBtn)``;
 const Right = styled(RightBtn)``;
 
 const NewsListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 10vh 30vw 10vh 15vw;
   border-right: 2px solid;
-  border-image: linear-gradient(180deg, #68c3c4 0%, #001fa9 99.49%);
+  border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
   border-image-slice: 1;
+
+  @media screen and (max-width: 990px) {
+    border: none;
+    margin: 10vh 15vw 10vh 15vw;
+  }
 `;
 
 const BtnContainer = styled.div`
@@ -337,5 +346,10 @@ const MoreBtn = styled.button`
   cursor: pointer;
   &:hover {
     background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
+  }
+  @media screen and (max-width: 990px) {
+    width: 150px;
+    heightL 40px;
+    font-size: 12px;
   }
 `;

@@ -30,6 +30,28 @@ export default NewsList;
 
 const Container = styled.div`
   display: flex;
+  border-radius: 1rem;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.5s ease-in;
+    background: linear-gradient(
+      to right,
+      rgba(106, 194, 195, 0.1) 60%,
+      rgba(106, 194, 195, 0.5) 80%,
+      rgba(106, 194, 195, 1) 100%
+    );
+  }
+  
+  @media screen and (max-width: 990px) {
+    flex-direction: column;
+    &:hover {
+      background: linear-gradient(
+        to bottom,
+        rgba(106, 194, 195, 0.1) 60%,
+        rgba(106, 194, 195, 0.5) 80%,
+        rgba(106, 194, 195, 1) 100%
+      );
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -43,6 +65,9 @@ const Img = styled.img`
   border-radius: 20px;
   object-fit: cover;
   background-position: center;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+  }
 `;
 
 const Border = styled.div`
@@ -63,6 +88,9 @@ const TextContainer = styled.div`
   text-align: left;
   margin-left: 10vw;
   width: 100%;
+  @media screen and (max-width: 990px) {
+    margin: 0;
+  }
 `;
 
 const Category = styled.span`
