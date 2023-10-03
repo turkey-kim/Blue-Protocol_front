@@ -1,14 +1,14 @@
-import axios from "axios";
-import { serverUrl } from "../constant";
+import axios from 'axios';
+import {SERVER_URL} from '../constant';
 
 export const checkToken = async () => {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem('jwt');
   const result = await axios.post(
-    `${serverUrl}/api/checkToken`,
+    `${SERVER_URL}/api/checkToken`,
     {
       token: token,
     },
-    { withCredentials: true }
+    {withCredentials: true},
   );
 
   if (result.data === true) {
