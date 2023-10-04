@@ -1,14 +1,26 @@
-import axios from "axios";
-import { serverUrl } from "../constant";
+import axios from 'axios';
+import {SERVER_URL} from '../constant';
+
+interface LoginProps {
+  id: string;
+  pw: string;
+}
+
+export const submitLogin = async ({id, pw}: LoginProps) => {
+  return axios.post(`${SERVER_URL}/auth/login`, {
+    id: id,
+    pw: pw,
+  });
+};
 
 export const checkToken = async () => {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem('jwt');
   const result = await axios.post(
-    `${serverUrl}/api/checkToken`,
+    `${SERVER_URL}/auth/checkToken`,
     {
       token: token,
     },
-    { withCredentials: true }
+    {withCredentials: true},
   );
 
   if (result.data === true) {

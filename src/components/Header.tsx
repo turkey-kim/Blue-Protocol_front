@@ -1,13 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
-import React from "react";
-import styled from "styled-components";
-import { ReactComponent as TextLogo } from "../assets/icons/text-logo.svg";
-import { publicPath } from "../constant";
+import {Link, useNavigate} from 'react-router-dom';
+import React from 'react';
+import styled from 'styled-components';
+import {ReactComponent as TextLogo} from '../assets/icons/text-logo.svg';
+import {PUBLIC_PATH} from '../constant';
 
 const Header = () => {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate("/");
+    navigate('/');
   };
   return (
     <Container>
@@ -22,7 +22,7 @@ const Header = () => {
         </Nav>
         <Search
           style={{
-            backgroundImage: `url(${publicPath}/icons/search.png)`,
+            backgroundImage: `url(${PUBLIC_PATH}/icons/search.png)`,
           }}
           spellCheck="false"
           placeholder="SEARCH"
@@ -57,7 +57,7 @@ const Logo = styled(TextLogo)`
   height: 30px;
 
   path {
-    fill: ${({ theme }) => theme.color.bg100};
+    fill: ${({theme}) => theme.color.bg100};
   }
 `;
 
