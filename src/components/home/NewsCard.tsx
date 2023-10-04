@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
 interface Props {
-  imgUrl: string;
+  thumbnail: string;
   category: string;
   title: string;
-  content: string;
-  time: string;
+  outline: string;
+  date: string;
 }
-const NewsCard = ({imgUrl, category, title, content, time}: Props) => {
+const NewsCard = ({thumbnail, category, title, outline, date}: Props) => {
   return (
     <NewsContainer>
       <NewsImage
         style={{
-          backgroundImage: `url(${imgUrl})`,
+          backgroundImage: `url(${thumbnail})`,
         }}
       ></NewsImage>
       <NewsOutlines>
         <Category>{category}</Category>
         <Title>{title}</Title>
-        <Outline>{content}</Outline>
-        <Date>{time}</Date>
+        <Outline>{outline}</Outline>
+        <Date>{date}</Date>
       </NewsOutlines>
     </NewsContainer>
   );
