@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {publicPath} from '../../constant';
+import {PUBLIC_PATH} from '../../constant';
 import {ReactComponent as MainLogo} from '../../assets/icons/main-logo.svg';
 import {ReactComponent as TextLogo} from '../../assets/icons/text-logo.svg';
 
@@ -34,7 +34,7 @@ const Container = styled.section`
       rgba(20, 20, 20, 0.5) 95%,
       rgba(20, 20, 20, 0.75) 100%
     ),
-    url(${publicPath}/images/main-page.jpg);
+    url(${PUBLIC_PATH}/images/main-page.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

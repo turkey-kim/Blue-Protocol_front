@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import NewsCard from './NewsCard';
-import { useEffect, useState } from 'react';
-import { ReactComponent as BoundaryIcon } from '../../assets/icons/boundary.svg';
-import { ReactComponent as DotIcon } from '../../assets/icons/dot.svg';
-import { useNavigate } from 'react-router';
+import {useEffect, useState} from 'react';
+import {ReactComponent as BoundaryIcon} from '../../assets/icons/boundary.svg';
+import {ReactComponent as DotIcon} from '../../assets/icons/dot.svg';
+import {useNavigate} from 'react-router';
 
 const SectionNews = () => {
   let [arr, setArr] = useState<any>([{}]);
@@ -25,11 +25,11 @@ const SectionNews = () => {
           ? arr.map((element: any, index: number) => (
               <NewsCard
                 key={element.title}
-                imgUrl={element.img}
+                thumbnail={element.thumbnail}
                 category={element.category}
                 title={element.title}
-                content={element.content}
-                time={element.time}
+                outline={element.outline}
+                date={element.date}
               ></NewsCard>
             ))
           : null}
@@ -38,10 +38,7 @@ const SectionNews = () => {
           <Dot className="dot-icon" />
           <Button onClick={goToNews}>더 많은 소식 보러가기</Button>
           <Dot className="dot-icon" />
-          <Boundary
-            className="arrow-icon"
-            style={{ transform: 'rotate(180deg)' }}
-          />
+          <Boundary className="arrow-icon" style={{transform: 'rotate(180deg)'}} />
         </GoToNews>
       </InnerContainer>
     </Container>
