@@ -11,16 +11,13 @@ interface Props {
   content?: string;
   time?: string;
 }
-const NewsMain = () => {
-  const [arr, setarr] = useState<any>([{}]);
+const NewsMain = ({arr}: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [intervalcheck, setIntervalcheck] = useState(0);
 
   let intervals: NodeJS.Timeout[] = [];
 
   useEffect(() => {
-    const news = JSON.parse(localStorage.getItem('news') || '[]');
-    setarr(news);
     console.log('체크 수:', intervalcheck);
 
     if (intervalcheck === 0) {
@@ -70,34 +67,20 @@ const NewsMain = () => {
     console.log('clicked');
   };
 
-  const List = React.memo(() => {
-    return arr.length
-      ? arr.map((element: any, key: number) => (
-          <NewsList
-            newscard={element.newscard}
-            category={element.category}
-            title={element.title}
-            content={element.content}
-            time={element.time}
-          ></NewsList>
-        ))
-      : null;
-  });
-
   return (
     <>
       <Container>
         <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
           {arr.length
             ? arr.map((element: any, key: number) => (
-                <CarouselContainer key={element.title}>
-                  <CarouselImg key={element.title} src={element.img}></CarouselImg>
-                  <CarouselTextContainer key={element.title}>
-                    <CarouselCategory key={element.title}>{element.category}</CarouselCategory>
-                    <CarouselTitle key={element.title}>{element.title}</CarouselTitle>
-                    <CarouselContent key={element.title}>{element.content}</CarouselContent>
-                    <CarouselTime key={element.title}>{element.time}</CarouselTime>
-                    <CarouselDotContainer key={element.title}>
+                <CarouselContainer key={element.key}>
+                  <CarouselImg src={element.img}></CarouselImg>
+                  <CarouselTextContainer>
+                    <CarouselCategory>{element.category}</CarouselCategory>
+                    <CarouselTitle>{element.title}</CarouselTitle>
+                    <CarouselContent>{element.content}</CarouselContent>
+                    <CarouselTime>{element.time}</CarouselTime>
+                    <CarouselDotContainer>
                       <CreateDots
                         length={totalLen}
                         curr={currentIndex}
@@ -106,9 +89,9 @@ const NewsMain = () => {
                       ></CreateDots>
                     </CarouselDotContainer>
                   </CarouselTextContainer>
-                  <CarouselImageContainer key={element.title}>
-                    <CarouselPreview key={element.title} src={element.img} onClick={TestFunc}></CarouselPreview>
-                    <CarouselImageBorder key={element.title}></CarouselImageBorder>
+                  <CarouselImageContainer>
+                    <CarouselPreview src={element.img} onClick={TestFunc}></CarouselPreview>
+                    <CarouselImageBorder></CarouselImageBorder>
                   </CarouselImageContainer>
                 </CarouselContainer>
               ))
@@ -121,12 +104,6 @@ const NewsMain = () => {
           <Right />
         </RightContainer>
       </Container>
-      <NewsListContainer>
-        <List />
-      </NewsListContainer>
-      <BtnContainer>
-        <MoreBtn>더보기</MoreBtn>
-      </BtnContainer>
     </>
   );
 };
@@ -321,35 +298,5 @@ const NewsListContainer = styled.div`
   @media screen and (max-width: 990px) {
     border: none;
     margin: 10vh 15vw 10vh 15vw;
-  }
-`;
-
-const BtnContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15vh;
-`;
-
-const MoreBtn = styled.button`
-  width: 300px;
-  height: 60px;
-  font-family: Roboto;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: #ffffff;
-  background: linear-gradient(90deg, rgba(104, 195, 196, 0.5) 0%, rgba(0, 31, 169, 0.5) 100%);
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
-  }
-  @media screen and (max-width: 990px) {
-    width: 150px;
-    heightL 40px;
-    font-size: 12px;
   }
 `;
