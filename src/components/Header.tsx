@@ -1,34 +1,71 @@
 import {Link, useNavigate} from 'react-router-dom';
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as TextLogo} from '../assets/icons/text-logo.svg';
 import {PUBLIC_PATH} from '../constant';
-
+import {ReactComponent as MenuLogo} from '../assets/icons/menu-logo.svg';
+import {ReactComponent as XLogo} from '../assets/icons/x-logo.svg';
+import SideBar from './Sidebar';
 const Header = () => {
   const navigate = useNavigate();
   const goHome = () => {
     navigate('/');
   };
+
+  const MenuURL = [
+    {name: '홈', address: '/'},
+    {name: '뉴스', address: '/news'},
+    {name: '게임', address: '/game'},
+    {name: '가이드', address: '/guide'},
+    {name: '데이터베이스', address: '/database'},
+  ];
+
+  const [clicked, setClicked] = useState(false);
+
+  const clickCheck = () => {
+    setClicked(!clicked);
+  };
+
   return (
-    <Container>
-      <Inner>
-        <Logo onClick={goHome}></Logo>
-        <Nav>
-          <StyledLink to="/">홈</StyledLink>
-          <StyledLink to="/news">뉴스</StyledLink>
-          <StyledLink to="/game">게임</StyledLink>
-          <StyledLink to="/guide">가이드</StyledLink>
-          <StyledLink to="/database">데이터베이스</StyledLink>
-        </Nav>
-        <Search
-          style={{
-            backgroundImage: `url(${PUBLIC_PATH}/icons/search.png)`,
-          }}
-          spellCheck="false"
-          placeholder="SEARCH"
-        ></Search>
-      </Inner>
-    </Container>
+    <>
+      <Container>
+        <Inner>
+          <LogoContainer>
+            <Logo onClick={goHome}></Logo>
+          </LogoContainer>
+          <Nav>
+            <StyledLink to="/">홈</StyledLink>
+            <StyledLink to="/news">뉴스</StyledLink>
+            <StyledLink to="/game">게임</StyledLink>
+            <StyledLink to="/guide">가이드</StyledLink>
+            <StyledLink to="/database">데이터베이스</StyledLink>
+          </Nav>
+          <Search
+            style={{
+              backgroundImage: `url(${PUBLIC_PATH}/icons/search.png)`,
+            }}
+            spellCheck="false"
+            placeholder="SEARCH"
+          ></Search>
+        </Inner>
+        <HamburgerContainer>
+          {clicked ? (
+            <X
+              onClick={() => {
+                clickCheck();
+              }}
+            ></X>
+          ) : (
+            <Menu
+              onClick={() => {
+                clickCheck();
+              }}
+            ></Menu>
+          )}
+        </HamburgerContainer>
+      </Container>
+      <SideBar clicked={clicked} setClicked={setClicked} MenuURL={MenuURL} />
+    </>
   );
 };
 
@@ -38,6 +75,12 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
   justify-content: center;
+  @media screen and (max-width: 990px) {
+    justify-content: space-between;
+    position: fixed;
+    background-color: #fff;
+    z-index: 10;
+  }
 `;
 
 const Inner = styled.div`
@@ -49,6 +92,16 @@ const Inner = styled.div`
   padding: 1.5rem;
   @media screen and (max-width: 990px) {
     width: auto;
+    margin: 1rem 0;
+    padding: 0;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  @media screen and (max-width: 990px) {
+    width: auto;
+    margin-left: 1rem;
   }
 `;
 
@@ -57,7 +110,11 @@ const Logo = styled(TextLogo)`
   height: 30px;
 
   path {
-    fill: ${({theme}) => theme.color.bg100};
+    fill: ${({theme}: any) => theme.color.bg100};
+  }
+
+  @media screen and (max-width: 990px) {
+    width: auto;
   }
 `;
 
@@ -124,5 +181,36 @@ const Search = styled.input`
 
   @media screen and (max-width: 990px) {
     display: none;
+  }
+`;
+
+const HamburgerContainer = styled.div`
+  display: none;
+
+  @media screen and (max-width: 990px) {
+    display: flex;
+    width: auto;
+    height: auto;
+    margin-right: 1rem;
+  }
+`;
+
+const Menu = styled(MenuLogo)`
+  display: none;
+  @media screen and (max-width: 990px) {
+    display: flex;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+  }
+`;
+
+const X = styled(XLogo)`
+  display: none;
+  @media screen and (max-width: 990px) {
+    display: flex;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
   }
 `;
