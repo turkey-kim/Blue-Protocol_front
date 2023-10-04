@@ -1,11 +1,5 @@
 import axios from 'axios';
 import {SERVER_URL} from '../constant';
-import {Outlet} from 'react-router';
-
-interface LoginProps {
-  id: string;
-  pw: string;
-}
 
 interface NewsProps {
   title: string | undefined;
@@ -14,12 +8,6 @@ interface NewsProps {
   thumbnail: string | undefined;
   content: string | undefined;
 }
-export const submitLogin = async ({id, pw}: LoginProps) => {
-  return axios.post(`${SERVER_URL}/admin/login`, {
-    id: id,
-    pw: pw,
-  });
-};
 
 export const uploadImage = async (formData: FormData) => {
   return axios.post(`${SERVER_URL}/api/uploadImage`, formData);
@@ -33,4 +21,8 @@ export const uploadNews = async ({title, outline, category, thumbnail, content}:
     thumbnail: thumbnail,
     content: content,
   });
+};
+
+export const getNews = async () => {
+  return axios.get(`${SERVER_URL}/api/getNews`);
 };

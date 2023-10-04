@@ -1,14 +1,14 @@
-import styled, { useTheme } from "styled-components";
-import { submitLogin } from "../api";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { loginState } from "../states/atoms";
+import styled, {useTheme} from 'styled-components';
+import {submitLogin} from '../api/auth';
+import {useState} from 'react';
+import {useNavigate} from 'react-router';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {loginState} from '../states/atoms';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,30 +21,25 @@ const Login = () => {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const token: any = await submitLogin({ id, pw });
+    const token: any = await submitLogin({id, pw});
     if (token.data) {
       setIsLoggedIn(true);
-      localStorage.setItem("jwt", token.data);
-      alert("관리자로 로그인함");
-      navigate("/");
+      localStorage.setItem('jwt', token.data);
+      alert('관리자로 로그인함');
+      navigate('/');
     }
   };
 
   return (
     <Container>
       <LoginBox>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ width: "100%", display: "inline-flex" }}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{width: '100%', display: 'inline-flex'}}>
             <SignIn>로그인</SignIn>
           </div>
           <LoginForm id="loginForm" onSubmit={submit}>
             <Label>아이디</Label>
-            <InputBox
-              name="id"
-              placeholder="ID를 입력하세요"
-              value={id}
-              onChange={onChangeId}
-            ></InputBox>
+            <InputBox name="id" placeholder="ID를 입력하세요" value={id} onChange={onChangeId}></InputBox>
             <Label>비밀번호</Label>
             <InputBox
               name="pw"
@@ -69,8 +64,8 @@ const Container = styled.div`
 `;
 
 const LoginBox = styled.div`
-  background-color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.color.white};
+  background-color: ${({theme}) => theme.color.black};
+  color: ${({theme}) => theme.color.white};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,8 +80,8 @@ const SignIn = styled.button`
   border: none;
   border-radius: 15px;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.color.white};
+  background-color: ${({theme}) => theme.color.black};
+  color: ${({theme}) => theme.color.white};
 `;
 
 const Label = styled.div`
@@ -126,7 +121,7 @@ const SubmitButton = styled.button`
   height: 35px;
   text-decoration: none;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.color.bg100};
+  background-color: ${({theme}) => theme.color.bg100};
   border: none;
   border-radius: 10px;
   font-size: medium;
@@ -134,9 +129,9 @@ const SubmitButton = styled.button`
 
   :hover {
     transition-duration: 0.1s;
-    color: ${({ theme }) => theme.color.white};
-    background-color: ${({ theme }) => theme.color.black};
-    border: 1px solid ${({ theme }) => theme.color.white};
+    color: ${({theme}) => theme.color.white};
+    background-color: ${({theme}) => theme.color.black};
+    border: 1px solid ${({theme}) => theme.color.white};
   }
 `;
 
