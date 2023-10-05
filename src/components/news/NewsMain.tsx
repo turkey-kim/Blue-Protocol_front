@@ -3,13 +3,12 @@ import {ReactComponent as RightBtn} from '../../assets/icons/rightarrow-logo.svg
 import {ReactComponent as LeftBtn} from '../../assets/icons/leftarrow-logo.svg';
 import CreateDots from './CreateDots';
 import styled from 'styled-components';
-import NewsList from './NewsList';
 interface Props {
-  imgUrl?: string;
+  thumbnail?: string;
   category?: string;
   title?: string;
   content?: string;
-  time?: string;
+  date?: string;
 }
 const NewsMain = ({arr}: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -74,7 +73,7 @@ const NewsMain = ({arr}: any) => {
           {arr.length
             ? arr.map((element: any, key: number) => (
                 <CarouselContainer key={element.key}>
-                  <CarouselImg src={element.img}></CarouselImg>
+                  <CarouselImg src={element.thumbnail}></CarouselImg>
                   <CarouselTextContainer>
                     <CarouselCategory>{element.category}</CarouselCategory>
                     <CarouselTitle>{element.title}</CarouselTitle>
@@ -90,7 +89,7 @@ const NewsMain = ({arr}: any) => {
                     </CarouselDotContainer>
                   </CarouselTextContainer>
                   <CarouselImageContainer>
-                    <CarouselPreview src={element.img} onClick={TestFunc}></CarouselPreview>
+                    <CarouselPreview src={element.thumbnail} onClick={TestFunc}></CarouselPreview>
                     <CarouselImageBorder></CarouselImageBorder>
                   </CarouselImageContainer>
                 </CarouselContainer>
@@ -232,8 +231,8 @@ const CarouselImageContainer = styled.div<Props>`
 `;
 
 const CarouselPreview = styled.img<Props>`
-  width: inherit;
-  height: auto;
+  width: 40vw;
+  height: 50vh;
   object-fit: cover;
   background-position: center;
   @media screen and (max-width: 990px) {

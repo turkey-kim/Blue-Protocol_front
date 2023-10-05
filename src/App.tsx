@@ -11,46 +11,34 @@ import News from './pages/News';
 import Game from './pages/Game';
 import Guide from './pages/Guide';
 import Database from './pages/Database';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
 import {useRecoilState} from 'recoil';
-import {loginState} from './states/atoms';
+import {allNewsState, loginState, recentNewsState} from './states/atoms';
 import PrivateRoute from './routes/PrivateRoute';
 import PostNews from './pages/PostNews';
-
-const arr = [
-  {
-    img: '/images/news01.png',
-    newscard: '/images/newsImage1.png',
-    category: '캐릭터',
-    title: '엄청난 소식!',
-    content: '에린제의 호위기사 티라스가 어쩌고 저쩌고',
-    time: '12시간 전',
-  },
-
-  {
-    img: '/images/news02.png',
-    newscard: '/images/newsImage2.png',
-    category: '캐릭터',
-    title: '멋진 소식',
-    content: '의문의 방랑자 멜로프, 멜로프 멜로프 멜로프!',
-    time: '하루 전',
-  },
-  {
-    img: '/images/news03.png',
-    newscard: '/images/newsImage3.png',
-    category: '캐릭터',
-    title: '엄청난 소식!',
-    content: '미래에서 온 예린제! 예린제!',
-    time: '12시간 전',
-  },
-];
+import {getNews, getLatestNews} from './api';
 
 function Dashboard() {
+  const [allnews, setAllnews] = useRecoilState(allNewsState);
+  const [recentnews, setRecentnews] = useRecoilState(recentNewsState);
+
   useEffect(() => {
-    localStorage.setItem('news', JSON.stringify(arr));
-  }, []);
+    async function fetchData() {
+      try {
+        const allNewsData = await getNews();
+        setAllnews(allNewsData);
+        const recentNewsData = await getLatestNews();
+        setRecentnews(recentNewsData);
+      } catch (error) {
+        console.error('데이터 가져오기 오류:', error);
+      }
+    }
+
+    fetchData();
+  }, [setAllnews, setRecentnews]);
+
   return (
     <div>
       <Header></Header>

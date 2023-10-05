@@ -5,18 +5,14 @@ import {ReactComponent as BoundaryIcon} from '../../assets/icons/boundary.svg';
 import {ReactComponent as DotIcon} from '../../assets/icons/dot.svg';
 import {useNavigate} from 'react-router';
 
-const SectionNews = () => {
-  let [arr, setArr] = useState<any>([{}]);
+const SectionNews = ({arr}: any) => {
   let navigate = useNavigate();
 
   const goToNews = () => {
     navigate('/news');
   };
 
-  useEffect(() => {
-    const news = JSON.parse(localStorage.getItem('news') || '');
-    setArr(news);
-  }, []);
+  console.log(arr);
   return (
     <Container>
       <InnerContainer>
