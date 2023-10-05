@@ -26,6 +26,8 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
   position: relative;
+  cursor: default;
+  z-index: -1;
   background: linear-gradient(
       to bottom,
       rgba(20, 20, 20, 0.75) 0.5%,

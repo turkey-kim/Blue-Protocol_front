@@ -227,7 +227,7 @@ const CarouselImageContainer = styled.div<Props>`
     transform: translateX(50%);
     min-width: 300px;
     max-width: 65%;
-    margin-top: -5%;
+    margin-top: -2%;
   }
 `;
 
@@ -285,18 +285,3 @@ const RightContainer = styled.button`
 const Left = styled(LeftBtn)``;
 
 const Right = styled(RightBtn)``;
-
-const NewsListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10vh 30vw 10vh 15vw;
-  border-right: 2px solid;
-  border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
-  border-image-slice: 1;
-
-  @media screen and (max-width: 990px) {
-    border: none;
-    margin: 10vh 15vw 10vh 15vw;
-  }
-`;
