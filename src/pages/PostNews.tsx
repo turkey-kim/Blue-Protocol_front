@@ -61,7 +61,7 @@ function PostNews() {
 
   return (
     <FileDrop
-      onDrop={(files: any) => {
+      onDrop={files => {
         if (files) {
           const formData = new FormData();
           formData.append('image', files[0]);
