@@ -2,20 +2,21 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {getNews, postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 const NewsList = () => {
-  const allNews = useRecoilValue(allNewsState) as Array<any>;
-  const [lastNewsId, setLastNewsId] = useState(allNews[allNews.length - 1]?.id);
+  const [allnews, setAllnews] = useRecoilState(allNewsState);
 
-  function getMoreNews() {
-    postLastNewsIndex(lastNewsId);
+  async function getMoreNews() {
+    let index = allnews[allnews.length - 1].id;
+    const arr = await postLastNewsIndex(index);
+    setAllnews(allnews.concat(arr));
   }
   return (
     <>
       <NewsContainer>
-        {allNews.length
-          ? allNews.map((element: any, key: number) => (
+        {allnews.length
+          ? allnews.map((element: any, key: number) => (
               <Container key={element.key}>
                 <Img src={element.thumbnail} />
                 <Border />

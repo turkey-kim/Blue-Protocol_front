@@ -34,7 +34,8 @@ export const getLatestNews = async () => {
 };
 
 export const postLastNewsIndex = async (index: number) => {
-  return axios.post(`${SERVER_URL}/api/postLastNewsIndex`, {
+  const response = await axios.post(`${SERVER_URL}/api/postLastNewsIndex`, {
     index: index,
   });
+  return response.data;
 };
