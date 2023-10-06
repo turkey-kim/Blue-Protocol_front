@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const NewsList = ({arr}: any) => {
+  const [displayCount, setDisplayCount] = useState(3);
+
+  const handleMoreClick = () => {
+    setDisplayCount(displayCount + 3);
+  };
+
   return (
     <>
       <NewsContainer>
         {arr.length
-          ? arr.map((element: any, key: number) => (
+          ? arr.slice(0, displayCount).map((element: any, key: number) => (
               <Container key={element.key}>
-                <Img src={element.newscard} />
+                <Img src={element.thumbnail} />
                 <Border />
                 <TextContainer>
                   <Category>{element.category}</Category>
                   <Title>{element.title}</Title>
-                  <Content>{element.content}</Content>
-                  <Time>{element.time}</Time>
+                  <Content>{element.outline}</Content>
+                  <Time>{element.date}</Time>
                 </TextContainer>
               </Container>
             ))
           : null}
       </NewsContainer>
+      <BtnContainer onClick={handleMoreClick}>
+        <MoreBtn>더보기</MoreBtn>
+      </BtnContainer>
     </>
   );
 };
@@ -29,8 +38,8 @@ export default NewsList;
 const Border = styled.div`
   position: absolute;
   border: 2px solid #000000;
-  width: 11vw;
-  height: 35vh;
+  width: 400px;
+  height: 200px;
   box-sizing: border-box;
   border-radius: 10px;
   top: -1vh;
@@ -72,7 +81,7 @@ const NewsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10vh 30vw 10vh 15vw;
+  margin: 10vh 20vw 10vh 15vw;
   border-right: 2px solid;
   border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
   border-image-slice: 1;
@@ -84,8 +93,9 @@ const NewsContainer = styled.div`
 `;
 
 const Img = styled.img`
-  width: 11vw;
-  height: 35vh;
+  width: 510px;
+  min-width: 400px;
+  height: 200px;
   border-radius: 20px;
   object-fit: cover;
   background-position: center;
@@ -102,6 +112,7 @@ const TextContainer = styled.div`
   text-align: left;
   margin-left: 10vw;
   width: 100%;
+  margin-bottom: 10vh;
   @media screen and (max-width: 990px) {
     margin: 0;
     padding-bottom: 1rem;
@@ -146,4 +157,34 @@ const Time = styled.span`
   line-height: 14px;
   letter-spacing: 0em;
   text-align: left;
+`;
+
+const BtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15vh;
+`;
+
+const MoreBtn = styled.button`
+  width: 300px;
+  height: 60px;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(104, 195, 196, 0.5) 0%, rgba(0, 31, 169, 0.5) 100%);
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
+  }
+  @media screen and (max-width: 990px) {
+    width: 150px;
+    heightL 40px;
+    font-size: 12px;
+  }
 `;

@@ -24,5 +24,11 @@ export const uploadNews = async ({title, outline, category, thumbnail, content}:
 };
 
 export const getNews = async () => {
-  return axios.get(`${SERVER_URL}/api/getNews`);
+  const response = await axios.get(`${SERVER_URL}/api/getNews`);
+  return response.data;
+};
+
+export const getLatestNews = async () => {
+  const response = await axios.get(`${SERVER_URL}/api/getLatestNews`);
+  return response.data;
 };
