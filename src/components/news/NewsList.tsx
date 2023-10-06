@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {getNews, postLastNewsIndex} from '../../api';
+import {allNewsState} from '../../states/atoms';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
-const NewsList = ({arr}: any) => {
-  const [displayCount, setDisplayCount] = useState(3);
+const NewsList = () => {
+  const [allnews, setAllnews] = useRecoilState(allNewsState);
 
-  const handleMoreClick = () => {
-    setDisplayCount(displayCount + 3);
-  };
-
+  async function getMoreNews() {
+    let index = allnews[allnews.length - 1].id;
+    const arr = await postLastNewsIndex(index);
+    setAllnews(allnews.concat(arr));
+  }
   return (
     <>
       <NewsContainer>
-        {arr.length
-          ? arr.slice(0, displayCount).map((element: any, key: number) => (
+        {allnews.length
+          ? allnews.map((element: any, key: number) => (
               <Container key={element.key}>
                 <Img src={element.thumbnail} />
                 <Border />
@@ -26,8 +30,8 @@ const NewsList = ({arr}: any) => {
             ))
           : null}
       </NewsContainer>
-      <BtnContainer onClick={handleMoreClick}>
-        <MoreBtn>더보기</MoreBtn>
+      <BtnContainer>
+        <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
       </BtnContainer>
     </>
   );

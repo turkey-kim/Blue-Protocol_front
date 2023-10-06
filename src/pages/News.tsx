@@ -5,12 +5,10 @@ import {useRecoilValue} from 'recoil';
 import {allNewsState, recentNewsState} from '../states/atoms';
 
 const News = () => {
-  const allNews = useRecoilValue(allNewsState);
-  const recentNews = useRecoilValue(recentNewsState);
   return (
     <Container>
-      <NewsMain arr={recentNews}></NewsMain>
-      <NewsList arr={allNews}></NewsList>
+      <NewsMain></NewsMain>
+      <NewsList></NewsList>
     </Container>
   );
 };
