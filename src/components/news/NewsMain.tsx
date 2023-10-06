@@ -7,7 +7,7 @@ interface Props {
   thumbnail?: string;
   category?: string;
   title?: string;
-  content?: string;
+  outline?: string;
   date?: string;
 }
 const NewsMain = ({arr}: any) => {
@@ -77,7 +77,7 @@ const NewsMain = ({arr}: any) => {
                   <CarouselTextContainer>
                     <CarouselCategory>{element.category}</CarouselCategory>
                     <CarouselTitle>{element.title}</CarouselTitle>
-                    <CarouselContent>{element.content}</CarouselContent>
+                    <CarouselContent>{element.outline}</CarouselContent>
                     <CarouselTime>{element.time}</CarouselTime>
                     <CarouselDotContainer>
                       <CreateDots

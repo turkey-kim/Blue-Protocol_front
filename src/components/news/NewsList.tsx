@@ -19,7 +19,7 @@ const NewsList = ({arr}: any) => {
                 <TextContainer>
                   <Category>{element.category}</Category>
                   <Title>{element.title}</Title>
-                  <Content>{element.content}</Content>
+                  <Content>{element.outline}</Content>
                   <Time>{element.date}</Time>
                 </TextContainer>
               </Container>
