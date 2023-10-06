@@ -3,6 +3,8 @@ import {ReactComponent as RightBtn} from '../../assets/icons/rightarrow-logo.svg
 import {ReactComponent as LeftBtn} from '../../assets/icons/leftarrow-logo.svg';
 import CreateDots from './CreateDots';
 import styled from 'styled-components';
+import {recentNewsState} from '../../states/atoms';
+import {useRecoilValue} from 'recoil';
 interface Props {
   thumbnail?: string;
   category?: string;
@@ -10,7 +12,9 @@ interface Props {
   outline?: string;
   date?: string;
 }
-const NewsMain = ({arr}: any) => {
+const NewsMain = () => {
+  const recentNews = useRecoilValue(recentNewsState) as Array<Props>;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [intervalcheck, setIntervalcheck] = useState(0);
 
@@ -38,9 +42,9 @@ const NewsMain = ({arr}: any) => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, [arr.length, intervalcheck]);
+  }, [recentNews.length, intervalcheck]);
 
-  const totalLen = arr.length;
+  const totalLen = recentNews.length;
 
   const RightFunc = () => {
     if (totalLen > 0) {
@@ -70,8 +74,8 @@ const NewsMain = ({arr}: any) => {
     <>
       <Container>
         <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
-          {arr.length
-            ? arr.map((element: any, key: number) => (
+          {recentNews.length
+            ? recentNews.map((element: any, key: number) => (
                 <CarouselContainer key={element.key}>
                   <CarouselImg src={element.thumbnail}></CarouselImg>
                   <CarouselTextContainer>
