@@ -6,11 +6,10 @@ import {recentNewsState} from '../states/atoms';
 import {useRecoilValue} from 'recoil';
 
 const Home = () => {
-  const recentNews = useRecoilValue(recentNewsState);
   return (
     <Container>
       <SectionMain></SectionMain>
-      <SectionNews arr={recentNews}></SectionNews>
+      <SectionNews></SectionNews>
       <SectionInfo></SectionInfo>
     </Container>
   );

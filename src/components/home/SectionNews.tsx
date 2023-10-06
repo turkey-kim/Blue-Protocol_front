@@ -4,21 +4,24 @@ import {useEffect, useState} from 'react';
 import {ReactComponent as BoundaryIcon} from '../../assets/icons/boundary.svg';
 import {ReactComponent as DotIcon} from '../../assets/icons/dot.svg';
 import {useNavigate} from 'react-router';
+import {useRecoilValue} from 'recoil';
+import {recentNewsState} from '../../states/atoms';
 
-const SectionNews = ({arr}: any) => {
+const SectionNews = () => {
+  const recentNews = useRecoilValue(recentNewsState);
+
   let navigate = useNavigate();
 
   const goToNews = () => {
     navigate('/news');
   };
 
-  console.log(arr);
   return (
     <Container>
       <InnerContainer>
         <Header>NEWS</Header>
-        {arr.length
-          ? arr.map((element: any, index: number) => (
+        {recentNews.length
+          ? recentNews.map((element: any, index: number) => (
               <NewsCard
                 key={element.title}
                 thumbnail={element.thumbnail}
