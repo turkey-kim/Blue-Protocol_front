@@ -1,23 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {getNews, postLastNewsIndex} from '../../api';
-import {allNewsLengthState, allNewsState} from '../../states/atoms';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {postLastNewsIndex} from '../../api';
+import {allNewsState} from '../../states/atoms';
+import {useRecoilState} from 'recoil';
 
 const NewsList = () => {
-  const [allnews, setAllnews] = useRecoilState(allNewsState) as any[];
-  const [len, setLen] = useRecoilState(allNewsLengthState);
+  const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
+  const [len, setLen] = useState(allNews.length);
+  const [check, setCheck] = useState(true);
   async function getMoreNews() {
-    let index = allnews[allnews.length - 1].id;
+    let index = allNews[allNews.length - 1].id;
     const arr = await postLastNewsIndex(index);
-    setAllnews(allnews.concat(arr));
+    const newLen = len + arr.length;
+    setAllNews(allNews.concat(arr));
+    if (newLen === len) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
+
+    setLen(newLen);
   }
-  const allNewsLen = allnews.length;
+
   return (
     <>
       <NewsContainer>
-        {allnews.length
-          ? allnews.map((element: any, key: number) => (
+        {allNews.length
+          ? allNews.map((element: any, key: number) => (
               <Container key={element.key}>
                 <Img src={element.thumbnail} />
                 <Border />
@@ -31,11 +40,11 @@ const NewsList = () => {
             ))
           : null}
       </NewsContainer>
-      {len === allNewsLen ? null : (
+      {check ? (
         <BtnContainer>
           <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
         </BtnContainer>
-      )}
+      ) : null}
     </>
   );
 };

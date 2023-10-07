@@ -15,31 +15,28 @@ import {useEffect, useState} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
 import {useRecoilState} from 'recoil';
-import {allNewsState, loginState, recentNewsState, allNewsLengthState} from './states/atoms';
+import {allNewsState, loginState, recentNewsState} from './states/atoms';
 import PrivateRoute from './routes/PrivateRoute';
 import PostNews from './pages/PostNews';
-import {getNews, getLatestNews, getNewsLength} from './api';
+import {getNews, getLatestNews} from './api';
 
 function Dashboard() {
-  const [allnews, setAllnews] = useRecoilState(allNewsState);
-  const [recentnews, setRecentnews] = useRecoilState(recentNewsState);
-  const [allnewsLength, setAllnewsLength] = useRecoilState(allNewsLengthState);
+  const [allNews, setAllNews] = useRecoilState(allNewsState);
+  const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
   useEffect(() => {
     async function fetchData() {
       try {
         const allNewsData = await getNews();
-        setAllnews(allNewsData);
+        setAllNews(allNewsData);
         const recentNewsData = await getLatestNews();
-        setRecentnews(recentNewsData);
-        const allNewsLengthData = await getNewsLength();
-        setAllnewsLength(allNewsLengthData);
+        setRecentNews(recentNewsData);
       } catch (error) {
         console.error('데이터 가져오기 오류:', error);
       }
     }
 
     fetchData();
-  }, [setAllnews, setRecentnews]);
+  }, [setAllNews, setRecentNews]);
 
   return (
     <div>

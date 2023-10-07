@@ -4,10 +4,10 @@ interface Props {
   active?: any;
   length?: any;
   curr?: number;
-  onDotClick?: (currentIndex: number, intervalcheck: number) => void;
-  intervalcheck?: any;
+  onDotClick?: (currentIndex: number, intervalCheck: number) => void;
+  intervalCheck?: any;
 }
-const CreateDots = ({length, curr, onDotClick, intervalcheck}: Props) => {
+const CreateDots = ({length, curr, onDotClick, intervalCheck}: Props) => {
   const dots = [];
 
   for (let i = 0; i < length; i++) {
@@ -18,7 +18,7 @@ const CreateDots = ({length, curr, onDotClick, intervalcheck}: Props) => {
         <Dot
           active={isActive}
           onClick={() => {
-            onDotClick?.(i, intervalcheck + 1);
+            onDotClick?.(i, intervalCheck + 1);
           }}
         />
       </DotsContainer>,

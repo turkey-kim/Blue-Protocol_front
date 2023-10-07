@@ -39,8 +39,3 @@ export const postLastNewsIndex = async (index: number) => {
   });
   return response.data;
 };
-
-export const getNewsLength = async () => {
-  const response = await axios.get(`${SERVER_URL}/api/getAllNewsLength`);
-  return response.data;
-};

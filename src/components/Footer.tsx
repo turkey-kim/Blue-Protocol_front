@@ -3,7 +3,7 @@ import React from 'react';
 import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
 import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
 import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
-import {officialUrl as OFFICIAL_URL, discordUrl as DISCORD_URL, kakaoUrl as KAKAO_URL} from '../constant';
+import {OFFICIAL_URL, DISCORD_URL, KAKAO_URL} from '../constant';
 import styled from 'styled-components';
 
 const Footer = () => {
