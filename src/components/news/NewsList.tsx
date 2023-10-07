@@ -1,22 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {getNews, postLastNewsIndex} from '../../api';
+import {postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 
 const NewsList = () => {
-  const [allnews, setAllnews] = useRecoilState(allNewsState);
-
+  const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
+  const [len, setLen] = useState(allNews.length);
+  const [check, setCheck] = useState(true);
   async function getMoreNews() {
-    let index = allnews[allnews.length - 1].id;
+    let index = allNews[allNews.length - 1].id;
     const arr = await postLastNewsIndex(index);
-    setAllnews(allnews.concat(arr));
+    const newLen = len + arr.length;
+    setAllNews(allNews.concat(arr));
+    if (newLen === len) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
+
+    setLen(newLen);
   }
+
   return (
     <>
       <NewsContainer>
-        {allnews.length
-          ? allnews.map((element: any, key: number) => (
+        {allNews.length
+          ? allNews.map((element: any, key: number) => (
               <Container key={element.key}>
                 <Img src={element.thumbnail} />
                 <Border />
@@ -30,9 +40,11 @@ const NewsList = () => {
             ))
           : null}
       </NewsContainer>
-      <BtnContainer>
-        <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
-      </BtnContainer>
+      {check ? (
+        <BtnContainer>
+          <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
+        </BtnContainer>
+      ) : null}
     </>
   );
 };
@@ -105,7 +117,8 @@ const Img = styled.img`
   background-position: center;
   @media screen and (max-width: 990px) {
     margin-bottom: 5vh;
-    width: 100%;
+    width: auto;
+    min-width: 100%;
   }
 `;
 

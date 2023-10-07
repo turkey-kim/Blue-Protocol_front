@@ -16,14 +16,14 @@ const NewsMain = () => {
   const recentNews = useRecoilValue(recentNewsState) as Array<Props>;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [intervalcheck, setIntervalcheck] = useState(0);
+  const [intervalCheck, setIntervalCheck] = useState(0);
 
   let intervals: NodeJS.Timeout[] = [];
 
   useEffect(() => {
-    console.log('체크 수:', intervalcheck);
+    console.log('체크 수:', intervalCheck);
 
-    if (intervalcheck === 0) {
+    if (intervalCheck === 0) {
       console.log('첫 인터벌...');
       const interval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
@@ -42,28 +42,28 @@ const NewsMain = () => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, [recentNews.length, intervalcheck]);
+  }, [recentNews.length, intervalCheck]);
 
   const totalLen = recentNews.length;
 
   const RightFunc = () => {
     if (totalLen > 0) {
       setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
-      setIntervalcheck(intervalcheck + 1);
-      console.log(intervalcheck);
+      setIntervalCheck(intervalCheck + 1);
+      console.log(intervalCheck);
     }
   };
 
   const LeftFunc = () => {
     if (totalLen > 0) {
       setCurrentIndex(prevCurr => (prevCurr - 1 + totalLen) % totalLen);
-      setIntervalcheck(intervalcheck + 1);
+      setIntervalCheck(intervalCheck + 1);
     }
   };
 
   const HandleDotClick = (index: number, intervalcheck: number) => {
     setCurrentIndex(index);
-    setIntervalcheck(intervalcheck);
+    setIntervalCheck(intervalCheck);
   };
 
   const TestFunc = () => {
@@ -88,7 +88,7 @@ const NewsMain = () => {
                         length={totalLen}
                         curr={currentIndex}
                         onDotClick={HandleDotClick}
-                        intervalcheck={intervalcheck}
+                        intervalCheck={intervalCheck}
                       ></CreateDots>
                     </CarouselDotContainer>
                   </CarouselTextContainer>

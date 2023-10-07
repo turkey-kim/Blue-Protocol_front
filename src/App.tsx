@@ -21,23 +21,22 @@ import PostNews from './pages/PostNews';
 import {getNews, getLatestNews} from './api';
 
 function Dashboard() {
-  const [allnews, setAllnews] = useRecoilState(allNewsState);
-  const [recentnews, setRecentnews] = useRecoilState(recentNewsState);
-
+  const [allNews, setAllNews] = useRecoilState(allNewsState);
+  const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
   useEffect(() => {
     async function fetchData() {
       try {
         const allNewsData = await getNews();
-        setAllnews(allNewsData);
+        setAllNews(allNewsData);
         const recentNewsData = await getLatestNews();
-        setRecentnews(recentNewsData);
+        setRecentNews(recentNewsData);
       } catch (error) {
         console.error('데이터 가져오기 오류:', error);
       }
     }
 
     fetchData();
-  }, [setAllnews, setRecentnews]);
+  }, [setAllNews, setRecentNews]);
 
   return (
     <div>

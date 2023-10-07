@@ -3,7 +3,7 @@ import React from 'react';
 import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
 import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
 import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
-import {officialUrl as OFFICIAL_URL, discordUrl as DISCORD_URL, kakaoUrl as KAKAO_URL} from '../constant';
+import {OFFICIAL_URL, DISCORD_URL, KAKAO_URL} from '../constant';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -90,8 +90,8 @@ const Inner = styled.div`
 
   @media screen and (max-width: 990px) {
     display: block;
-    right: 10%;
-    transform: translateX(10%);
+    margin: 0;
+    padding: 0;
   }
 `;
 
@@ -100,7 +100,8 @@ const Nav = styled.nav`
   cursor: default;
   color: #4d4d4d;
   @media screen and (max-width: 990px) {
-    width: 100vw;
+    width: auto;
+    padding-left: 5vw;
   }
 `;
 
