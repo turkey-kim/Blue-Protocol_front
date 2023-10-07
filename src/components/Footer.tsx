@@ -90,8 +90,8 @@ const Inner = styled.div`
 
   @media screen and (max-width: 990px) {
     display: block;
-    right: 10%;
-    transform: translateX(10%);
+    margin: 0;
+    padding: 0;
   }
 `;
 
@@ -100,7 +100,8 @@ const Nav = styled.nav`
   cursor: default;
   color: #4d4d4d;
   @media screen and (max-width: 990px) {
-    width: 100vw;
+    width: auto;
+    padding-left: 5vw;
   }
 `;
 

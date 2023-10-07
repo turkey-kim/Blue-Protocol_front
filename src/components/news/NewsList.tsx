@@ -105,7 +105,8 @@ const Img = styled.img`
   background-position: center;
   @media screen and (max-width: 990px) {
     margin-bottom: 5vh;
-    width: 100%;
+    width: auto;
+    min-width: 100%;
   }
 `;
 
