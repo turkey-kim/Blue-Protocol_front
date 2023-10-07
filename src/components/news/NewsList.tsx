@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {getNews, postLastNewsIndex} from '../../api';
-import {allNewsState} from '../../states/atoms';
+import {allNewsLengthState, allNewsState} from '../../states/atoms';
 import {useRecoilState, useRecoilValue} from 'recoil';
 
 const NewsList = () => {
-  const [allnews, setAllnews] = useRecoilState(allNewsState);
-
+  const [allnews, setAllnews] = useRecoilState(allNewsState) as any[];
+  const [len, setLen] = useRecoilState(allNewsLengthState);
   async function getMoreNews() {
     let index = allnews[allnews.length - 1].id;
     const arr = await postLastNewsIndex(index);
     setAllnews(allnews.concat(arr));
   }
+  const allNewsLen = allnews.length;
   return (
     <>
       <NewsContainer>
@@ -30,9 +31,11 @@ const NewsList = () => {
             ))
           : null}
       </NewsContainer>
-      <BtnContainer>
-        <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
-      </BtnContainer>
+      {len === allNewsLen ? null : (
+        <BtnContainer>
+          <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
+        </BtnContainer>
+      )}
     </>
   );
 };
