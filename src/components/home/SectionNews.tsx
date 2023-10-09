@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import NewsCard from './NewsCard';
-import {useEffect, useState} from 'react';
 import {ReactComponent as BoundaryIcon} from '../../assets/icons/boundary.svg';
 import {ReactComponent as DotIcon} from '../../assets/icons/dot.svg';
 import {useNavigate} from 'react-router';

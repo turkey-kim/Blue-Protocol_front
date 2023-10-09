@@ -103,7 +103,7 @@ export default PostNews;
 const Container = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 1rem;
 `;
 
@@ -118,7 +118,7 @@ const Editor = styled.textarea`
 
 const Preview = styled.div`
   flex: 1;
-  height: 100%;
+  min-height: 100%;
 `;
 
 const Button = styled.button`
