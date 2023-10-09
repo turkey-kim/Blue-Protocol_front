@@ -29,6 +29,7 @@ const SectionNews = () => {
                 title={element.title}
                 outline={element.outline}
                 date={element.date}
+                id={element.id}
               ></NewsCard>
             ))
           : null}

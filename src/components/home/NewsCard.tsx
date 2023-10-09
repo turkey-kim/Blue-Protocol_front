@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {useNavigate} from 'react-router';
 
 interface Props {
   thumbnail: string;
@@ -6,10 +7,16 @@ interface Props {
   title: string;
   outline: string;
   date: string;
+  id: number;
 }
-const NewsCard = ({thumbnail, category, title, outline, date}: Props) => {
+const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
+  const navigate = useNavigate();
   return (
-    <NewsContainer>
+    <NewsContainer
+      onClick={() => {
+        navigate(`/news/${String(id)}`);
+      }}
+    >
       <NewsImage
         style={{
           backgroundImage: `url(${thumbnail})`,

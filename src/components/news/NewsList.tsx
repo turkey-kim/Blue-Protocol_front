@@ -3,21 +3,29 @@ import styled from 'styled-components';
 import {getNews, postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
 import {useRecoilState, useRecoilValue} from 'recoil';
+import {useNavigate} from 'react-router';
 
 const NewsList = () => {
-  const [allnews, setAllnews] = useRecoilState(allNewsState);
+  const [allNews, setAllNews] = useRecoilState(allNewsState);
+  const navigate = useNavigate();
 
   async function getMoreNews() {
-    let index = allnews[allnews.length - 1].id;
+    let index = allNews[allNews.length - 1].id;
     const arr = await postLastNewsIndex(index);
-    setAllnews(allnews.concat(arr));
+    console.log(arr.length);
+    setAllNews(allNews.concat(arr));
   }
   return (
     <>
       <NewsContainer>
-        {allnews.length
-          ? allnews.map((element: any, key: number) => (
-              <Container key={element.key}>
+        {allNews.length
+          ? allNews.map((element: any, key: number) => (
+              <Container
+                key={element.key}
+                onClick={() => {
+                  navigate(`/news/${element.id}`);
+                }}
+              >
                 <Img src={element.thumbnail} />
                 <Border />
                 <TextContainer>
@@ -64,9 +72,7 @@ const Container = styled.div`
   &:hover ${Border} {
     width: 99%;
   }
-  
 
-  
   @media screen and (max-width: 990px) {
     flex-direction: column;
     height: 100%;
@@ -78,6 +84,7 @@ const Container = styled.div`
         rgba(106, 194, 195, 0.5) 80%,
         rgba(106, 194, 195, 1) 100%
       );
+    }
   }
 `;
 
@@ -188,7 +195,7 @@ const MoreBtn = styled.button`
   }
   @media screen and (max-width: 990px) {
     width: 150px;
-    heightL 40px;
+    height: 40px;
     font-size: 12px;
   }
 `;
