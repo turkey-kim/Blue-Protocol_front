@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import {postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
 import {useRecoilState} from 'recoil';
+import {useNavigate} from 'react-router';
 
 const NewsList = () => {
   const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
   const [len, setLen] = useState(allNews.length);
   const [check, setCheck] = useState(true);
+  const navigate = useNavigate();
   async function getMoreNews() {
     let index = allNews[allNews.length - 1].id;
     const arr = await postLastNewsIndex(index);
@@ -27,7 +29,12 @@ const NewsList = () => {
       <NewsContainer>
         {allNews.length
           ? allNews.map((element: any, key: number) => (
-              <Container key={element.key}>
+              <Container
+                key={element.key}
+                onClick={() => {
+                  navigate(`/news/${element.id}`);
+                }}
+              >
                 <Img src={element.thumbnail} />
                 <Border />
                 <TextContainer>
@@ -76,9 +83,7 @@ const Container = styled.div`
   &:hover ${Border} {
     width: 99%;
   }
-  
 
-  
   @media screen and (max-width: 990px) {
     flex-direction: column;
     height: 100%;
@@ -90,6 +95,7 @@ const Container = styled.div`
         rgba(106, 194, 195, 0.5) 80%,
         rgba(106, 194, 195, 1) 100%
       );
+    }
   }
 `;
 
@@ -201,7 +207,7 @@ const MoreBtn = styled.button`
   }
   @media screen and (max-width: 990px) {
     width: 150px;
-    heightL 40px;
+    height: 40px;
     font-size: 12px;
   }
 `;

@@ -5,6 +5,8 @@ import CreateDots from './CreateDots';
 import styled from 'styled-components';
 import {recentNewsState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
+import {useNavigate} from 'react-router';
+
 interface Props {
   thumbnail?: string;
   category?: string;
@@ -14,6 +16,7 @@ interface Props {
 }
 const NewsMain = () => {
   const recentNews = useRecoilValue(recentNewsState) as Array<Props>;
+  const navigate = useNavigate();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [intervalCheck, setIntervalCheck] = useState(0);
@@ -76,7 +79,12 @@ const NewsMain = () => {
         <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
           {recentNews.length
             ? recentNews.map((element: any, key: number) => (
-                <CarouselContainer key={element.key}>
+                <CarouselContainer
+                  key={element.key}
+                  onClick={() => {
+                    navigate(`/news/${element.id}`);
+                  }}
+                >
                   <CarouselImg src={element.thumbnail}></CarouselImg>
                   <CarouselTextContainer>
                     <CarouselCategory>{element.category}</CarouselCategory>

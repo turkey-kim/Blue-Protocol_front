@@ -1,23 +1,56 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadNews} from '../api';
-import {useNavigate} from 'react-router';
+import {uploadImage, updateNews} from '../api';
+import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
+import {allNewsState} from '../states/atoms';
+import {useRecoilValue} from 'recoil';
 
-function PostNews() {
-  const [inputs, setInputs] = useState({
+interface NewsProps {
+  _id: string;
+  id: number;
+  title: string;
+  category: string;
+  outline: string;
+  date: string;
+  content: string;
+  thumbnail: string;
+}
+
+function EditNews() {
+  const {id} = useParams();
+  const allNews = useRecoilValue(allNewsState);
+  const [newsObj, setNewsObj] = useState<NewsProps>();
+
+  const [inputs, setInputs] = useState<any>({
     title: '',
     outline: '',
     category: '',
     thumbnail: '',
   });
-  const {title, outline, category, thumbnail} = inputs;
-  const [content, setContent] = useState('');
+  let {title, outline, category, thumbnail} = inputs;
+  const [content, setContent] = useState<string | any>('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    allNews.forEach(element => {
+      if (Number(id) === element.id) {
+        console.log(element);
+        setInputs({
+          title: element.title,
+          outline: element.outline,
+          category: element.category,
+          thumbnail: '',
+        });
+        setContent(element.content);
+        setNewsObj(element);
+      }
+    });
+  }, [allNews]);
 
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
@@ -55,7 +88,10 @@ function PostNews() {
   };
 
   const submit = () => {
-    uploadNews({title, outline, category, thumbnail, content});
+    if (!thumbnail) {
+      thumbnail = newsObj?.thumbnail;
+    }
+    updateNews({title, outline, category, thumbnail, content, id});
     navigate('/');
   };
 
@@ -71,15 +107,15 @@ function PostNews() {
     >
       <InputWrapper>
         <Label>뉴스 제목 :</Label>
-        <Input name="title" onChange={onChange}></Input>
+        <Input name="title" onChange={onChange} value={inputs.title}></Input>
       </InputWrapper>
       <InputWrapper>
         <Label>뉴스 요약 :</Label>
-        <Input name="outline" onChange={onChange}></Input>
+        <Input name="outline" onChange={onChange} value={inputs.outline}></Input>
       </InputWrapper>
       <InputWrapper>
         <Label>카테고리 :</Label>
-        <Input name="category" onChange={onChange}></Input>
+        <Input name="category" onChange={onChange} value={inputs.category}></Input>
       </InputWrapper>
       <FileBox>
         <Label>썸네일 이미지 업로드 </Label>
@@ -87,7 +123,13 @@ function PostNews() {
       </FileBox>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
-        <Button onClick={submit}>SUBMIT</Button>
+        <Button
+          onClick={() => {
+            submit();
+          }}
+        >
+          SUBMIT
+        </Button>
         <Preview>
           <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
             {content}
@@ -98,7 +140,7 @@ function PostNews() {
   );
 }
 
-export default PostNews;
+export default EditNews;
 
 const Container = styled.div`
   display: flex;

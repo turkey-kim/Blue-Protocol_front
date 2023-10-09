@@ -3,6 +3,7 @@ import './font.css';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import styled from 'styled-components';
 import {Outlet} from 'react-router';
 import {Routes, Route} from 'react-router';
 import {MyGlobalStyle, myTheme} from './style';
@@ -11,6 +12,8 @@ import News from './pages/News';
 import Game from './pages/Game';
 import Guide from './pages/Guide';
 import Database from './pages/Database';
+import NewsDetail from './pages/NewsDetail';
+import EditNews from './pages/EditNews';
 import {useEffect, useState} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
@@ -36,7 +39,7 @@ function Dashboard() {
     }
 
     fetchData();
-  }, [setAllNews, setRecentNews]);
+  }, []);
 
   return (
     <div>
@@ -71,11 +74,12 @@ function App() {
           <Route path="/" element={<Dashboard />}>
             <Route index element={<Home />}></Route>
             <Route path="news" element={<News />}></Route>
+            <Route path="news/:id" element={<NewsDetail />}></Route>
+            <Route path="news/edit/:id" element={<EditNews />}></Route>
             <Route path="game" element={<Game />}></Route>
             <Route path="guide" element={<Guide />}></Route>
             <Route path="database" element={<Database />}></Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
-
             <Route
               path="news/post"
               element={
