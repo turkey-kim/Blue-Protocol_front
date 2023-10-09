@@ -1,20 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {getNews, postLastNewsIndex} from '../../api';
+import {postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {useNavigate} from 'react-router';
 
 const NewsList = () => {
-  const [allNews, setAllNews] = useRecoilState(allNewsState);
+  const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
+  const [len, setLen] = useState(allNews.length);
+  const [check, setCheck] = useState(true);
   const navigate = useNavigate();
-
   async function getMoreNews() {
     let index = allNews[allNews.length - 1].id;
     const arr = await postLastNewsIndex(index);
-    console.log(arr.length);
+    const newLen = len + arr.length;
     setAllNews(allNews.concat(arr));
+    if (newLen === len) {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
+
+    setLen(newLen);
   }
+
   return (
     <>
       <NewsContainer>
@@ -38,9 +47,11 @@ const NewsList = () => {
             ))
           : null}
       </NewsContainer>
-      <BtnContainer>
-        <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
-      </BtnContainer>
+      {check ? (
+        <BtnContainer>
+          <MoreBtn onClick={getMoreNews}>더보기</MoreBtn>
+        </BtnContainer>
+      ) : null}
     </>
   );
 };
@@ -112,7 +123,8 @@ const Img = styled.img`
   background-position: center;
   @media screen and (max-width: 990px) {
     margin-bottom: 5vh;
-    width: 100%;
+    width: auto;
+    min-width: 100%;
   }
 `;
 

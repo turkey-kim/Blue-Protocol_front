@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import NewsMain from '../components/news/NewsMain';
 import NewsList from '../components/news/NewsList';
-import {useRecoilValue} from 'recoil';
-import {allNewsState, recentNewsState} from '../states/atoms';
 
 const News = () => {
   return (
