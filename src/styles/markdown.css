@@ -55,9 +55,10 @@
   line-height: 1.5;
   word-wrap: break-word;
   padding: 2rem 2rem;
-  overflow: scroll;
+
   border-radius: 10px;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
 }
 
