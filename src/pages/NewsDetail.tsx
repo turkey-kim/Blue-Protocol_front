@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {useRecoilValue} from 'recoil';
 import {allNewsState, loginState} from '../states/atoms';
+import {deleteNews} from '../api';
 import AdminButton from '../components/AdminButton';
 import '../styles/markdown.css';
 
@@ -47,7 +48,13 @@ function NewsDetail() {
               navigate(`/news/edit/${id}`);
             }}
           />
-          <AdminButton text="삭제" onClick={() => {}} />
+          <AdminButton
+            text="삭제"
+            onClick={() => {
+              deleteNews({id});
+              navigate('/');
+            }}
+          />
         </AdminBar>
       ) : null}
       <Date>{selectNews?.date}</Date>
