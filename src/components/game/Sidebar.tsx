@@ -12,19 +12,17 @@ interface Props {
 
 const SideBar = () => {
   const {id} = useParams();
-  const [openSubMenu, setOpenSubMenu] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState(true);
 
   return (
     <Container>
-      <Menu
-        to="/game"
-        url={id}
+      <ToggleMenu
         onClick={() => {
           setOpenSubMenu(!openSubMenu);
         }}
       >
         커멘드 메뉴 <ArrowIcon isSubmenuOpen={openSubMenu} />
-      </Menu>
+      </ToggleMenu>
       <SubMenuContainer isSubmenuOpen={openSubMenu}>
         <SubMenu to="/game/command/캐릭터" url={id} focus="캐릭터">
           캐릭터
@@ -85,6 +83,17 @@ const Container = styled.div`
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
+`;
+
+const ToggleMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: gray;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  cursor: pointer;
 `;
 
 const Menu = styled(Link)<Props>`

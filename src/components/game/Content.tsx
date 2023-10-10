@@ -10,18 +10,22 @@ import '../../styles/markdown.css';
 const Content = () => {
   const {id} = useParams();
   const contents = gameContents;
+  const [title, setTitle] = useState(contents[0].id);
   const [text, setText] = useState('');
 
   useEffect(() => {
     contents.forEach(content => {
       if (id === content.id) {
+        setTitle(content.id);
         setText(content.content);
+      } else if (!id) {
+        setText(contents[0].content);
       }
     });
   }, [id]);
   return (
     <Container>
-      <Title>{id}</Title>
+      <Title>{title}</Title>
       <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {text}
       </ReactMarkdown>
