@@ -47,18 +47,15 @@
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
+  background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
   font-size: 20px;
   line-height: 1.5;
   word-wrap: break-word;
   padding: 2rem 2rem;
-
   border-radius: 10px;
   width: 100%;
-  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -173,11 +170,10 @@
   box-sizing: content-box;
   overflow: hidden;
   background: transparent;
-  border-bottom: 1px solid var(--color-border-muted);
-  height: 0.25em;
+  height: 1px;
   padding: 0;
   margin: 24px 0;
-  background-color: var(--color-border-default);
+  background-color: darkgray;
   border: 0;
 }
 
@@ -360,8 +356,9 @@
 .markdown-body blockquote {
   margin: 0;
   padding: 0 1em;
-  color: var(--color-fg-muted);
-  border-left: 0.25em solid var(--color-border-default);
+  line-height: 1.6rem;
+  border-left: 4px solid #68c3c4;
+  font-weight: 600;
 }
 
 .markdown-body ul,
@@ -607,8 +604,19 @@
   margin-bottom: 16px;
 }
 
+.markdown-body table {
+  background-color: transparent;
+}
+
 .markdown-body table th {
-  font-weight: var(--base-text-weight-semibold, 600);
+  font-weight: 400;
+  text-align: left;
+}
+
+.markdown-body table th:first-child,
+.markdown-body table td:first-child {
+  background-color: #f1f1ef;
+  font-weight: 600;
 }
 
 .markdown-body table th,
@@ -618,12 +626,7 @@
 }
 
 .markdown-body table tr {
-  background-color: var(--color-canvas-default);
   border-top: 1px solid var(--color-border-muted);
-}
-
-.markdown-body table tr:nth-child(2n) {
-  background-color: var(--color-canvas-subtle);
 }
 
 .markdown-body table img {
@@ -1062,15 +1065,6 @@
   filter: invert(50%);
 }
 
-.markdown-body blockquote {
-  line-height: 1.6rem;
-  padding: 1rem 2rem;
-  border-left: none;
-  border-radius: 1rem;
-  background-color: #f1f4f6;
-  font-weight: 600;
-}
-
 .markdown-body ol {
   list-style-type: decimal;
   font-weight: 600;
@@ -1080,23 +1074,8 @@
   font-weight: 600;
 }
 
-.markdown-body p {
-  color: #34576d;
-}
-
 .markdown-body pre {
   padding: 2rem;
   background-color: #5b89a5;
   color: #f7f73d;
-}
-
-.markdown-body table,
-th,
-td {
-  border: 2px solid #34576d;
-  border-radius: 3px;
-}
-
-.markdown-body th {
-  background-color: #f1f4f6;
 }

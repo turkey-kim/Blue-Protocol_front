@@ -75,8 +75,10 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="news" element={<News />}></Route>
             <Route path="news/:id" element={<NewsDetail />}></Route>
-            <Route path="news/edit/:id" element={<EditNews />}></Route>
-            <Route path="game" element={<Game />}></Route>
+            <Route path="game" element={<Game />}>
+              <Route path=":id" element={<Game />} />
+              <Route path="command/:id" element={<Game />} />
+            </Route>
             <Route path="guide" element={<Guide />}></Route>
             <Route path="database" element={<Database />}></Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
@@ -85,6 +87,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <PostNews />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="news/edit/:id"
+              element={
+                <PrivateRoute>
+                  <EditNews />
                 </PrivateRoute>
               }
             ></Route>
