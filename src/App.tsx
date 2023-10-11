@@ -22,6 +22,7 @@ import {allNewsState, loginState, recentNewsState} from './states/atoms';
 import PrivateRoute from './routes/PrivateRoute';
 import PostNews from './pages/PostNews';
 import {getNews, getLatestNews} from './api';
+import PostGuides from './pages/PostGuides';
 
 function Dashboard() {
   const [allNews, setAllNews] = useRecoilState(allNewsState);
@@ -95,6 +96,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <EditNews />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="guide/post"
+              element={
+                <PrivateRoute>
+                  <PostGuides />
                 </PrivateRoute>
               }
             ></Route>
