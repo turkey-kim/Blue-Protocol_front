@@ -4,31 +4,26 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadNews} from '../api';
+import {uploadImage, uploadGuide} from '../api';
 import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
 
-function PostNews() {
+const PostGuides = () => {
   const [inputs, setInputs] = useState({
+    category: '1장',
     title: '',
-    outline: '',
-    category: '',
-    thumbnail: '',
   });
-  const {title, outline, category, thumbnail} = inputs;
+  const {category, title} = inputs;
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
+    console.log(value, name);
     setInputs({
       ...inputs,
       [name]: value,
     });
-  };
-
-  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
   };
 
   const getImagePath = async (files: FileList, formData: FormData) => {
@@ -38,24 +33,12 @@ function PostNews() {
     setContent(content + result);
   };
 
-  const getThumbnailPath = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    const {name} = e.target;
-    if (files) {
-      const formdata = new FormData();
-      formdata.append('image', files[0]);
-      const result = await uploadImage(formdata);
-      setInputs({
-        ...inputs,
-        [name]: result?.data,
-      });
-    } else {
-      return;
-    }
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
   };
 
   const submit = () => {
-    uploadNews({title, outline, category, thumbnail, content});
+    uploadGuide({category, title, content});
     navigate('/');
   };
 
@@ -70,21 +53,25 @@ function PostNews() {
       }}
     >
       <InputWrapper>
-        <Label>뉴스 제목 :</Label>
+        <Label>카테고리 :</Label>
+        <Toggle name="category" onChange={onChange}>
+          <option value="1장">1장</option>
+          <option value="2장">2장</option>
+          <option value="3장">3장</option>
+          <option value="모험랭크">모험랭크</option>
+          <option value="클래스 퀘스트">클래스 퀘스트</option>
+          <option value="히든 퀘스트">히든 퀘스트</option>
+          <option value="50레벨제 무기 입수">50레벨제 무기 입수</option>
+          <option value="추가 조사 미션">추가 조사 미션</option>
+          <option value="서브 퀘스트">서브 퀘스트</option>
+          <option value="팁">팁</option>
+        </Toggle>
+      </InputWrapper>
+      <InputWrapper>
+        <Label>컨텐츠 제목 :</Label>
         <Input name="title" onChange={onChange}></Input>
       </InputWrapper>
-      <InputWrapper>
-        <Label>뉴스 요약 :</Label>
-        <Input name="outline" onChange={onChange}></Input>
-      </InputWrapper>
-      <InputWrapper>
-        <Label>카테고리 :</Label>
-        <Input name="category" onChange={onChange}></Input>
-      </InputWrapper>
-      <FileBox>
-        <Label>썸네일 이미지 업로드 </Label>
-        <FileInput type="file" name="thumbnail" onChange={getThumbnailPath}></FileInput>
-      </FileBox>
+
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
         <Button onClick={submit}>SUBMIT</Button>
@@ -96,9 +83,7 @@ function PostNews() {
       </Container>
     </FileDrop>
   );
-}
-
-export default PostNews;
+};
 
 const Container = styled.div`
   display: flex;
@@ -143,20 +128,16 @@ const InputWrapper = styled.div`
 
 const Label = styled.span`
   flex: 1;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   text-align: center;
 `;
 
+const Toggle = styled.select`
+  flex: 10;
+`;
 const Input = styled.input`
   flex: 10;
 `;
 
-const FileBox = styled.div`
-  width: 100%;
-  padding: 0.5rem 2rem;
-`;
-
-const FileInput = styled.input`
-  flex: 10;
-`;
+export default PostGuides;
