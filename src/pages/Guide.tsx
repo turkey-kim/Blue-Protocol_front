@@ -1,14 +1,28 @@
-import styled from "styled-components";
-import React from "react";
+import styled from 'styled-components';
+import Intro from '../components/Intro';
+import {ReactComponent as DiaIcon} from '../assets/icons/borderIcon.svg';
+import GuideSideBar from '../components/guide/GuideSidebar';
 
 const Guide = () => {
-  return <Container>This is Guide!</Container>;
+  return (
+    <Container>
+      <Intro />
+      <DiaBorderIcon />
+      <GuideSideBar />
+    </Container>
+  );
 };
 
 export default Guide;
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
-  height: 50vh;
+  height: auto;
+`;
+
+const DiaBorderIcon = styled(DiaIcon)`
+  padding: 3rem;
 `;
