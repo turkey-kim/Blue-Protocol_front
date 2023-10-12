@@ -21,3 +21,8 @@ export const recentNewsState = atom<any[]>({
   key: 'recentNewsState',
   default: [],
 });
+
+export const guideData = atom<any[]>({
+  key: 'guideData',
+  default: [],
+});

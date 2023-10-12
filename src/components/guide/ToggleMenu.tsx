@@ -1,15 +1,28 @@
 import {useState} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
+import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import {useRecoilValue} from 'recoil';
+import {guideData} from '../../states/atoms';
 
 interface Props {
-  url?: string;
   focus?: boolean;
 }
 
 const ToggleMenu = ({title}: {title: string}) => {
+  const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
+  const data = useRecoilValue(guideData);
+
+  const isFocused = (contentTitle: string): boolean => {
+    if (id === contentTitle) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <Container>
       <Wrapper
@@ -19,14 +32,15 @@ const ToggleMenu = ({title}: {title: string}) => {
       >
         {title} <ArrowIcon focus={openToggle} />
       </Wrapper>
-      {openToggle ? (
-        <InnerContaianer>
-          <Submenu to="/">가</Submenu>
-          <Submenu to="/">나</Submenu>
-          <Submenu to="/">디</Submenu>
-          <Submenu to="/">ㄹ</Submenu>
-        </InnerContaianer>
-      ) : null}
+      <InnerContaianer focus={openToggle}>
+        {data.map(element =>
+          element.category === title ? (
+            <Submenu to={`/guide/${element.title}`} focus={isFocused(element.title)}>
+              {element.title}
+            </Submenu>
+          ) : null,
+        )}
+      </InnerContaianer>
     </Container>
   );
 };
@@ -56,17 +70,17 @@ const ArrowIcon = styled(Arrow)<Props>`
   transform: ${props => (props.focus ? 'rotate(180deg)' : null)};
 `;
 
-const InnerContaianer = styled.div`
-  display: flex;
+const InnerContaianer = styled.div<Props>`
+  display: ${props => (props.focus ? 'flex' : 'none')};
   flex-direction: column;
   margin-bottom: 1rem;
 `;
 
-const Submenu = styled(Link)`
+const Submenu = styled(Link)<Props>`
   margin-left: 1rem;
   padding: 0.2rem 0.5rem;
   border-left: 1px solid gray;
-  color: gray;
+  color: ${props => (props.focus ? 'black' : 'gray')};
   font-size: 1rem;
   text-decoration: none;
 `;
