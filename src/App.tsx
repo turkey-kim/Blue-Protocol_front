@@ -13,6 +13,7 @@ import Guide from './pages/Guide';
 import Database from './pages/Database';
 import NewsDetail from './pages/NewsDetail';
 import EditNews from './pages/EditNews';
+import EditGuide from './pages/EditGuide';
 import {useEffect} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
@@ -105,6 +106,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <PostGuides />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="guide/edit/:id"
+              element={
+                <PrivateRoute>
+                  <EditGuide />
                 </PrivateRoute>
               }
             ></Route>

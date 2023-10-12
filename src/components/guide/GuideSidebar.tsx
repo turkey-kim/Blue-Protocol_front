@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import ToggleMenu from './ToggleMenu';
 import SubToggle from './SubToggle';
-import {guideData} from '../../states/atoms';
+import {loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
+import {useNavigate} from 'react-router';
+import AdminButton from '../AdminButton';
 
 interface Props {
   url?: string;
@@ -25,10 +27,19 @@ const menuList = [
 const mainQuestList = ['1장', '2장', '3장'];
 
 const GuideSideBar = () => {
-  const textData = useRecoilValue(guideData);
+  const isAdmin = useRecoilValue(loginState);
+  const navigate = useNavigate();
 
   return (
     <Container>
+      {isAdmin ? (
+        <AdminButton
+          text="새로운 글 작성"
+          onClick={() => {
+            navigate('/guide/post');
+          }}
+        />
+      ) : null}
       <Menu>퀘스트</Menu>
       {mainQuestList.map(element => (
         <SubToggle title={element}></SubToggle>

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {useParams} from 'react-router';
+import {useParams, useNavigate} from 'react-router';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
@@ -8,7 +8,6 @@ import {guideData, loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import AdminButton from '../AdminButton';
 import {deleteGuideData} from '../../api';
-import {useNavigate} from 'react-router';
 import '../../styles/markdown.css';
 
 interface Props {
@@ -41,7 +40,12 @@ const GuideContent = () => {
     <Container>
       <Title>{title}</Title>
       <AdminBar isAdmin={isAdmin}>
-        <AdminButton text="수정" onClick={() => {}} />
+        <AdminButton
+          text="수정"
+          onClick={() => {
+            navigate(`/guide/edit/${title}`);
+          }}
+        />
         <AdminButton
           text="삭제"
           onClick={() => {
