@@ -3,7 +3,6 @@ import './font.css';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-import styled from 'styled-components';
 import {Outlet} from 'react-router';
 import {Routes, Route} from 'react-router';
 import {MyGlobalStyle, myTheme} from './style';
@@ -14,7 +13,8 @@ import Guide from './pages/Guide';
 import Database from './pages/Database';
 import NewsDetail from './pages/NewsDetail';
 import EditNews from './pages/EditNews';
-import {useEffect, useState} from 'react';
+import EditGuide from './pages/EditGuide';
+import {useEffect} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
 import {useRecoilState} from 'recoil';
@@ -80,7 +80,9 @@ function App() {
               <Route path=":id" element={<Game />} />
               <Route path="command/:id" element={<Game />} />
             </Route>
-            <Route path="guide" element={<Guide />}></Route>
+            <Route path="guide" element={<Guide />}>
+              <Route path=":id" element={<Guide />}></Route>
+            </Route>
             <Route path="database" element={<Database />}></Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
             <Route
@@ -104,6 +106,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <PostGuides />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="guide/edit/:id"
+              element={
+                <PrivateRoute>
+                  <EditGuide />
                 </PrivateRoute>
               }
             ></Route>

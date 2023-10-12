@@ -65,3 +65,22 @@ export const uploadGuide = async ({category, title, content}: Props) => {
     content: content,
   });
 };
+
+export const getGuideData = async () => {
+  const response = await axios.get(`${SERVER_URL}/api/getGuideData`);
+  return response.data;
+};
+
+export const deleteGuideData = async ({title}: Props) => {
+  await axios.post(`${SERVER_URL}/api/deleteGuideData`, {
+    title: title,
+  });
+};
+
+export const updateGuideData = async ({category, title, content}: Props) => {
+  await axios.post(`${SERVER_URL}/api/updateGuideData`, {
+    category: category,
+    title: title,
+    content: content,
+  });
+};
