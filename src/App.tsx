@@ -18,30 +18,13 @@ import {useEffect} from 'react';
 import Login from './pages/Login';
 import {checkToken} from './api/auth';
 import {useRecoilState} from 'recoil';
-import {allNewsState, loginState, recentNewsState} from './states/atoms';
+import {loginState} from './states/atoms';
 import PrivateRoute from './routes/PrivateRoute';
 import PostNews from './pages/PostNews';
-import {getNews, getLatestNews} from './api';
 import PostGuides from './pages/PostGuides';
+import PostDatabase from './pages/PostDatabase';
 
 function Dashboard() {
-  const [allNews, setAllNews] = useRecoilState(allNewsState);
-  const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const allNewsData = await getNews();
-        setAllNews(allNewsData);
-        const recentNewsData = await getLatestNews();
-        setRecentNews(recentNewsData);
-      } catch (error) {
-        console.error('데이터 가져오기 오류:', error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
   return (
     <div>
       <Header></Header>
@@ -114,6 +97,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <EditGuide />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="database/post"
+              element={
+                <PrivateRoute>
+                  <PostDatabase />
                 </PrivateRoute>
               }
             ></Route>

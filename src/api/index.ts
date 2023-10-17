@@ -84,3 +84,11 @@ export const updateGuideData = async ({category, title, content}: Props) => {
     content: content,
   });
 };
+
+export const uploadDatabaseData = async ({category, title, content}: Props) => {
+  await axios.post(`${SERVER_URL}/api/uploadDatabase`, {
+    category,
+    title,
+    content,
+  });
+};
