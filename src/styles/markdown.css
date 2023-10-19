@@ -1079,3 +1079,9 @@
   background-color: #5b89a5;
   color: #f7f73d;
 }
+
+@media (max-width: 990px) {
+  .markdown-body {
+    font-size: 3px;
+  }
+}
