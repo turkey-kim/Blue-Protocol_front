@@ -5,11 +5,7 @@ import {loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import {useNavigate} from 'react-router';
 import AdminButton from '../AdminButton';
-
-interface Props {
-  url?: string;
-  focus?: boolean;
-}
+import {isMobileNavOpen} from '../../states/atoms';
 
 const menuList = [
   '1장',
@@ -28,10 +24,11 @@ const mainQuestList = ['1장', '2장', '3장'];
 
 const GuideSideBar = () => {
   const isAdmin = useRecoilValue(loginState);
+  const isNavOpen = useRecoilValue(isMobileNavOpen);
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <Container className={isNavOpen ? 'open' : ''}>
       {isAdmin ? (
         <AdminButton
           text="새로운 글 작성"
@@ -65,6 +62,27 @@ const Container = styled.div`
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
+
+  @media screen and (max-width: 990px) {
+    display: flex;
+    position: fixed;
+    top: 30px;
+    bottom: 0;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+    left: -100%;
+    box-sizing: border-box;
+    padding: 3rem;
+    z-index: 3;
+    transition: 0.5s ease;
+    &.open {
+      left: 0;
+      transition: 0.5s ease;
+      overflow: scroll;
+    }
+  }
 `;
 
 const Menu = styled.div`
@@ -76,4 +94,8 @@ const Menu = styled.div`
   font-size: 1.2rem;
   padding: 0.5rem;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;

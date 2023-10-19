@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import {useRecoilValue} from 'recoil';
+import {useRecoilValue, useRecoilState} from 'recoil';
 import {guideData} from '../../states/atoms';
+import {isMobileNavOpen} from '../../states/atoms';
 
 interface Props {
   focus?: boolean;
@@ -13,6 +14,7 @@ interface Props {
 const ToggleMenu = ({title}: {title: string}) => {
   const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const data = useRecoilValue(guideData);
 
   const isFocused = (contentTitle: string): boolean => {
@@ -35,7 +37,13 @@ const ToggleMenu = ({title}: {title: string}) => {
       <InnerContaianer focus={openToggle}>
         {data.map(element =>
           element.category === title ? (
-            <Submenu to={`/guide/${element.title}`} focus={isFocused(element.title)}>
+            <Submenu
+              to={`/guide/${element.title}`}
+              focus={isFocused(element.title)}
+              onClick={() => {
+                setIsNavOpen(!isNavOpen);
+              }}
+            >
               {element.title}
             </Submenu>
           ) : null,
@@ -61,6 +69,10 @@ const Wrapper = styled.div`
   font-size: 1.2rem;
   padding: 0.5rem;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;
 
 const ArrowIcon = styled(Arrow)<Props>`

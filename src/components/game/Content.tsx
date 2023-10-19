@@ -48,4 +48,7 @@ const Title = styled.div`
   font-size: 2rem;
   font-weight: 700;
   padding: 3rem 1rem 1rem 1rem;
+  @media screen and (max-width: 990px) {
+    font-size: 1.5rem;
+  }
 `;

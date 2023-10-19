@@ -26,3 +26,8 @@ export const guideData = atom<any[]>({
   key: 'guideData',
   default: [],
 });
+
+export const isMobileNavOpen = atom<boolean>({
+  key: 'isMobileNavOpen',
+  default: false,
+});
