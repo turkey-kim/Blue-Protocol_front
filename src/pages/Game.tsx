@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SideBar from '../components/game/Sidebar';
+import SideBar from '../components/game/GameSidebar';
 import Content from '../components/game/Content';
 import Intro from '../components/Intro';
 import {ReactComponent as DiaBorder} from '../assets/icons/borderIcon.svg';
