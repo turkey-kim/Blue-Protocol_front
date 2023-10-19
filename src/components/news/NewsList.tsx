@@ -36,7 +36,6 @@ const NewsList = () => {
                 }}
               >
                 <Img src={element.thumbnail} />
-                <Border />
                 <TextContainer>
                   <Category>{element.category}</Category>
                   <Title>{element.title}</Title>
@@ -58,18 +57,18 @@ const NewsList = () => {
 
 export default NewsList;
 
-const Border = styled.div`
-  position: absolute;
-  border: 2px solid #000000;
-  width: 400px;
-  height: 200px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  top: -1vh;
-  left: 0.5vw;
-  transition: all 0.2s;
+const NewsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10vh 20vw 10vh 15vw;
+  border-right: 2px solid;
+  border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
+  border-image-slice: 1;
+
   @media screen and (max-width: 990px) {
-    display: none;
+    border: none;
+    margin: 10vh 15vw 10vh 15vw;
   }
 `;
 
@@ -78,10 +77,16 @@ const Container = styled.div`
   display: flex;
   border-radius: 1rem;
   cursor: pointer;
-  height: 35vh;
   margin-bottom: 10vh;
-  &:hover ${Border} {
-    width: 99%;
+
+  &:hover {
+    transition: all 0.5s ease-in;
+    background: linear-gradient(
+      to right,
+      rgba(106, 194, 195, 0.1) 60%,
+      rgba(106, 194, 195, 0.5) 80%,
+      rgba(106, 194, 195, 1) 100%
+    );
   }
 
   @media screen and (max-width: 990px) {
@@ -96,21 +101,6 @@ const Container = styled.div`
         rgba(106, 194, 195, 1) 100%
       );
     }
-  }
-`;
-
-const NewsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10vh 20vw 10vh 15vw;
-  border-right: 2px solid;
-  border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
-  border-image-slice: 1;
-
-  @media screen and (max-width: 990px) {
-    border: none;
-    margin: 10vh 15vw 10vh 15vw;
   }
 `;
 
@@ -135,7 +125,6 @@ const TextContainer = styled.div`
   text-align: left;
   margin-left: 10vw;
   width: 100%;
-  margin-bottom: 10vh;
   @media screen and (max-width: 990px) {
     margin: 0;
     padding-bottom: 1rem;
