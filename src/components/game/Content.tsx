@@ -36,6 +36,7 @@ const Content = () => {
 export default Content;
 
 const Container = styled.div`
+  position: relative;
   width: 80%;
   @media screen and (max-width: 990px) {
     width: 100%;
@@ -48,5 +49,3 @@ const Title = styled.div`
   font-weight: 700;
   padding: 3rem 1rem 1rem 1rem;
 `;
-
-const Text = styled.div``;

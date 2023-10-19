@@ -3,22 +3,23 @@ import {useParams} from 'react-router';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
-import {url} from 'inspector';
 
 interface Props {
   url?: string;
   focus?: string | undefined;
   isSubmenuOpen?: boolean;
+  isOpen?: boolean;
+  setIsOpen?: any;
 }
 
 const commandMenuList = ['캐릭터', '소지품', '퀘스트', '지도', '커뮤니케이션', '미션', '파티', '팀'];
 const menuList = ['전투', '무기 생산 및 강화', '이매진 크래프트', '낚시', '레이드 미션', '스토리', '등장인물'];
 
-const SideBar = () => {
+const SideBar = ({isOpen, setIsOpen}: Props) => {
   const {id} = useParams();
   const [openSubMenu, setOpenSubMenu] = useState(true);
   return (
-    <Container>
+    <Container className={isOpen ? 'open' : ''}>
       <ToggleMenu
         onClick={() => {
           setOpenSubMenu(!openSubMenu);
@@ -28,13 +29,27 @@ const SideBar = () => {
       </ToggleMenu>
       <SubMenuContainer isSubmenuOpen={openSubMenu}>
         {commandMenuList.map(element => (
-          <SubMenu to={`/game/command/${element}`} url={id} focus={element}>
+          <SubMenu
+            to={`/game/command/${element}`}
+            url={id}
+            focus={element}
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
             {element}
           </SubMenu>
         ))}
       </SubMenuContainer>
       {menuList.map(element => (
-        <Menu to={`/game/${element}`} url={id} focus={element}>
+        <Menu
+          to={`/game/${element}`}
+          url={id}
+          focus={element}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
           {element}
         </Menu>
       ))}
@@ -53,7 +68,21 @@ const Container = styled.div`
   padding: 3rem;
 
   @media screen and (max-width: 990px) {
-    display: none;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+    left: -100%;
+    box-sizing: border-box;
+    padding: 3rem;
+    z-index: 3;
+    transition: 0.5s ease;
+    &.open {
+      left: 0;
+      transition: 0.5s ease;
+    }
   }
 `;
 
