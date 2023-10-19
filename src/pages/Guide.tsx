@@ -15,6 +15,7 @@ const Guide = () => {
     const fetchData = async () => {
       if (!textData.length) {
         setTextData(await getGuideData());
+        console.log(textData);
         console.log('전송');
       }
     };

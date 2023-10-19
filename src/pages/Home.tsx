@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import SectionMain from '../components/home/SectionMain';
 import SectionNews from '../components/home/SectionNews';
 import SectionInfo from '../components/home/SectionInfo';
+import TopScrollButton from '../components/TopScrollButton';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <SectionMain></SectionMain>
       <SectionNews></SectionNews>
       <SectionInfo></SectionInfo>
+      <TopScrollButton />
     </Container>
   );
 };

@@ -5,6 +5,7 @@ import AdminBtn from '../components/AdminButton';
 import {useNavigate} from 'react-router';
 import {loginState} from '../states/atoms';
 import {useRecoilValue} from 'recoil';
+import TopScrollButton from '../components/TopScrollButton';
 
 const News = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const News = () => {
       ) : null}
       <NewsMain></NewsMain>
       <NewsList></NewsList>
+      <TopScrollButton />
     </Container>
   );
 };
