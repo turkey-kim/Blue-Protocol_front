@@ -6,7 +6,7 @@ import {loginState} from '../../states/atoms';
 import AdminButton from '../AdminButton';
 import DatabaseToggleMenu from './DatabaseToggleMenu';
 
-const menuList = ['클래스', '무기', '이매진', '적'];
+const menuList = ['클래스', '무기', '이매진', '적', '아이템'];
 interface Props {
   url?: string;
   focus?: string | undefined;
