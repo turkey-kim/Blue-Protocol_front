@@ -27,15 +27,12 @@ const NewsMain = () => {
     console.log('체크 수:', intervalCheck);
 
     if (intervalCheck === 0) {
-      console.log('첫 인터벌...');
       const interval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
       intervals.push(interval);
     } else {
-      console.log('인터벌 삭제...');
       intervals.forEach(interval => clearInterval(interval));
-      console.log('바뀐 인터벌...');
       const newInterval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
@@ -79,16 +76,17 @@ const NewsMain = () => {
         <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
           {recentNews.length
             ? recentNews.map((element: any, key: number) => (
-                <CarouselContainer
-                  key={element.key}
-                  onClick={() => {
-                    navigate(`/news/${element.id}`);
-                  }}
-                >
+                <CarouselContainer key={element.key}>
                   <CarouselImg src={element.thumbnail}></CarouselImg>
                   <CarouselTextContainer>
                     <CarouselCategory>{element.category}</CarouselCategory>
-                    <CarouselTitle>{element.title}</CarouselTitle>
+                    <CarouselTitle
+                      onClick={() => {
+                        navigate(`/news/${element.id}`);
+                      }}
+                    >
+                      {element.title}
+                    </CarouselTitle>
                     <CarouselContent>{element.outline}</CarouselContent>
                     <CarouselTime>{element.time}</CarouselTime>
                     <CarouselDotContainer>
@@ -100,7 +98,11 @@ const NewsMain = () => {
                       ></CreateDots>
                     </CarouselDotContainer>
                   </CarouselTextContainer>
-                  <CarouselImageContainer>
+                  <CarouselImageContainer
+                    onClick={() => {
+                      navigate(`/news/${element.id}`);
+                    }}
+                  >
                     <CarouselPreview src={element.thumbnail} onClick={TestFunc}></CarouselPreview>
                     <CarouselImageBorder></CarouselImageBorder>
                   </CarouselImageContainer>
@@ -156,6 +158,11 @@ const CarouselImg = styled.img<Props>`
 
 const CarouselTextContainer = styled.div<Props>`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 300px;
+  min-height: 150px;
   top: 55%;
   left: 16vw;
   z-index: 1;
@@ -164,6 +171,7 @@ const CarouselTextContainer = styled.div<Props>`
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    align-items: center;
   }
 `;
 
@@ -216,7 +224,7 @@ const CarouselTime = styled.span<Props>`
 `;
 
 const CarouselDotContainer = styled.div<Props>`
-  position: absolute;
+  position: bottom;
   margin-top: 2vh;
   @media screen and (max-width: 990px) {
     margin-top: 3vh;
@@ -255,16 +263,16 @@ const CarouselPreview = styled.img<Props>`
 
 const CarouselImageBorder = styled.div`
   position: absolute;
-  top: -3vh;
-  right: -0.5vw;
+  top: -1.5vh;
+  right: -0.8vw;
   width: 40vw;
-  height: 100%;
+  height: 97%;
   border: 2px solid #ffffff;
   z-index: 2;
   @media screen and (max-width: 990px) {
     width: 100%;
-    right: -1vw;
-    top: -2vh;
+    right: -2vw;
+    top: -1vh;
     max-height: 80vh;
   }
 `;
