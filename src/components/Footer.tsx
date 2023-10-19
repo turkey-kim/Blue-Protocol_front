@@ -11,8 +11,8 @@ const Footer = () => {
     <Container>
       <Inner>
         <Nav>
-          <NavTitle>헤더</NavTitle>
-          <NavContainer>
+          <NavTitle className="HeaderMenu">헤더</NavTitle>
+          <NavContainer className="HeaderMenu">
             <StyledLink to="/">
               <FooterTextHeader>홈</FooterTextHeader>
             </StyledLink>
@@ -102,6 +102,12 @@ const Nav = styled.nav`
   @media screen and (max-width: 990px) {
     width: auto;
     padding-left: 5vw;
+  }
+
+  & > .HeaderMenu {
+    @media screen and (max-width: 990px) {
+      display: none;
+    }
   }
 `;
 
