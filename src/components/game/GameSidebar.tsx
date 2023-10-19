@@ -95,6 +95,10 @@ const ToggleMenu = styled.div`
   font-size: 1.2rem;
   padding: 0.5rem;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;
 
 const Menu = styled(Link)<Props>`
@@ -106,6 +110,10 @@ const Menu = styled(Link)<Props>`
   font-size: 1.2rem;
   padding: 0.5rem;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;
 
 const SubMenuContainer = styled.div<Props>`
@@ -121,6 +129,9 @@ const SubMenu = styled(Link)<Props>`
   color: ${props => (props.focus === props.url ? 'black' : 'gray')};
   font-size: 1rem;
   text-decoration: none;
+  @media screen and (max-width: 990px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ArrowIcon = styled(Arrow)<Props>`
