@@ -11,7 +11,10 @@ const SectionMain = () => {
         <Title>
           <TextLogo />
         </Title>
-        <SubTitle>기억을 잃은 채 별의 파멸이라는 거대한 운명에 맞서는 당신을 위한 도서관</SubTitle>
+        <SubTitle>
+          기억을 잃은 채 별의 파멸이라는
+          <Br /> 거대한 운명에 맞서는 당신을 위한 도서관
+        </SubTitle>
       </LogoContainer>
     </Container>
   );
@@ -76,5 +79,12 @@ const SubTitle = styled.p`
 
   @media screen and (max-width: 990px) {
     padding: 1rem;
+  }
+`;
+
+const Br = styled.br`
+  display: none;
+  @media screen and (max-width: 990px) {
+    display: block;
   }
 `;

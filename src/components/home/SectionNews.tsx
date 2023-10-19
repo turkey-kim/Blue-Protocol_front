@@ -62,6 +62,10 @@ const InnerContainer = styled.div`
   border-bottom: 2px solid;
   border-image: linear-gradient(to right, #68c3c4 30%, #001fa9 100%);
   border-image-slice: 1;
+
+  @media screen and (max-width: 990px) {
+    width: 85%;
+  }
 `;
 
 const Header = styled.div`
