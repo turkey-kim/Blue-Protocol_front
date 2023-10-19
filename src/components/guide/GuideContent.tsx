@@ -28,10 +28,13 @@ const GuideContent = () => {
   };
 
   useEffect(() => {
-    if (!id) {
-      setTitle(data[0].title);
-      setText(data[0].content);
+    if (id === undefined) {
+      setTitle(data[0]?.title);
+      setText(data[0]?.content);
     }
+  }, [data]);
+
+  useEffect(() => {
     data.forEach(element => {
       if (element.title === id) {
         setTitle(element.title);
