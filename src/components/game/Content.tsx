@@ -37,6 +37,10 @@ export default Content;
 
 const Container = styled.div`
   width: 80%;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`

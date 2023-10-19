@@ -33,8 +33,15 @@ const ContentWrapper = styled.div`
   width: 85%;
   height: auto;
   min-height: 70vh;
+  @media screen and (max-width: 990px) {
+    margin-top: 50px;
+  }
 `;
 
 const DiaBorderIcons = styled(DiaBorder)`
   padding: 3rem;
+
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;

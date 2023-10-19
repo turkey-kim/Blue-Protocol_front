@@ -51,6 +51,10 @@ const Container = styled.div`
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
+
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
 
 const ToggleMenu = styled.div`

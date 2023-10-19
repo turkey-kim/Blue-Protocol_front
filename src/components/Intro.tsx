@@ -40,6 +40,10 @@ const Container = styled.section`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
 
 const LogoContainer = styled.div`
