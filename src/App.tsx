@@ -23,6 +23,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import PostNews from './pages/PostNews';
 import PostGuides from './pages/PostGuides';
 import PostDatabase from './pages/PostDatabase';
+import EditDatabase from './pages/EditDatabase';
 
 function Dashboard() {
   return (
@@ -66,7 +67,9 @@ function App() {
             <Route path="guide" element={<Guide />}>
               <Route path=":id" element={<Guide />}></Route>
             </Route>
-            <Route path="database" element={<Database />}></Route>
+            <Route path="database" element={<Database />}>
+              <Route path=":id" element={<Database />}></Route>
+            </Route>
             <Route path="admin/login" element={<Login></Login>}></Route>
             <Route
               path="news/post"
@@ -105,6 +108,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <PostDatabase />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="database/edit/:id"
+              element={
+                <PrivateRoute>
+                  <EditDatabase />
                 </PrivateRoute>
               }
             ></Route>

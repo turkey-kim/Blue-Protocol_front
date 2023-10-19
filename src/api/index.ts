@@ -2,6 +2,7 @@ import axios from 'axios';
 import {SERVER_URL} from '../constant';
 
 interface Props {
+  _id?: any;
   title?: string | undefined;
   outline?: string | undefined;
   category?: string | undefined;
@@ -90,5 +91,24 @@ export const uploadDatabaseData = async ({category, title, content}: Props) => {
     category,
     title,
     content,
+  });
+};
+
+export const getDatabaseData = async () => {
+  const response = await axios.get(`${SERVER_URL}/api/getDatabase`);
+  return response.data;
+};
+
+export const deleteDatabaseData = async ({title}: Props) => {
+  await axios.post(`${SERVER_URL}/api/deleteDatabase`, {
+    title,
+  });
+};
+
+export const updateDatabaseData = async ({title, category, content, _id}: Props) => {
+  await axios.post(`${SERVER_URL}/api/updateDatabase`, {
+    category: category,
+    title: title,
+    content: content,
   });
 };
