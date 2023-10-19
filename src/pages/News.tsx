@@ -3,12 +3,30 @@ import NewsMain from '../components/news/NewsMain';
 import NewsList from '../components/news/NewsList';
 import AdminBtn from '../components/AdminButton';
 import {useNavigate} from 'react-router';
-import {loginState} from '../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {allNewsState, loginState, recentNewsState} from '../states/atoms';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {useEffect} from 'react';
+import {getNews, getLatestNews} from '../api';
 
 const News = () => {
   const navigate = useNavigate();
   const isAdmin = useRecoilValue(loginState);
+  const [allNews, setAllNews] = useRecoilState(allNewsState);
+  const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const allNewsData = await getNews();
+        setAllNews(allNewsData);
+        const recentNewsData = await getLatestNews();
+        setRecentNews(recentNewsData);
+      } catch (error) {
+        console.error('데이터 가져오기 오류:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
   return (
     <Container>
       {isAdmin ? (

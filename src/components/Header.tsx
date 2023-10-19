@@ -5,6 +5,7 @@ import {ReactComponent as TextLogo} from '../assets/icons/text-logo.svg';
 import {PUBLIC_PATH} from '../constant';
 import {ReactComponent as MenuLogo} from '../assets/icons/menu-logo.svg';
 import {ReactComponent as XLogo} from '../assets/icons/x-logo.svg';
+import {ReactComponent as MainLogo} from '../assets/icons/main-logo.svg';
 import SideBar from './Sidebar';
 const Header = () => {
   const navigate = useNavigate();
@@ -26,13 +27,13 @@ const Header = () => {
     setClicked(!clicked);
   };
 
+  const containerClassName = clicked ? 'clicked' : 'unclicked';
+
   return (
     <>
-      <Container>
+      <Container className={containerClassName}>
         <Inner>
-          <LogoContainer>
-            <Logo onClick={goHome}></Logo>
-          </LogoContainer>
+          <LogoContainer>{clicked ? <Main></Main> : <Logo onClick={goHome}></Logo>}</LogoContainer>
           <Nav>
             <StyledLink to="/">홈</StyledLink>
             <StyledLink to="/news">뉴스</StyledLink>
@@ -80,7 +81,14 @@ const Container = styled.div`
     position: fixed;
     background-color: #fff;
     z-index: 10;
-  }
+
+    &.clicked {
+      background-color: #1c1c1c;
+    }
+
+    &.unclicked {
+      background-color: #fff;
+    }
 `;
 
 const Inner = styled.div`
@@ -202,6 +210,7 @@ const Menu = styled(MenuLogo)`
     width: 40px;
     height: auto;
     cursor: pointer;
+    fill: #68c3c4;
   }
 `;
 
@@ -212,5 +221,18 @@ const X = styled(XLogo)`
     width: 40px;
     height: auto;
     cursor: pointer;
+    fill: #68c3c4;
+  }
+`;
+
+const Main = styled(MainLogo)`
+  height: 30px;
+
+  path {
+    fill: ${({theme}: any) => theme.color.bg100};
+  }
+
+  @media screen and (max-width: 990px) {
+    width: auto;
   }
 `;
