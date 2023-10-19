@@ -28,6 +28,10 @@ const GuideContent = () => {
   };
 
   useEffect(() => {
+    if (!id) {
+      setTitle(data[0].title);
+      setText(data[0].content);
+    }
     data.forEach(element => {
       if (element.title === id) {
         setTitle(element.title);
@@ -64,12 +68,20 @@ export default GuideContent;
 
 const Container = styled.div`
   width: 80%;
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`
   font-size: 2rem;
   font-weight: 700;
   padding: 3rem 1rem 1rem 1rem;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const AdminBar = styled.div<Props>`

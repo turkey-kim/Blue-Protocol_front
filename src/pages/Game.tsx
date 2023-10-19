@@ -1,18 +1,30 @@
+import {useState} from 'react';
 import styled from 'styled-components';
 import SideBar from '../components/game/GameSidebar';
 import Content from '../components/game/Content';
 import Intro from '../components/Intro';
+import TopScrollButton from '../components/TopScrollButton';
+import OpenMobileNav from '../components/OpenMobileNav';
 import {ReactComponent as DiaBorder} from '../assets/icons/borderIcon.svg';
 
 const Game = () => {
+  const [openSidebar, setOpenSidebar] = useState(false);
+
   return (
     <Container>
       <Intro />
       <DiaBorderIcons />
       <ContentWrapper>
-        <SideBar></SideBar>
+        <SideBar isOpen={openSidebar} setIsOpen={setOpenSidebar}></SideBar>
         <Content></Content>
       </ContentWrapper>
+      <OpenMobileNav
+        isOpen={openSidebar}
+        onClick={() => {
+          setOpenSidebar(!openSidebar);
+        }}
+      />
+      <TopScrollButton />
     </Container>
   );
 };
@@ -33,8 +45,15 @@ const ContentWrapper = styled.div`
   width: 85%;
   height: auto;
   min-height: 70vh;
+  @media screen and (max-width: 990px) {
+    margin-top: 50px;
+  }
 `;
 
 const DiaBorderIcons = styled(DiaBorder)`
   padding: 3rem;
+
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;

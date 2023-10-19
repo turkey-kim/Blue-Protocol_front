@@ -1,8 +1,7 @@
 import {Link, useNavigate} from 'react-router-dom';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as TextLogo} from '../assets/icons/text-logo.svg';
-import {PUBLIC_PATH} from '../constant';
 import {ReactComponent as MenuLogo} from '../assets/icons/menu-logo.svg';
 import {ReactComponent as XLogo} from '../assets/icons/x-logo.svg';
 import {ReactComponent as MainLogo} from '../assets/icons/main-logo.svg';
@@ -41,13 +40,6 @@ const Header = () => {
             <StyledLink to="/guide">가이드</StyledLink>
             <StyledLink to="/database">데이터베이스</StyledLink>
           </Nav>
-          <Search
-            style={{
-              backgroundImage: `url(${PUBLIC_PATH}/icons/search.png)`,
-            }}
-            spellCheck="false"
-            placeholder="SEARCH"
-          ></Search>
         </Inner>
         <HamburgerContainer>
           {clicked ? (
@@ -94,7 +86,6 @@ const Container = styled.div`
 const Inner = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
   margin: 0 5rem;
   width: 1320px;
   padding: 1.5rem;
@@ -131,7 +122,8 @@ const Nav = styled.div`
   justify-content: center;
   color: gray;
   font-size: 1rem;
-  width: 450px;
+  min-width: 450px;
+  margin-left: 150px;
 
   @media screen and (max-width: 990px) {
     display: none;
@@ -151,44 +143,6 @@ const StyledLink = styled(Link)`
     border-bottom: 2px solid;
     border-image: linear-gradient(to right, #68c3c4 30%, #001fa9 100%);
     border-image-slice: 1;
-  }
-`;
-
-const Search = styled.input`
-  opacity: 0.6;
-  background-color: #68c3c4;
-  outline: none;
-  border: none;
-  border-radius: 2rem;
-  width: 40px;
-  height: 40px;
-  transition: all 1s;
-  cursor: pointer;
-  color: transparent;
-  font-weight: 700;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-sizing: border-box;
-  margin-left: 200px;
-  text-align: center;
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:focus {
-    width: 290px;
-    background-position: 5%;
-    color: white;
-    margin: 0;
-    padding: 0 3rem;
-    &::placeholder {
-      color: white;
-      font-weight: 500;
-    }
-  }
-
-  @media screen and (max-width: 990px) {
-    display: none;
   }
 `;
 

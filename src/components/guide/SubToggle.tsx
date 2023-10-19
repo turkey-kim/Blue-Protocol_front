@@ -4,15 +4,20 @@ import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {guideData} from '../../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {useRecoilValue, useRecoilState} from 'recoil';
+import {isMobileNavOpen} from '../../states/atoms';
 
 interface Props {
   focus?: boolean;
+  title?: string;
+  isOpen?: boolean;
+  setIsOpen?: any;
 }
 
-const SubToggle = ({title}: {title: string}) => {
+const SubToggle = ({title}: Props) => {
   const {id} = useParams();
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const data = useRecoilValue(guideData);
 
   const isFocused = (contentTitle: string): boolean => {
@@ -36,7 +41,11 @@ const SubToggle = ({title}: {title: string}) => {
       <InnerContaianer focus={isToggleOpen}>
         {data.map(element =>
           element?.category === title ? (
-            <SubMenu to={`/guide/${element.title}`} focus={isFocused(element.title)}>
+            <SubMenu
+              to={`/guide/${element.title}`}
+              focus={isFocused(element.title)}
+              onClick={() => setIsNavOpen(!isNavOpen)}
+            >
               {element?.title}
             </SubMenu>
           ) : null,
@@ -64,6 +73,10 @@ const SubToggleMenu = styled.div`
   padding: 0.5rem;
   border-left: 1px solid gray;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;
 
 const InnerContaianer = styled.div<Props>`
@@ -84,6 +97,10 @@ const SubMenu = styled(Link)<Props>`
   padding: 0.5rem;
   border-left: 1px solid gray;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ArrowIcon = styled(Arrow)<Props>`

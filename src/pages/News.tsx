@@ -7,6 +7,7 @@ import {allNewsState, loginState, recentNewsState} from '../states/atoms';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {useEffect} from 'react';
 import {getNews, getLatestNews} from '../api';
+import TopScrollButton from '../components/TopScrollButton';
 
 const News = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const News = () => {
       ) : null}
       <NewsMain></NewsMain>
       <NewsList></NewsList>
+      <TopScrollButton />
     </Container>
   );
 };
