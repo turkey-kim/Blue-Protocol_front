@@ -21,18 +21,37 @@ const NewsMain = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [intervalCheck, setIntervalCheck] = useState(0);
 
+  const [touchX, setTouchX] = useState(0);
+
+  const touchStart = (e: React.TouchEvent) => {
+    setTouchX(e.changedTouches[0].pageX);
+  };
+
+  const touchEnd = (e: React.TouchEvent) => {
+    const disX = touchX - e.changedTouches[0].pageX;
+
+    if (disX > 30) {
+      RightFunc();
+    } else if (disX < 0) {
+      LeftFunc();
+    }
+  };
+
   let intervals: NodeJS.Timeout[] = [];
 
   useEffect(() => {
     console.log('체크 수:', intervalCheck);
 
     if (intervalCheck === 0) {
+      console.log('첫 인터벌…');
       const interval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
       intervals.push(interval);
     } else {
+      console.log('인터벌 삭제…');
       intervals.forEach(interval => clearInterval(interval));
+      console.log('바뀐 인터벌…');
       const newInterval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
@@ -42,7 +61,7 @@ const NewsMain = () => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, [recentNews.length, intervalCheck]);
+  }, [intervals]);
 
   const totalLen = recentNews.length;
 
@@ -73,7 +92,11 @@ const NewsMain = () => {
   return (
     <>
       <Container>
-        <Carousel style={{transform: `translateX(-${currentIndex * 100}%)`}}>
+        <Carousel
+          style={{transform: `translateX(-${currentIndex * 100}%)`}}
+          onTouchStart={touchStart}
+          onTouchEnd={touchEnd}
+        >
           {recentNews.length
             ? recentNews.map((element: any, key: number) => (
                 <CarouselContainer key={element.key}>
@@ -138,6 +161,9 @@ const Carousel = styled.div`
   height: 95%;
   transition: opacity 0.3s ease;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+  }
 `;
 
 const CarouselContainer = styled.div<Props>`

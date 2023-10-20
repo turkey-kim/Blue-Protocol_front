@@ -66,7 +66,7 @@ const MenuItem = styled(Link)`
     font-family: Inter;
     font-size: 16px;
     font-weight: 400;
-    line-height: 19px;
+    line-height: 40px;
     margin-bottom: 5vh;
     text-align: left;
     color: #fff;
