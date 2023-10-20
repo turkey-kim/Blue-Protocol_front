@@ -13,8 +13,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const recentNewsData = await getLatestNews();
-      setRecentNews(recentNewsData);
+      if (!recentNews.length) {
+        const recentNewsData = await getLatestNews();
+        setRecentNews(recentNewsData);
+        console.log('데이터가져옴');
+      } else {
+        console.log('가져올 데이터 없음!');
+      }
     };
     fetchData();
   }, []);
