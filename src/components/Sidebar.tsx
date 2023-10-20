@@ -35,7 +35,7 @@ const Container = styled.div`
   display: none;
   @media screen and (max-width: 990px) {
     display: block;
-    z-index: 5;
+    z-index: 15;
     background-color: #1c1c1c;
     height: 100%;
     width: 100%;

@@ -72,7 +72,7 @@ const Container = styled.div`
     justify-content: space-between;
     position: fixed;
     background-color: #fff;
-    z-index: 10;
+    z-index: 20;
 
     &.clicked {
       background-color: #1c1c1c;
@@ -81,6 +81,7 @@ const Container = styled.div`
     &.unclicked {
       background-color: #fff;
     }
+  }
 `;
 
 const Inner = styled.div`
