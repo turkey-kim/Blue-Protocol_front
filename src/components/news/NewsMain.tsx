@@ -30,9 +30,9 @@ const NewsMain = () => {
   const touchEnd = (e: React.TouchEvent) => {
     const disX = touchX - e.changedTouches[0].pageX;
 
-    if (disX > 30) {
+    if (disX > 50) {
       RightFunc();
-    } else if (disX < 0) {
+    } else if (disX < -50) {
       LeftFunc();
     }
   };
