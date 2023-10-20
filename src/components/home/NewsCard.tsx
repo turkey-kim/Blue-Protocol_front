@@ -55,6 +55,7 @@ const NewsContainer = styled.div`
 
   @media (max-width: 990px) {
     flex-direction: column;
+    background-color: ghostwhite;
 
     &:hover {
       background: linear-gradient(

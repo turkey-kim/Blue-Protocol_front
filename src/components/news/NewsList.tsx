@@ -75,7 +75,7 @@ const NewsContainer = styled.div`
 const Container = styled.div`
   position: relative;
   display: flex;
-  border-radius: 1rem;
+  border-radius: 20px;
   cursor: pointer;
   margin-bottom: 10vh;
 
@@ -93,6 +93,8 @@ const Container = styled.div`
     flex-direction: column;
     height: 100%;
     margin-bottom: 10vh;
+    background-color: ghostwhite;
+
     &:hover {
       background: linear-gradient(
         to bottom,
@@ -136,7 +138,6 @@ const TextContainer = styled.div`
 
 const Category = styled.span`
   color: #68c3c4e5;
-  font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
   line-height: 16px;
@@ -145,7 +146,6 @@ const Category = styled.span`
 `;
 
 const Title = styled.h1`
-  font-family: Roboto;
   font-size: 32px;
   font-weight: 600;
   line-height: 38px;
@@ -154,7 +154,6 @@ const Title = styled.h1`
 `;
 
 const Content = styled.p`
-  font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -163,7 +162,6 @@ const Content = styled.p`
 `;
 
 const Time = styled.span`
-  font-family: Roboto;
   font-size: 12px;
   font-weight: 600;
   line-height: 14px;
@@ -181,7 +179,6 @@ const BtnContainer = styled.div`
 const MoreBtn = styled.button`
   width: 300px;
   height: 60px;
-  font-family: Roboto;
   font-size: 24px;
   font-weight: 600;
   line-height: 28px;
@@ -198,5 +195,4 @@ const MoreBtn = styled.button`
     width: 150px;
     height: 40px;
     font-size: 12px;
-  }
 `;
