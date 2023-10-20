@@ -18,6 +18,8 @@ const EditGuide = () => {
     title: '',
   });
 
+  const [_id, setId] = useState();
+
   const {category, title} = inputs;
   const [content, setContent] = useState('');
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ const EditGuide = () => {
           title: element.title,
         });
         setContent(element.content);
+        setId(element._id);
       }
     });
   }, []);
@@ -55,7 +58,7 @@ const EditGuide = () => {
   };
 
   const submit = () => {
-    updateGuideData({category, title, content});
+    updateGuideData({category, title, content, _id});
     navigate('/');
     console.log({category, title, content});
   };

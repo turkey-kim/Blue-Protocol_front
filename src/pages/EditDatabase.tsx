@@ -21,6 +21,7 @@ const EditDatabase = () => {
   const {category, title} = inputs;
   const [content, setContent] = useState('');
   const navigate = useNavigate();
+  const [_id, setId] = useState();
 
   useEffect(() => {
     databaseDataList.forEach(element => {
@@ -30,6 +31,7 @@ const EditDatabase = () => {
           title: element.title,
         });
         setContent(element.content);
+        setId(element._id);
       }
     });
   }, []);
@@ -55,7 +57,7 @@ const EditDatabase = () => {
   };
 
   const submit = () => {
-    updateDatabaseData({category, title, content});
+    updateDatabaseData({category, title, content, _id});
     navigate('/');
     console.log({category, title, content});
   };

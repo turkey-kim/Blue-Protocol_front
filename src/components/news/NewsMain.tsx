@@ -29,10 +29,9 @@ const NewsMain = () => {
 
   const touchEnd = (e: React.TouchEvent) => {
     const disX = touchX - e.changedTouches[0].pageX;
-
-    if (disX > 30) {
+    if (disX > 50) {
       RightFunc();
-    } else if (disX < 0) {
+    } else if (disX < -50) {
       LeftFunc();
     }
   };
@@ -186,18 +185,19 @@ const CarouselTextContainer = styled.div<Props>`
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-width: 300px;
+  justify-content: center;
+  max-width: 65%;
   min-height: 150px;
   top: 55%;
   left: 16vw;
   z-index: 1;
   @media screen and (max-width: 990px) {
+    max-width: 300px;
     margin-top: 4vh;
     left: 50%;
     transform: translateX(-50%);
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
   }
 `;
 
