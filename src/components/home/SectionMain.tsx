@@ -74,7 +74,7 @@ const SubTitle = styled.p`
   color: white;
   opacity: 0.8;
   margin: 1.2rem 0;
-  font-size: 20px;
+  font-size: 19px;
   text-align: center;
 
   @media screen and (max-width: 990px) {
