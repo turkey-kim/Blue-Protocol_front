@@ -75,7 +75,7 @@ const NewsContainer = styled.div`
 const Container = styled.div`
   position: relative;
   display: flex;
-  border-radius: 20px;
+  border-radius: 1rem;
   cursor: pointer;
   margin-bottom: 10vh;
 
@@ -110,7 +110,7 @@ const Img = styled.img`
   width: 510px;
   min-width: 400px;
   height: 200px;
-  border-radius: 20px;
+  border-radius: 1rem;
   object-fit: cover;
   background-position: center;
   @media screen and (max-width: 990px) {
@@ -147,10 +147,14 @@ const Category = styled.span`
 
 const Title = styled.h1`
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 38px;
   letter-spacing: 0em;
   text-align: left;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Content = styled.p`
@@ -195,4 +199,5 @@ const MoreBtn = styled.button`
     width: 150px;
     height: 40px;
     font-size: 12px;
+  }
 `;

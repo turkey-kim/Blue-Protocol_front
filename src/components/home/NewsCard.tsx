@@ -112,6 +112,10 @@ const Title = styled.h1`
   margin: 0.3rem 0;
   font-size: 1.8rem;
   font-weight: 800;
+
+  @media (max-width: 990px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Outline = styled.p`
