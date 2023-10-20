@@ -13,14 +13,11 @@ const News = () => {
   const navigate = useNavigate();
   const isAdmin = useRecoilValue(loginState);
   const [allNews, setAllNews] = useRecoilState(allNewsState);
-  const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
   useEffect(() => {
     async function fetchData() {
       try {
         const allNewsData = await getNews();
         setAllNews(allNewsData);
-        const recentNewsData = await getLatestNews();
-        setRecentNews(recentNewsData);
       } catch (error) {
         console.error('데이터 가져오기 오류:', error);
       }
