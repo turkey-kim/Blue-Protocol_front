@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Omny';
+  font-weight: 'normal';
+  src: url('./assets/fonts/210\ Omny.otf') format('truetype');
+}
+
 html {
   overflow-x: hidden;
 }
@@ -6,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  font-family: 'Omny';
 }
 
 .App {
