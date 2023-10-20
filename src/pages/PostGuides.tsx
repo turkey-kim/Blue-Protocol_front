@@ -63,7 +63,7 @@ const PostGuides = () => {
           <option value="히든 퀘스트">히든 퀘스트</option>
           <option value="50레벨제 무기 입수">50레벨제 무기 입수</option>
           <option value="추가 조사 미션">추가 조사 미션</option>
-          <option value="서브 퀘스트">서브 퀘스트</option>
+          <option value="서브퀘스트">서브퀘스트</option>
           <option value="팁">팁</option>
         </Toggle>
       </InputWrapper>

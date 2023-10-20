@@ -78,11 +78,12 @@ export const deleteGuideData = async ({title}: Props) => {
   });
 };
 
-export const updateGuideData = async ({category, title, content}: Props) => {
+export const updateGuideData = async ({category, title, content, _id}: Props) => {
   await axios.post(`${SERVER_URL}/api/updateGuideData`, {
     category: category,
     title: title,
     content: content,
+    _id: _id,
   });
 };
 
@@ -110,5 +111,6 @@ export const updateDatabaseData = async ({title, category, content, _id}: Props)
     category: category,
     title: title,
     content: content,
+    _id: _id,
   });
 };
