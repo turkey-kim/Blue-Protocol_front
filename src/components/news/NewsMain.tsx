@@ -283,7 +283,7 @@ const CarouselPreview = styled.img<Props>`
   background-position: center;
   @media screen and (max-width: 990px) {
     width: 100%;
-    height: 100%;
+    height: 30vh;
   }
 `;
 
