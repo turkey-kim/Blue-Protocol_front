@@ -38,19 +38,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  width: 20%;
+  width: 30%;
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
-`;
-
-const Menu = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: gray;
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  cursor: pointer;
 `;

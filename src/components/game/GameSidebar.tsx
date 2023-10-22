@@ -62,7 +62,8 @@ export default SideBar;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 20%;
+  min-width: 300px;
+  width: 30%;
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
@@ -73,7 +74,7 @@ const Container = styled.div`
     flex-direction: column;
     background-color: white;
     width: 100%;
-    min-height: 100vh;
+    min-height: 1000px;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;
@@ -93,7 +94,7 @@ const ToggleMenu = styled.div`
   text-decoration: none;
   color: gray;
   font-size: 1.2rem;
-  padding: 0.5rem;
+  padding: 0.8rem 0.5rem;
   cursor: pointer;
 
   @media screen and (max-width: 990px) {
@@ -129,6 +130,7 @@ const SubMenu = styled(Link)<Props>`
   color: ${props => (props.focus === props.url ? 'black' : 'gray')};
   font-size: 1rem;
   text-decoration: none;
+  padding: 0.5rem;
   @media screen and (max-width: 990px) {
     font-size: 0.8rem;
   }

@@ -55,7 +55,7 @@ const Wrapper = styled.div`
   text-decoration: none;
   color: gray;
   font-size: 1.2rem;
-  padding: 0.5rem;
+  padding: 0.8rem 0.5rem;
   cursor: pointer;
 `;
 
