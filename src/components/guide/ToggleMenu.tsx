@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   text-decoration: none;
   color: gray;
   font-size: 1.2rem;
-  padding: 0.5rem;
+  padding: 0.8rem 0.5rem;
   cursor: pointer;
 
   @media screen and (max-width: 990px) {
@@ -90,7 +90,7 @@ const InnerContaianer = styled.div<Props>`
 
 const Submenu = styled(Link)<Props>`
   margin-left: 1rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem;
   border-left: 1px solid gray;
   color: ${props => (props.focus ? 'black' : 'gray')};
   font-size: 1rem;
