@@ -14,6 +14,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const data = useRecoilValue(databaseData);
+
   const isFocused = (contentTitle: string): boolean => {
     if (id === contentTitle) {
       return true;

@@ -37,6 +37,11 @@ export const databaseData = atom<any[]>({
   default: [],
 });
 
+export const databaseList = atom<any[]>({
+  key: 'databaseList',
+  default: [],
+});
+
 export const isMobileNavOpen = atom<boolean>({
   key: 'isMobileNavOpen',
   default: false,

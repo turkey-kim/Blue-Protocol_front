@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
 import {databaseData, isMobileNavOpen} from '../states/atoms';
-import {getDatabaseData} from '../api';
+import {getDatabaseData, getDatabaseList} from '../api';
 import Intro from '../components/Intro';
 import {ReactComponent as DiaIcon} from '../assets/icons/borderIcon.svg';
 import DatabaseSidebar from '../components/database/DatabaseSidebar';
@@ -13,7 +13,6 @@ import TopScrollButton from '../components/TopScrollButton';
 const Database = () => {
   const [textData, setTextData] = useRecoilState(databaseData);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
-
   useEffect(() => {
     const fetchData = async () => {
       if (textData.length === 0) {
