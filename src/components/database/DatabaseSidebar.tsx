@@ -2,21 +2,18 @@ import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router';
 import styled from 'styled-components';
 import {useRecoilValue} from 'recoil';
-import {loginState} from '../../states/atoms';
+import {isMobileNavOpen, loginState} from '../../states/atoms';
 import AdminButton from '../AdminButton';
 import DatabaseToggleMenu from './DatabaseToggleMenu';
 
 const menuList = ['클래스', '무기', '이매진', '적', '아이템'];
-interface Props {
-  url?: string;
-  focus?: string | undefined;
-  isSubmenuOpen?: boolean;
-}
+
 const DatabaseSidebar = () => {
   const isLogin = useRecoilValue(loginState);
+  const isNavOpen = useRecoilValue(isMobileNavOpen);
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container className={isNavOpen ? 'open' : ''}>
       {isLogin ? (
         <AdminButton
           text="새로운 글 작성"
@@ -42,4 +39,25 @@ const Container = styled.div`
   height: auto;
   box-sizing: border-box;
   padding: 3rem;
+
+  @media screen and (max-width: 990px) {
+    display: flex;
+    position: fixed;
+    top: 30px;
+    bottom: 0;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    min-height: 1000px;
+    left: -100%;
+    box-sizing: border-box;
+    padding: 3rem;
+    z-index: 3;
+    transition: 0.5s ease;
+    &.open {
+      left: 0;
+      transition: 0.5s ease;
+      overflow: scroll;
+    }
+  }
 `;

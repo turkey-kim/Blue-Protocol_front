@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
-import {useRecoilValue} from 'recoil';
-import {databaseData} from '../../states/atoms';
+import {useRecoilState, useRecoilValue} from 'recoil';
+import {databaseData, isMobileNavOpen} from '../../states/atoms';
 
 interface Props {
   focus?: boolean;
@@ -12,6 +12,7 @@ interface Props {
 const DatabaseToggleMenu = ({title}: {title: string}) => {
   const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const data = useRecoilValue(databaseData);
   const isFocused = (contentTitle: string): boolean => {
     if (id === contentTitle) {
@@ -32,7 +33,13 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
       <InnerContaianer focus={openToggle}>
         {data.map(element =>
           element.category === title ? (
-            <Submenu to={`/database/${element.title}`} focus={isFocused(element.title)}>
+            <Submenu
+              to={`/database/${element.title}`}
+              focus={isFocused(element.title)}
+              onClick={() => {
+                setIsNavOpen(!isNavOpen);
+              }}
+            >
               {element.title}
             </Submenu>
           ) : null,
@@ -57,6 +64,10 @@ const Wrapper = styled.div`
   font-size: 1.2rem;
   padding: 0.8rem 0.5rem;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    font-size: 1rem;
+  }
 `;
 
 const ArrowIcon = styled(Arrow)<Props>`
@@ -74,7 +85,7 @@ const InnerContaianer = styled.div<Props>`
 
 const Submenu = styled(Link)<Props>`
   margin-left: 1rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem;
   border-left: 1px solid gray;
   color: ${props => (props.focus ? 'black' : 'gray')};
   font-size: 1rem;
