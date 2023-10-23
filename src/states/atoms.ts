@@ -27,6 +27,11 @@ export const guideData = atom<any[]>({
   default: [],
 });
 
+export const guideList = atom<any[]>({
+  key: 'guideList',
+  default: [],
+});
+
 export const databaseData = atom<any[]>({
   key: 'databaseData',
   default: [],

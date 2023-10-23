@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {useEffect} from 'react';
-import {getGuideData} from '../api';
-import {guideData} from '../states/atoms';
+import {getGuideData, getGuideList} from '../api';
+import {guideData, guideList} from '../states/atoms';
 import {useRecoilState} from 'recoil';
 import Intro from '../components/Intro';
 import {ReactComponent as DiaIcon} from '../assets/icons/borderIcon.svg';
@@ -13,14 +13,18 @@ import {isMobileNavOpen} from '../states/atoms';
 
 const Guide = () => {
   const [textData, setTextData] = useRecoilState(guideData);
+  const [list, setList] = useRecoilState(guideList);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!textData.length) {
         setTextData(await getGuideData());
-        console.log(textData);
         console.log('전송');
+      }
+      if (!list.length) {
+        const data = await getGuideList();
+        setList(data);
       }
     };
     fetchData();
