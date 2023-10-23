@@ -4,7 +4,7 @@ import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useRecoilValue, useRecoilState} from 'recoil';
-import {guideData} from '../../states/atoms';
+import {guideList} from '../../states/atoms';
 import {isMobileNavOpen} from '../../states/atoms';
 
 interface Props {
@@ -15,7 +15,7 @@ const ToggleMenu = ({title}: {title: string}) => {
   const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
-  const data = useRecoilValue(guideData);
+  const list = useRecoilValue(guideList);
 
   const isFocused = (contentTitle: string): boolean => {
     if (id === contentTitle) {
@@ -35,7 +35,7 @@ const ToggleMenu = ({title}: {title: string}) => {
         {title} <ArrowIcon focus={openToggle} />
       </Wrapper>
       <InnerContaianer focus={openToggle}>
-        {data.map(element =>
+        {list.map(element =>
           element.category === title ? (
             <Submenu
               to={`/guide/${element.title}`}

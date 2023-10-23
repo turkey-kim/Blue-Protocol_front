@@ -114,3 +114,8 @@ export const updateDatabaseData = async ({title, category, content, _id}: Props)
     _id: _id,
   });
 };
+
+export const getGuideList = async () => {
+  const response = await axios.get(`${SERVER_URL}/api/getGuideList`);
+  return response.data;
+};
