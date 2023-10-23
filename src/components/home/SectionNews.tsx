@@ -130,11 +130,22 @@ const GoToNews = styled.div`
 `;
 
 const Button = styled.span`
-  width: 156px;
+  min-width: 156px;
+  width: auto;
+  padding: 1rem;
   font-weight: 700;
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
+
+  @media screen and (max-width: 990px) {
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(104, 195, 196, 0.5) 0%, rgba(0, 31, 169, 0.5) 100%);
+    color: #ffffff;
+    &:hover {
+      background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
+    }
+  }
 `;
 
 const Boundary = styled(BoundaryIcon)`
@@ -145,4 +156,7 @@ const Boundary = styled(BoundaryIcon)`
 `;
 const Dot = styled(DotIcon)`
   margin: 0.5rem;
+  @media screen and (max-width: 990px) {
+    display: none;
+  }
 `;
