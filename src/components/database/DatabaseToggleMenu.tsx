@@ -5,6 +5,8 @@ import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from 'recoil';
 import {databaseData, isMobileNavOpen} from '../../states/atoms';
+import {useQuery} from '@tanstack/react-query';
+import {getDatabaseList} from '../../api';
 
 interface Props {
   focus?: boolean;
@@ -14,8 +16,13 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const data = useRecoilValue(databaseData);
-
+  // const db = useQuery({
+  //   queryKey: ['db'],
+  //   queryFn: getDatabaseList,
+  // });
   const isFocused = (contentTitle: string): boolean => {
+    if (id === undefined) {
+    }
     if (id === contentTitle) {
       return true;
     } else {

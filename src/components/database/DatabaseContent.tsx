@@ -4,11 +4,12 @@ import {useParams, useNavigate} from 'react-router';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
-import {databaseData, loginState} from '../../states/atoms';
+import {loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import AdminButton from '../AdminButton';
-import {deleteDatabaseData} from '../../api';
+import {deleteDatabaseData, getDatabaseContent} from '../../api';
 import '../../styles/markdown.css';
+import {useQuery} from '@tanstack/react-query';
 
 interface Props {
   isAdmin?: boolean;
@@ -16,11 +17,17 @@ interface Props {
 
 const DatabaseContent = () => {
   const {id} = useParams();
-  const data = useRecoilValue(databaseData);
   const isAdmin = useRecoilValue(loginState);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const navigate = useNavigate();
+  const data = useQuery({
+    queryKey: [`${id}`],
+    queryFn: async () => {
+      return await getDatabaseContent(id);
+    },
+    staleTime: Infinity,
+  });
 
   const deleteOne = (title: string) => {
     deleteDatabaseData({title});
@@ -28,20 +35,18 @@ const DatabaseContent = () => {
   };
 
   useEffect(() => {
-    if (id === undefined) {
-      setTitle(data[0]?.title);
-      setText(data[0]?.content);
+    if (id === undefined && data.data) {
+      setTitle(data.data?.title);
+      setText(data.data?.content);
     }
-  }, [data]);
+  }, []);
 
   useEffect(() => {
-    data.forEach(element => {
-      if (element.title === id) {
-        setTitle(element.title);
-        setText(element.content);
-      }
-    });
-  }, [id]);
+    if (data.data) {
+      setTitle(data.data?.title);
+      setText(data.data?.content);
+    }
+  }, [data.data]);
 
   return (
     <Container>
