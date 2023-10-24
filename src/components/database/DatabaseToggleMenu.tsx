@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {databaseData, isMobileNavOpen} from '../../states/atoms';
+import {databaseData, databaseList, isMobileNavOpen} from '../../states/atoms';
 import {useQuery} from '@tanstack/react-query';
 import {getDatabaseList} from '../../api';
 
@@ -15,14 +15,12 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
   const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
-  const data = useRecoilValue(databaseData);
+  const list = useRecoilValue(databaseList);
   // const db = useQuery({
   //   queryKey: ['db'],
   //   queryFn: getDatabaseList,
   // });
   const isFocused = (contentTitle: string): boolean => {
-    if (id === undefined) {
-    }
     if (id === contentTitle) {
       return true;
     } else {
@@ -39,7 +37,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
         {title} <ArrowIcon focus={openToggle} />
       </Wrapper>
       <InnerContaianer focus={openToggle}>
-        {data.map(element =>
+        {list.map(element =>
           element.category === title ? (
             <Submenu
               to={`/database/${element.title}`}
