@@ -10,6 +10,7 @@ import GuideContent from '../components/guide/GuideContent';
 import TopScrollButton from '../components/TopScrollButton';
 import OpenMobileNav from '../components/OpenMobileNav';
 import {isMobileNavOpen} from '../states/atoms';
+import {useQuery} from '@tanstack/react-query';
 
 const Guide = () => {
   const [textData, setTextData] = useRecoilState(guideData);
@@ -18,10 +19,6 @@ const Guide = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!textData.length) {
-        setTextData(await getGuideData());
-        console.log('전송');
-      }
       if (!list.length) {
         const data = await getGuideList();
         setList(data);
@@ -29,6 +26,7 @@ const Guide = () => {
     };
     fetchData();
   }, []);
+
   return (
     <Container>
       <Intro />
