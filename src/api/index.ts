@@ -67,8 +67,8 @@ export const uploadGuide = async ({category, title, content}: Props) => {
   });
 };
 
-export const getGuideData = async () => {
-  const response = await axios.get(`${SERVER_URL}/api/getGuideData`);
+export const getGuideData = async (title: string | undefined) => {
+  const response = await axios.get(`${SERVER_URL}/api/getGuideData`, {params: {title}});
   return response.data;
 };
 

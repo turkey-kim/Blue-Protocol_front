@@ -7,7 +7,8 @@ import ReactMarkdown from 'react-markdown';
 import {guideData, loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import AdminButton from '../AdminButton';
-import {deleteGuideData} from '../../api';
+import {deleteGuideData, getGuideData} from '../../api';
+import {useQuery} from '@tanstack/react-query';
 import '../../styles/markdown.css';
 
 interface Props {
@@ -16,7 +17,14 @@ interface Props {
 
 const GuideContent = () => {
   const {id} = useParams();
-  const data = useRecoilValue(guideData);
+  const [key, setKey] = useState<any>();
+  const {data} = useQuery({
+    queryKey: [`${key}`],
+    queryFn: async () => {
+      return await getGuideData(key);
+    },
+    staleTime: Infinity,
+  });
   const isAdmin = useRecoilValue(loginState);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -28,20 +36,19 @@ const GuideContent = () => {
   };
 
   useEffect(() => {
-    if (id === undefined) {
-      setTitle(data[0]?.title);
-      setText(data[0]?.content);
+    if (!id) {
+      setKey('1-1. 기억을 찾아서');
+    } else {
+      setKey(id);
     }
-  }, [data]);
+  }, [id]);
 
   useEffect(() => {
-    data.forEach(element => {
-      if (element.title === id) {
-        setTitle(element.title);
-        setText(element.content);
-      }
-    });
-  }, [id]);
+    if (data) {
+      setTitle(data?.title);
+      setText(data?.content);
+    }
+  }, [data]);
 
   return (
     <Container>
