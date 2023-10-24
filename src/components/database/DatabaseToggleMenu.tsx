@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
@@ -13,15 +13,24 @@ interface Props {
 }
 const DatabaseToggleMenu = ({title}: {title: string}) => {
   const {id} = useParams();
+  const [menuId, setMenuId] = useState(id);
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const list = useRecoilValue(databaseList);
-  // const db = useQuery({
-  //   queryKey: ['db'],
-  //   queryFn: getDatabaseList,
-  // });
+
+  useEffect(() => {
+    setMenuId(id);
+  }, [id]);
+  if (menuId === undefined) {
+    for (const element of list) {
+      if (element.category === '클래스') {
+        setMenuId(element.title);
+        break;
+      }
+    }
+  }
   const isFocused = (contentTitle: string): boolean => {
-    if (id === contentTitle) {
+    if (menuId === contentTitle) {
       return true;
     } else {
       return false;
