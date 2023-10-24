@@ -119,3 +119,15 @@ export const getGuideList = async () => {
   const response = await axios.get(`${SERVER_URL}/api/getGuideList`);
   return response.data;
 };
+
+export const getDatabaseList = async () => {
+  const response = await axios.get(`${SERVER_URL}/api/getDatabaseList`);
+  return response.data;
+};
+
+export const getDatabaseContent = async (title: string | undefined) => {
+  const response = await axios.get(`${SERVER_URL}/api/getDatabaseContents`, {
+    params: {title},
+  });
+  return response.data;
+};
