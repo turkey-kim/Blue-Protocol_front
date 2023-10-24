@@ -16,12 +16,20 @@ interface Props {
 
 const SubToggle = ({title}: Props) => {
   const {id} = useParams();
+  const [menuId, setMenuId] = useState(id);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const list = useRecoilValue(guideList);
 
+  useEffect(() => {
+    setMenuId(id);
+  }, [id]);
+
   const isFocused = (contentTitle: string): boolean => {
-    if (id === contentTitle) {
+    if (!menuId) {
+      setMenuId(list[0].title);
+    }
+    if (menuId === contentTitle) {
       return true;
     } else {
       return false;
