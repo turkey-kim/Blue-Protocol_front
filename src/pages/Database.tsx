@@ -11,7 +11,6 @@ import OpenMobileNav from '../components/OpenMobileNav';
 import TopScrollButton from '../components/TopScrollButton';
 
 const Database = () => {
-  const [textData, setTextData] = useRecoilState(databaseData);
   const [list, setList] = useRecoilState(databaseList);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   useEffect(() => {

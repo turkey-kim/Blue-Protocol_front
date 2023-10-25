@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadDatabaseData} from '../api';
+import {uploadImage, uploadDatabaseData, getDatabaseList} from '../api';
 import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
+import {databaseList} from '../states/atoms';
+import {useRecoilState} from 'recoil';
 
 const PostDatabase = () => {
   const [inputs, setInputs] = useState({
@@ -16,7 +18,16 @@ const PostDatabase = () => {
   const {category, title} = inputs;
   const [content, setContent] = useState('');
   const navigate = useNavigate();
-
+  const [list, setList] = useRecoilState(databaseList);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (list.length === 0) {
+        const res = await getDatabaseList();
+        setList(res);
+      }
+    };
+    fetchData();
+  }, []);
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
     console.log(value, name);
@@ -38,8 +49,19 @@ const PostDatabase = () => {
   };
 
   const submit = () => {
-    uploadDatabaseData({category, title, content});
-    navigate('/');
+    let check = true;
+    for (const element of list) {
+      if (element.title === title) {
+        alert('중복 타이틀 발견');
+        check = false;
+        break;
+      }
+    }
+
+    if (check === true) {
+      uploadDatabaseData({category, title, content});
+      navigate('/');
+    }
   };
 
   return (
