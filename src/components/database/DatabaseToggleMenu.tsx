@@ -21,6 +21,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
   useEffect(() => {
     setMenuId(id);
   }, [id]);
+
   if (menuId === undefined) {
     for (const element of list) {
       if (element.category === '클래스') {
