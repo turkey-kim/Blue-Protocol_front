@@ -119,3 +119,8 @@ export const getGuideList = async () => {
   const response = await axios.get(`${SERVER_URL}/api/getGuideList`);
   return response.data;
 };
+
+export const isValidTitle = async (collection: string, title: string) => {
+  const response = await axios.post(`${SERVER_URL}/api/titleChecker`, {title: title, collection: collection});
+  return response.data;
+};
