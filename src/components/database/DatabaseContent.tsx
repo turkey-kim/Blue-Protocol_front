@@ -21,7 +21,7 @@ const DatabaseContent = () => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const navigate = useNavigate();
-  const data = useQuery({
+  const {data} = useQuery({
     queryKey: [`${id}`],
     queryFn: async () => {
       return await getDatabaseContent(id);
@@ -35,18 +35,19 @@ const DatabaseContent = () => {
   };
 
   useEffect(() => {
-    if (id === undefined && data.data) {
-      setTitle(data.data?.title);
-      setText(data.data?.content);
+    if (id === undefined && data) {
+      setTitle(data?.title);
+      setText(data?.content);
+      console.log(data);
     }
   }, []);
 
   useEffect(() => {
-    if (data.data) {
-      setTitle(data.data?.title);
-      setText(data.data?.content);
+    if (data) {
+      setTitle(data?.title);
+      setText(data?.content);
     }
-  }, [data.data]);
+  }, [data]);
 
   return (
     <Container>

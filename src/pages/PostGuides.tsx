@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadGuide} from '../api';
+import {uploadImage, uploadGuide, isValidTitle} from '../api';
 import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
 
@@ -37,9 +37,14 @@ const PostGuides = () => {
     setContent(e.target.value);
   };
 
-  const submit = () => {
-    uploadGuide({category, title, content});
-    navigate('/');
+  const submit = async () => {
+    const isTitlevalid = await isValidTitle('guide', title);
+    if (isTitlevalid) {
+      uploadGuide({category, title, content});
+      navigate('/');
+    } else {
+      alert('중복된 제목이니 다른 제목을 쓰라우.');
+    }
   };
 
   return (

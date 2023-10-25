@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {useEffect} from 'react';
-import {getGuideData, getGuideList} from '../api';
+import {getGuideList} from '../api';
 import {guideData, guideList} from '../states/atoms';
 import {useRecoilState} from 'recoil';
 import Intro from '../components/Intro';
@@ -10,7 +10,6 @@ import GuideContent from '../components/guide/GuideContent';
 import TopScrollButton from '../components/TopScrollButton';
 import OpenMobileNav from '../components/OpenMobileNav';
 import {isMobileNavOpen} from '../states/atoms';
-import {useQuery} from '@tanstack/react-query';
 
 const Guide = () => {
   const [textData, setTextData] = useRecoilState(guideData);
