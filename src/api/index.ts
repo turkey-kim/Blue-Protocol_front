@@ -129,8 +129,9 @@ export const getDatabaseContent = async (title: string | undefined) => {
   const response = await axios.get(`${SERVER_URL}/api/getDatabaseContents`, {
     params: {title},
   });
+};
 
 export const isValidTitle = async (collection: string, title: string) => {
   const response = await axios.post(`${SERVER_URL}/api/titleChecker`, {title: title, collection: collection});
-return response.data;
+  return response.data;
 };
