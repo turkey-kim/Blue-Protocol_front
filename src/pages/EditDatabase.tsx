@@ -7,12 +7,11 @@ import {FileDrop} from 'react-file-drop';
 import {uploadImage, updateDatabaseData} from '../api';
 import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
-import {databaseData} from '../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {databaseData, databaseList} from '../states/atoms';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 const EditDatabase = () => {
   const {id} = useParams();
-  const databaseDataList = useRecoilValue(databaseData);
   const [inputs, setInputs] = useState<any>({
     category: '클래스',
     title: '',
@@ -22,14 +21,15 @@ const EditDatabase = () => {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
   const [_id, setId] = useState();
-
+  const [list, setList] = useRecoilState(databaseList);
   useEffect(() => {
-    databaseDataList.forEach(element => {
+    list.forEach(element => {
       if (id === element.title) {
         setInputs({
           category: element.category,
           title: element.title,
         });
+
         setContent(element.content);
         setId(element._id);
       }
@@ -59,7 +59,6 @@ const EditDatabase = () => {
   const submit = () => {
     updateDatabaseData({category, title, content, _id});
     navigate('/');
-    console.log({category, title, content});
   };
 
   return (

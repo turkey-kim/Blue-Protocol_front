@@ -38,7 +38,6 @@ const DatabaseContent = () => {
     if (id === undefined && data) {
       setTitle(data?.title);
       setText(data?.content);
-      console.log(data);
     }
   }, []);
 

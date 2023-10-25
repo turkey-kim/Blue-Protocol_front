@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadDatabaseData} from '../api';
+import {uploadImage, uploadDatabaseData, getDatabaseList, isValidTitle} from '../api';
 import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
+import {databaseList} from '../states/atoms';
+import {useRecoilState} from 'recoil';
 
 const PostDatabase = () => {
   const [inputs, setInputs] = useState({
@@ -16,7 +18,16 @@ const PostDatabase = () => {
   const {category, title} = inputs;
   const [content, setContent] = useState('');
   const navigate = useNavigate();
-
+  const [list, setList] = useRecoilState(databaseList);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (list.length === 0) {
+        const res = await getDatabaseList();
+        setList(res);
+      }
+    };
+    fetchData();
+  }, []);
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
     console.log(value, name);
@@ -37,9 +48,14 @@ const PostDatabase = () => {
     setContent(e.target.value);
   };
 
-  const submit = () => {
-    uploadDatabaseData({category, title, content});
-    navigate('/');
+  const submit = async () => {
+    const isTitlevalid = await isValidTitle('database', title);
+    if (isTitlevalid) {
+      uploadDatabaseData({category, title, content});
+      navigate('/');
+    } else {
+      alert('중복된 제목이니 다른 제목을 쓰라우.');
+    }
   };
 
   return (
