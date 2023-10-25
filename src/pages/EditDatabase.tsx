@@ -57,18 +57,8 @@ const EditDatabase = () => {
   };
 
   const submit = () => {
-    // let check = true;
-    // for (const element of list) {
-    //   if (element.title === title) {
-    //     alert('중복 타이틀 발견');
-    //     check = false;
-    //     break;
-    //   }
-    // }
-    // if (check === true) {
-    //   updateDatabaseData({category, title, content, _id});
-    //   navigate('/');
-    // }
+    updateDatabaseData({category, title, content, _id});
+    navigate('/');
   };
 
   return (

@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, uploadDatabaseData, getDatabaseList} from '../api';
+import {uploadImage, uploadDatabaseData, getDatabaseList, isValidTitle} from '../api';
 import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
 import {databaseList} from '../states/atoms';
@@ -48,19 +48,13 @@ const PostDatabase = () => {
     setContent(e.target.value);
   };
 
-  const submit = () => {
-    let check = true;
-    for (const element of list) {
-      if (element.title === title) {
-        alert('중복 타이틀 발견');
-        check = false;
-        break;
-      }
-    }
-
-    if (check === true) {
+  const submit = async () => {
+    const isTitlevalid = await isValidTitle('database', title);
+    if (isTitlevalid) {
       uploadDatabaseData({category, title, content});
       navigate('/');
+    } else {
+      alert('중복된 제목이니 다른 제목을 쓰라우.');
     }
   };
 
