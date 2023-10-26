@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import {isMobileNavOpen} from '../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 
 const useSidebarControl = () => {
-  const isNavOpen = useRecoilValue(isMobileNavOpen);
+  const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const useSidebarControl = () => {
     }
   }, [isNavOpen]);
 
-  return [isNavOpen, scrollPosition, setScrollPosition];
+  return {isNavOpen, setIsNavOpen, scrollPosition, setScrollPosition};
 };
 
 export default useSidebarControl;
