@@ -41,7 +41,7 @@ const ToggleMenu = ({title}: {title: string}) => {
               to={`/guide/${element.title}`}
               focus={isFocused(element.title)}
               onClick={() => {
-                setIsNavOpen(!isNavOpen);
+                setIsNavOpen(false);
               }}
             >
               {element.title}

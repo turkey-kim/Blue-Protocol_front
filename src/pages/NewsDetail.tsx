@@ -73,13 +73,20 @@ const Container = styled.div`
   align-items: center;
   width: 100vw;
   min-height: 100vh;
-  padding: 3rem;
+  // padding: 3rem;
 
   & > * {
     background-color: #f8f9fa;
     width: 70%;
     box-sizing: border-box;
     padding: 3rem;
+  }
+
+  @media screen and (max-width: 990px) {
+    width: auto;
+    & > * {
+      width: 100%;
+    }
   }
 `;
 
@@ -88,13 +95,16 @@ const Title = styled.div`
   font-size: 5rem;
   padding-top: 5rem;
 `;
+
 const Date = styled.div`
   color: skyblue;
   font-size: 1.2rem;
 `;
+
 const Content = styled.div`
   min-height: 100vh;
 `;
+
 const AdminBar = styled.div`
   display: flex;
   align-items: center;

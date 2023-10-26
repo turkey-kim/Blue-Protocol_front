@@ -6,10 +6,17 @@ const useSidebarControl = () => {
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  const handleClientWidth = () => {
+    if (document.body.clientWidth >= 990 && isNavOpen) {
+      setIsNavOpen(false);
+      window.removeEventListener('resize', handleClientWidth);
+    }
+  };
   useEffect(() => {
     if (isNavOpen) {
       setScrollPosition(window.scrollY);
       document.body.style.position = 'fixed';
+      window.addEventListener('resize', handleClientWidth);
     } else {
       document.body.style.position = 'unset';
       window.scroll(0, scrollPosition);

@@ -1,8 +1,4 @@
 import {Link} from 'react-router-dom';
-import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
-import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
-import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
-import {OFFICIAL_URL, DISCORD_URL, KAKAO_URL} from '../constant';
 import styled from 'styled-components';
 
 interface Props {
@@ -34,6 +30,7 @@ export default SideBar;
 const Container = styled.div`
   display: none;
   @media screen and (max-width: 990px) {
+    min-height: 50rem;
     display: block;
     z-index: 15;
     background-color: #1c1c1c;
