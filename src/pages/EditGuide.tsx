@@ -7,17 +7,24 @@ import {FileDrop} from 'react-file-drop';
 import {uploadImage, updateGuideData} from '../api';
 import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
-import {guideData} from '../states/atoms';
-import {useRecoilValue} from 'recoil';
+import {useQuery} from '@tanstack/react-query';
+import {getGuideData} from '../api';
 
 const EditGuide = () => {
   const {id} = useParams();
-  const guideDataList = useRecoilValue(guideData);
+
+  const {data} = useQuery({
+    queryKey: [`${id}`],
+    queryFn: async () => {
+      return await getGuideData(id);
+    },
+    staleTime: Infinity,
+  });
+
   const [inputs, setInputs] = useState<any>({
     category: '',
     title: '',
   });
-
   const [_id, setId] = useState();
 
   const {category, title} = inputs;
@@ -25,17 +32,15 @@ const EditGuide = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    guideDataList.forEach(element => {
-      if (id === element.title) {
-        setInputs({
-          category: element.category,
-          title: element.title,
-        });
-        setContent(element.content);
-        setId(element._id);
-      }
-    });
-  }, []);
+    if (data) {
+      setInputs({
+        category: data.category,
+        title: data.title,
+      });
+      setContent(data.content);
+      setId(data._id);
+    }
+  }, [data]);
 
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
