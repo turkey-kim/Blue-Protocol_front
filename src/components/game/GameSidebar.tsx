@@ -77,8 +77,9 @@ const Container = styled.div`
     position: fixed;
     flex-direction: column;
     background-color: white;
+    top: 30px;
     width: 100%;
-    min-height: 1000px;
+    min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;

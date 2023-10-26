@@ -48,7 +48,7 @@ const Container = styled.div`
     flex-direction: column;
     background-color: white;
     width: 100%;
-    min-height: 1000px;
+    min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;

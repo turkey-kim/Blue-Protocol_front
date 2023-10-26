@@ -69,11 +69,11 @@ const Container = styled.div`
     display: flex;
     position: fixed;
     top: 30px;
-    bottom: 0;
     flex-direction: column;
     background-color: white;
     width: 100%;
-    height: 100vh;
+    bottom: 0;
+    min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;
