@@ -1085,3 +1085,9 @@
     font-size: 12px;
   }
 }
+
+.markdown-body img {
+  width: 50%;
+  min-width: 300px;
+  height: auto;
+}
