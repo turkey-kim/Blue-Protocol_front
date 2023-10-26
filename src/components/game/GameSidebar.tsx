@@ -3,6 +3,8 @@ import {useParams} from 'react-router';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
+import useSidebarControl from '../../hooks/useSidebarControl';
+import {useRecoilState} from 'recoil';
 
 interface Props {
   url?: string;
@@ -15,11 +17,13 @@ interface Props {
 const commandMenuList = ['캐릭터', '소지품', '퀘스트', '지도', '커뮤니케이션', '미션', '파티', '팀'];
 const menuList = ['전투', '무기 생산 및 강화', '이매진 크래프트', '낚시', '레이드 미션', '스토리', '등장인물'];
 
-const SideBar = ({isOpen, setIsOpen}: Props) => {
+const SideBar = () => {
   const {id} = useParams();
   const [openSubMenu, setOpenSubMenu] = useState(true);
+  const {isNavOpen, setIsNavOpen} = useSidebarControl();
+
   return (
-    <Container className={isOpen ? 'open' : ''}>
+    <Container className={isNavOpen ? 'open' : ''}>
       <ToggleMenu
         onClick={() => {
           setOpenSubMenu(!openSubMenu);
@@ -34,7 +38,7 @@ const SideBar = ({isOpen, setIsOpen}: Props) => {
             url={id}
             focus={element}
             onClick={() => {
-              setIsOpen(!isOpen);
+              setIsNavOpen(!isNavOpen);
             }}
           >
             {element}
@@ -47,7 +51,7 @@ const SideBar = ({isOpen, setIsOpen}: Props) => {
           url={id}
           focus={element}
           onClick={() => {
-            setIsOpen(!isOpen);
+            setIsNavOpen(!isNavOpen);
           }}
         >
           {element}
@@ -73,8 +77,9 @@ const Container = styled.div`
     position: fixed;
     flex-direction: column;
     background-color: white;
+    top: 30px;
     width: 100%;
-    min-height: 1000px;
+    min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;
