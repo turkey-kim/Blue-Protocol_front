@@ -53,7 +53,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
               to={`/database/${element.title}`}
               focus={isFocused(element.title)}
               onClick={() => {
-                setIsNavOpen(!isNavOpen);
+                setIsNavOpen(false);
               }}
             >
               {element.title}

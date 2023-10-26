@@ -52,7 +52,7 @@ const SubToggle = ({title}: Props) => {
             <SubMenu
               to={`/guide/${element.title}`}
               focus={isFocused(element.title)}
-              onClick={() => setIsNavOpen(!isNavOpen)}
+              onClick={() => setIsNavOpen(false)}
             >
               {element?.title}
             </SubMenu>

@@ -4,11 +4,12 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
-import {uploadImage, updateDatabaseData} from '../api';
+import {uploadImage, updateDatabaseData, getDatabaseContent} from '../api';
 import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
 import {databaseData, databaseList} from '../states/atoms';
 import {useRecoilState, useRecoilValue} from 'recoil';
+import {useQuery} from '@tanstack/react-query';
 
 const EditDatabase = () => {
   const {id} = useParams();
@@ -22,19 +23,29 @@ const EditDatabase = () => {
   const navigate = useNavigate();
   const [_id, setId] = useState();
   const [list, setList] = useRecoilState(databaseList);
-  useEffect(() => {
-    list.forEach(element => {
-      if (id === element.title) {
-        setInputs({
-          category: element.category,
-          title: element.title,
-        });
+  const {data} = useQuery({
+    queryKey: [`${id}`],
+    queryFn: async () => {
+      return await getDatabaseContent(id);
+    },
+    staleTime: Infinity,
+  });
 
-        setContent(element.content);
-        setId(element._id);
-      }
-    });
+  useEffect(() => {
+    if (id === undefined && data) {
+      setInputs({category: data?.category, title: data?.title});
+      setContent(data?.content);
+      setId(data?._id);
+    }
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setInputs({category: data?.category, title: data?.title});
+      setContent(data?.content);
+      setId(data?._id);
+    }
+  }, [data]);
 
   const onChange = (e: React.ChangeEvent<any>) => {
     const {value, name} = e.target;
