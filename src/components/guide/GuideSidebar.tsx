@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {useState} from 'react';
 import ToggleMenu from './ToggleMenu';
 import SubToggle from './SubToggle';
 import {loginState} from '../../states/atoms';
@@ -6,6 +7,7 @@ import {useRecoilValue} from 'recoil';
 import {useNavigate} from 'react-router';
 import AdminButton from '../AdminButton';
 import {isMobileNavOpen} from '../../states/atoms';
+import useSidebarControl from '../../hooks/useSidebarControl';
 
 const menuList = [
   '1장',
@@ -24,7 +26,7 @@ const mainQuestList = ['1장', '2장', '3장'];
 
 const GuideSideBar = () => {
   const isAdmin = useRecoilValue(loginState);
-  const isNavOpen = useRecoilValue(isMobileNavOpen);
+  const {isNavOpen} = useSidebarControl();
   const navigate = useNavigate();
 
   return (
@@ -71,16 +73,17 @@ const Container = styled.div`
     flex-direction: column;
     background-color: white;
     width: 100%;
-    min-height: 1000px;
+    height: 100vh;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;
     z-index: 3;
     transition: 0.5s ease;
+
     &.open {
       left: 0;
       transition: 0.5s ease;
-      overflow: scroll;
+      overflow-y: scroll;
     }
   }
 `;

@@ -1,27 +1,28 @@
 import {useState} from 'react';
 import styled from 'styled-components';
-import SideBar from '../components/game/GameSidebar';
+import GameSideBar from '../components/game/GameSidebar';
 import Content from '../components/game/Content';
 import Intro from '../components/Intro';
 import TopScrollButton from '../components/TopScrollButton';
 import OpenMobileNav from '../components/OpenMobileNav';
 import {ReactComponent as DiaBorder} from '../assets/icons/borderIcon.svg';
+import {isMobileNavOpen} from '../states/atoms';
+import {useRecoilState} from 'recoil';
 
 const Game = () => {
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
 
   return (
     <Container>
       <Intro />
       <DiaBorderIcons />
       <ContentWrapper>
-        <SideBar isOpen={openSidebar} setIsOpen={setOpenSidebar}></SideBar>
+        <GameSideBar></GameSideBar>
         <Content></Content>
       </ContentWrapper>
       <OpenMobileNav
-        isOpen={openSidebar}
         onClick={() => {
-          setOpenSidebar(!openSidebar);
+          setIsNavOpen(!isNavOpen);
         }}
       />
       <TopScrollButton />
