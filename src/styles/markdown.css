@@ -629,13 +629,8 @@
   border-top: 1px solid var(--color-border-muted);
 }
 
-.markdown-body table img {
-  background-color: transparent;
-  transition: 0.5s;
-}
-
 .markdown-body table img:hover {
-  transform: scale(1.6);
+  /* transform: scale(1.6); */
 }
 
 .markdown-body img[align='right'] {
@@ -1085,10 +1080,15 @@
   margin: 0px auto;
   padding-top: 40px;
   padding-bottom: 40px;
-  width: 60%;
-  min-width: 300px;
+  width: 100%;
   height: auto;
   background-color: transparent;
+}
+
+.markdown-body table img {
+  background-color: transparent;
+  transition: 0.5s;
+  max-width: 50px;
 }
 
 @media (max-width: 990px) {
