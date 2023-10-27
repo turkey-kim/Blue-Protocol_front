@@ -1,12 +1,12 @@
-import {useEffect, useState} from 'react';
+import {SetStateAction, useEffect, useState} from 'react';
 import {useParams, useNavigate} from 'react-router';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import {useRecoilValue} from 'recoil';
-import {allNewsState, loginState} from '../states/atoms';
-import {deleteNews} from '../api';
+import {allNewsState, loginState, recentNewsState} from '../states/atoms';
+import {deleteNews, getNews} from '../api';
 import AdminButton from '../components/AdminButton';
 import '../styles/markdown.css';
 
@@ -26,16 +26,38 @@ function NewsDetail() {
   const [selectNews, setSelectNews] = useState<NewsProps>();
   const allNews = useRecoilValue(allNewsState);
   const isAdmin = useRecoilValue(loginState);
+  const recentNews = useRecoilValue(recentNewsState);
+  async function fetchData() {
+    try {
+      const allNewsData = await getNews();
+      allNewsData.forEach((element: NewsProps | undefined) => {
+        if (element && Number(id) === element.id) {
+          setSelectNews(element);
+          console.log('실행');
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    allNews.forEach(element => {
-      console.log(element);
-      if (Number(id) === element.id) {
-        setSelectNews(element);
-        console.log('실행');
-      }
-    });
-  }, [allNews]);
+    if (allNews.length === 0 && recentNews.length === 0) {
+      fetchData();
+    } else if (allNews.length > 0) {
+      allNews.forEach(element => {
+        if (Number(id) === element.id) {
+          setSelectNews(element);
+        }
+      });
+    } else {
+      recentNews.forEach(element => {
+        if (Number(id) === element.id) {
+          setSelectNews(element);
+        }
+      });
+    }
+  }, [id, allNews, recentNews]);
 
   return (
     <Container>

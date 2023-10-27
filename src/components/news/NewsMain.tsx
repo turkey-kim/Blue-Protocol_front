@@ -84,10 +84,6 @@ const NewsMain = () => {
     setIntervalCheck(intervalCheck);
   };
 
-  const TestFunc = () => {
-    console.log('clicked');
-  };
-
   return (
     <>
       <Container>
@@ -125,7 +121,7 @@ const NewsMain = () => {
                       navigate(`/news/${element.id}`);
                     }}
                   >
-                    <CarouselPreview src={element.thumbnail} onClick={TestFunc}></CarouselPreview>
+                    <CarouselPreview src={element.thumbnail}></CarouselPreview>
                     <CarouselImageBorder></CarouselImageBorder>
                   </CarouselImageContainer>
                 </CarouselContainer>

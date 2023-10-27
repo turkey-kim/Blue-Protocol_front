@@ -4,7 +4,6 @@ import {postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
 import {useRecoilState} from 'recoil';
 import {useNavigate} from 'react-router';
-
 const NewsList = () => {
   const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
   const [len, setLen] = useState(allNews.length);

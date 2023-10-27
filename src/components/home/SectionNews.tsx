@@ -7,10 +7,8 @@ import {useRecoilValue} from 'recoil';
 import {recentNewsState} from '../../states/atoms';
 
 const SectionNews = () => {
-  const recentNews = useRecoilValue(recentNewsState);
-
   let navigate = useNavigate();
-
+  const recentNews = useRecoilValue(recentNewsState);
   const goToNews = () => {
     navigate('/news');
   };

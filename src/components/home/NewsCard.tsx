@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import {useNavigate} from 'react-router';
+import {useRecoilValue} from 'recoil';
+import {recentNewsState} from '../../states/atoms';
 
 interface Props {
   thumbnail: string;
@@ -14,7 +16,7 @@ const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
   return (
     <NewsContainer
       onClick={() => {
-        navigate(`/news/${String(id)}`);
+        navigate(`/news/${id}`);
       }}
     >
       <NewsImage
