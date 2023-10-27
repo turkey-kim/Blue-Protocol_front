@@ -3,24 +3,23 @@ import SectionMain from '../components/home/SectionMain';
 import SectionNews from '../components/home/SectionNews';
 import SectionInfo from '../components/home/SectionInfo';
 import TopScrollButton from '../components/TopScrollButton';
-import {recentNewsState} from '../states/atoms';
+import {allNewsState, recentNewsState} from '../states/atoms';
 import {useRecoilState} from 'recoil';
 import {useEffect} from 'react';
-import {getLatestNews} from '../api';
-
+import {getLatestNews, getNews} from '../api';
 const Home = () => {
   const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
-
   useEffect(() => {
-    const fetchData = async () => {
-      if (!recentNews.length) {
+    async function fetchData() {
+      try {
         const recentNewsData = await getLatestNews();
         setRecentNews(recentNewsData);
         console.log('데이터가져옴');
-      } else {
-        console.log('가져올 데이터 없음!');
+      } catch (error) {
+        console.error('데이터 가져오기 오류:', error);
       }
-    };
+    }
+
     fetchData();
   }, []);
 
