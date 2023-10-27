@@ -58,11 +58,10 @@ function NewsDetail() {
         </AdminBar>
       ) : null}
       <Date>{selectNews?.date}</Date>
-      <Content>
-        <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-          {selectNews?.content}
-        </ReactMarkdown>
-      </Content>
+
+      <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+        {selectNews?.content}
+      </ReactMarkdown>
     </Container>
   );
 }
@@ -72,14 +71,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  min-height: 100vh;
-  // padding: 3rem;
 
   & > * {
     background-color: #f8f9fa;
     width: 70%;
     box-sizing: border-box;
-    padding: 3rem;
   }
 
   @media screen and (max-width: 990px) {
@@ -92,17 +88,19 @@ const Container = styled.div`
 
 const Title = styled.div`
   min-height: 20vh;
-  font-size: 5rem;
-  padding-top: 5rem;
+  font-size: 4rem;
+  padding: 5rem 5rem 3rem 5rem;
+
+  @media screen and (max-width: 990px) {
+    font-size: 2rem;
+    padding-top: 6rem;
+  }
 `;
 
 const Date = styled.div`
-  color: skyblue;
+  padding: 1rem 5rem;
+  color: #68c3c4;
   font-size: 1.2rem;
-`;
-
-const Content = styled.div`
-  min-height: 100vh;
 `;
 
 const AdminBar = styled.div`
