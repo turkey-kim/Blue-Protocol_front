@@ -1080,14 +1080,21 @@
   color: #f7f73d;
 }
 
+.markdown-body img {
+  display: block;
+  margin: 0px auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 60%;
+  min-width: 300px;
+  height: auto;
+  background-color: transparent;
+}
+
 @media (max-width: 990px) {
   .markdown-body {
     font-size: 12px;
+    width: 100%;
+    padding: 3rem 1rem 5rem 1rem;
   }
-}
-
-.markdown-body img {
-  width: 50%;
-  min-width: 300px;
-  height: auto;
 }
