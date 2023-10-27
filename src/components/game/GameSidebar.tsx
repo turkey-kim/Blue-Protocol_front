@@ -15,7 +15,7 @@ interface Props {
 }
 
 const commandMenuList = ['캐릭터', '소지품', '퀘스트', '지도', '커뮤니케이션', '미션', '파티', '팀'];
-const menuList = ['전투', '무기 생산 및 강화', '이매진 크래프트', '낚시', '레이드 미션', '스토리', '등장인물'];
+const menuList = ['전투', '무기 크래프트', '이매진 크래프트', '낚시', '레이드 미션'];
 
 const SideBar = () => {
   const {id} = useParams();
@@ -38,7 +38,7 @@ const SideBar = () => {
             url={id}
             focus={element}
             onClick={() => {
-              setIsNavOpen(!isNavOpen);
+              setIsNavOpen(false);
             }}
           >
             {element}
@@ -51,7 +51,7 @@ const SideBar = () => {
           url={id}
           focus={element}
           onClick={() => {
-            setIsNavOpen(!isNavOpen);
+            setIsNavOpen(false);
           }}
         >
           {element}
