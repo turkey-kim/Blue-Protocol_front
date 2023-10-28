@@ -1076,11 +1076,8 @@
 }
 
 .markdown-body img {
-  display: block;
-  margin: 0px auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   height: auto;
   background-color: transparent;
 }
@@ -1088,7 +1085,6 @@
 .markdown-body table img {
   background-color: transparent;
   transition: 0.5s;
-  max-width: 50px;
 }
 
 @media (max-width: 990px) {
