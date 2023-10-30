@@ -41,7 +41,7 @@ const PostGuides = () => {
     const isTitlevalid = await isValidTitle('guide', title);
     if (isTitlevalid) {
       uploadGuide({category, title, content});
-      navigate('/');
+      navigate('/guide');
     } else {
       alert('중복된 제목이니 다른 제목을 쓰라우.');
     }

@@ -64,7 +64,7 @@ const EditGuide = () => {
 
   const submit = () => {
     updateGuideData({category, title, content, _id});
-    navigate('/');
+    navigate(`/guide/${id}`);
     console.log({category, title, content});
   };
 

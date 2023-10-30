@@ -22,7 +22,6 @@ const EditDatabase = () => {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
   const [_id, setId] = useState();
-  const [list, setList] = useRecoilState(databaseList);
   const {data} = useQuery({
     queryKey: [`${id}`],
     queryFn: async () => {
@@ -69,7 +68,7 @@ const EditDatabase = () => {
 
   const submit = () => {
     updateDatabaseData({category, title, content, _id});
-    navigate('/');
+    navigate(`/database/${id}`);
   };
 
   return (

@@ -52,7 +52,7 @@ const PostDatabase = () => {
     const isTitlevalid = await isValidTitle('database', title);
     if (isTitlevalid) {
       uploadDatabaseData({category, title, content});
-      navigate('/');
+      navigate('/database');
     } else {
       alert('중복된 제목이니 다른 제목을 쓰라우.');
     }

@@ -56,7 +56,7 @@ function PostNews() {
 
   const submit = () => {
     uploadNews({title, outline, category, thumbnail, content});
-    navigate('/');
+    navigate('/news');
   };
 
   return (
