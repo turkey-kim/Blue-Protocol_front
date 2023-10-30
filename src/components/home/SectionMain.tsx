@@ -9,7 +9,7 @@ const SectionMain = () => {
       <LogoContainer>
         <Logo></Logo>
         <Title>
-          <TextLogo />
+          <MainTextLogo />
         </Title>
         <SubTitle>
           기억을 잃은 채 별의 파멸이라는
@@ -70,6 +70,12 @@ const Title = styled.h1`
   }
 `;
 
+const MainTextLogo = styled(TextLogo)`
+  @media screen and (max-width: 990px) {
+    width: 230px;
+  }
+`;
+
 const SubTitle = styled.p`
   color: white;
   opacity: 0.8;
@@ -78,7 +84,7 @@ const SubTitle = styled.p`
   text-align: center;
 
   @media screen and (max-width: 990px) {
-    padding: 1rem;
+    font-size: 15px;
   }
 `;
 
