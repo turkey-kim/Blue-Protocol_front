@@ -34,7 +34,11 @@ const NewsList = () => {
                   navigate(`/news/${element.id}`);
                 }}
               >
-                <Img src={element.thumbnail} />
+                <Img
+                  style={{
+                    backgroundImage: `url(${element.thumbnail})`,
+                  }}
+                />
                 <TextContainer>
                   <Category>{element.category}</Category>
                   <Title>{element.title}</Title>
@@ -72,8 +76,8 @@ const NewsContainer = styled.div`
 `;
 
 const Container = styled.div`
-  position: relative;
   display: flex;
+  align-items: center;
   border-radius: 1rem;
   cursor: pointer;
   margin-bottom: 10vh;
@@ -90,32 +94,28 @@ const Container = styled.div`
 
   @media screen and (max-width: 990px) {
     flex-direction: column;
-    height: 100%;
     margin-bottom: 10vh;
-    background-color: ghostwhite;
+    background: rgba(106, 194, 195, 0.2);
 
     &:hover {
-      background: linear-gradient(
-        to bottom,
-        rgba(106, 194, 195, 0.1) 60%,
-        rgba(106, 194, 195, 0.5) 80%,
-        rgba(106, 194, 195, 1) 100%
-      );
+      background: rgba(106, 194, 195, 0.2);
     }
   }
 `;
 
-const Img = styled.img`
+const Img = styled.div`
+  border-radius: 1rem;
   width: 510px;
   min-width: 400px;
   height: 200px;
-  border-radius: 1rem;
-  object-fit: cover;
+  background-size: cover;
   background-position: center;
+
   @media screen and (max-width: 990px) {
     margin-bottom: 5vh;
     width: auto;
-    min-width: 100%;
+    min-width: 90%;
+    margin-top: 15px;
   }
 `;
 
