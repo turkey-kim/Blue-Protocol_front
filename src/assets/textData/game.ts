@@ -24,12 +24,12 @@ const gameContents = [
 
 <center>
 
-| <center>![이지스 파이터](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770869426_%C3%AC%C2%9D%C2%B4%C3%AC%C2%A7%C2%80%C3%AC%C2%8A%C2%A4%C3%AD%C2%8C%C2%8C%C3%AC%C2%9D%C2%B4%C3%AD%C2%84%C2%B0%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) 이지스 파이터 | <center>검과 방패 |
+| <center>![이지스 파이터](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770869426_%C3%AC%C2%9D%C2%B4%C3%AC%C2%A7%C2%80%C3%AC%C2%8A%C2%A4%C3%AD%C2%8C%C2%8C%C3%AC%C2%9D%C2%B4%C3%AD%C2%84%C2%B0%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) <br/> 이지스 파이터 | <center>검과 방패 |
 | --- | --- |
-| <center> ![트윈 스트라이커](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770909882_%C3%AD%C2%8A%C2%B8%C3%AC%C2%9C%C2%88%C3%AC%C2%8A%C2%A4%C3%AD%C2%8A%C2%B8%C3%AB%C2%9D%C2%BC%C3%AC%C2%9D%C2%B4%C3%AC%C2%BB%C2%A4%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) 트윈 스트라이커 |<center> 도끼 |
-| <center>![블래스트 아처](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770961754_%C3%AB%C2%B8%C2%94%C3%AB%C2%9E%C2%98%C3%AC%C2%8A%C2%A4%C3%AD%C2%8A%C2%B8%C3%AC%C2%95%C2%84%C3%AC%C2%B2%C2%98%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) 블래스트 아처 | <center>활 |
-| <center>![스펠 캐스터](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770989416_%C3%AC%C2%8A%C2%A4%C3%AD%C2%8E%C2%A0%C3%AC%C2%BA%C2%90%C3%AC%C2%8A%C2%A4%C3%AD%C2%84%C2%B0%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D)스펠 캐스터 | <center>지팡이 |
-| <center>![헤비 스매셔](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697771015016_%C3%AD%C2%97%C2%A4%C3%AB%C2%B9%C2%84%C3%AC%C2%8A%C2%A4%C3%AB%C2%A7%C2%A4%C3%AC%C2%85%C2%94%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D)헤비 스매셔 | <center>해머 |
+| <center> ![트윈 스트라이커](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770909882_%C3%AD%C2%8A%C2%B8%C3%AC%C2%9C%C2%88%C3%AC%C2%8A%C2%A4%C3%AD%C2%8A%C2%B8%C3%AB%C2%9D%C2%BC%C3%AC%C2%9D%C2%B4%C3%AC%C2%BB%C2%A4%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) <br/> 트윈 스트라이커 |<center> 도끼 |
+| <center>![블래스트 아처](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770961754_%C3%AB%C2%B8%C2%94%C3%AB%C2%9E%C2%98%C3%AC%C2%8A%C2%A4%C3%AD%C2%8A%C2%B8%C3%AC%C2%95%C2%84%C3%AC%C2%B2%C2%98%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) <br/> 블래스트 아처 | <center>활 |
+| <center>![스펠 캐스터](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697770989416_%C3%AC%C2%8A%C2%A4%C3%AD%C2%8E%C2%A0%C3%AC%C2%BA%C2%90%C3%AC%C2%8A%C2%A4%C3%AD%C2%84%C2%B0%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) <br/> 스펠 캐스터 | <center>지팡이 |
+| <center>![헤비 스매셔](https://blueprotocol-mury.s3.ap-northeast-2.amazonaws.com/1697771015016_%C3%AD%C2%97%C2%A4%C3%AB%C2%B9%C2%84%C3%AC%C2%8A%C2%A4%C3%AB%C2%A7%C2%A4%C3%AC%C2%85%C2%94%20%C3%AC%C2%95%C2%84%C3%AC%C2%9D%C2%B4%C3%AC%C2%BD%C2%98.png%7D) <br/> 헤비 스매셔 | <center>해머 |
 
 </center>
 </br></br>
