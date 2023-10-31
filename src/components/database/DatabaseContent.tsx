@@ -22,7 +22,7 @@ const DatabaseContent = () => {
   const [text, setText] = useState('');
   const navigate = useNavigate();
   const {data} = useQuery({
-    queryKey: [`${id}`],
+    queryKey: [`${id}/database`],
     queryFn: async () => {
       return await getDatabaseContent(id);
     },
@@ -35,7 +35,7 @@ const DatabaseContent = () => {
   };
 
   useEffect(() => {
-    if (id === undefined && data) {
+    if (id === undefined) {
       setTitle(data?.title);
       setText(data?.content);
     }

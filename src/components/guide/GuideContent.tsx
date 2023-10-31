@@ -19,7 +19,7 @@ const GuideContent = () => {
   const {id} = useParams();
   const [key, setKey] = useState<any>();
   const {data} = useQuery({
-    queryKey: [`${key}`],
+    queryKey: [`${key}/guide`],
     queryFn: async () => {
       return await getGuideData(key);
     },
