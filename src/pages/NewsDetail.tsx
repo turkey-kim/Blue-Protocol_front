@@ -1,4 +1,4 @@
-import {SetStateAction, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams, useNavigate} from 'react-router';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
@@ -42,6 +42,8 @@ function NewsDetail() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     if (allNews.length === 0 && recentNews.length === 0) {
       fetchData();
     } else if (allNews.length > 0) {
@@ -115,7 +117,7 @@ const Title = styled.div`
 
   @media screen and (max-width: 990px) {
     font-size: 2rem;
-    padding-top: 6rem;
+    padding: 6rem 3rem 3rem 3rem;
   }
 `;
 
@@ -123,6 +125,10 @@ const Date = styled.div`
   padding: 1rem 5rem;
   color: #68c3c4;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 990px) {
+    padding-left: 3rem;
+  }
 `;
 
 const AdminBar = styled.div`

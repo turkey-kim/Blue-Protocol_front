@@ -57,15 +57,10 @@ const NewsContainer = styled.div`
 
   @media (max-width: 990px) {
     flex-direction: column;
-    background-color: ghostwhite;
+    background: rgba(106, 194, 195, 0.2);
 
     &:hover {
-      background: linear-gradient(
-        to bottom,
-        rgba(106, 194, 195, 0.1) 60%,
-        rgba(106, 194, 195, 0.5) 80%,
-        rgba(106, 194, 195, 1) 100%
-      );
+      background: rgba(106, 194, 195, 0.2);
     }
   }
 `;
@@ -80,7 +75,8 @@ const NewsImage = styled.div`
 
   @media (max-width: 990px) {
     width: auto;
-    min-width: 100%;
+    min-width: 95%;
+    margin-top: 15px;
   }
 `;
 

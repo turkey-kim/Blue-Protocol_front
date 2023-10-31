@@ -140,9 +140,6 @@ const Button = styled.span`
     border-radius: 5px;
     background: linear-gradient(90deg, rgba(104, 195, 196, 0.5) 0%, rgba(0, 31, 169, 0.5) 100%);
     color: #ffffff;
-    &:hover {
-      background: linear-gradient(90deg, #68c3c4 0%, #001fa9 100%);
-    }
   }
 `;
 
