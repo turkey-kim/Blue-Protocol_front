@@ -39,7 +39,7 @@ export default NewsCard;
 const NewsContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: auto;
   margin: 3rem 0;
   cursor: pointer;
@@ -57,10 +57,9 @@ const NewsContainer = styled.div`
 
   @media (max-width: 990px) {
     flex-direction: column;
-    background: rgba(106, 194, 195, 0.2);
-
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     &:hover {
-      background: rgba(106, 194, 195, 0.2);
+      background: none;
     }
   }
 `;

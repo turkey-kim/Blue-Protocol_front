@@ -95,10 +95,10 @@ const Container = styled.div`
   @media screen and (max-width: 990px) {
     flex-direction: column;
     margin-bottom: 10vh;
-    background: rgba(106, 194, 195, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
     &:hover {
-      background: rgba(106, 194, 195, 0.2);
+      background: none;
     }
   }
 `;

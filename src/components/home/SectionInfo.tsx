@@ -46,6 +46,10 @@ const Logo1 = styled(BookLogo)`
   path {
     fill: #4d4d4d;
   }
+
+  @media screen and (max-width: 990px) {
+    width: 150px;
+  }
 `;
 
 const Logo2 = styled(TextLogo)`
@@ -55,6 +59,11 @@ const Logo2 = styled(TextLogo)`
   margin-top: 2rem;
   path {
     fill: #4d4d4d;
+  }
+
+  @media screen and (max-width: 990px) {
+    width: 200px;
+    margin-top: 0;
   }
 `;
 
@@ -69,6 +78,7 @@ const Text1 = styled.div`
   cursor: default;
   @media screen and (max-width: 990px) {
     padding: 1rem;
+    margin-top: 1rem;
   }
 `;
 
@@ -76,6 +86,7 @@ const TextContainer = styled.div`
   margin-top: 3rem;
   @media screen and (max-width: 990px) {
     padding: 1rem;
+    margin-top: 0;
   }
 `;
 
