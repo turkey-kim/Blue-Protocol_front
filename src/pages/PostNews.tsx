@@ -55,8 +55,12 @@ function PostNews() {
   };
 
   const submit = () => {
-    uploadNews({title, outline, category, thumbnail, content});
-    navigate('/news');
+    if (title && category && outline && thumbnail) {
+      uploadNews({title, outline, category, thumbnail, content});
+      navigate('/news');
+    } else {
+      alert('빈칸을 모두 채워주시요');
+    }
   };
 
   return (
