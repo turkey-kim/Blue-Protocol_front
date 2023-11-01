@@ -39,11 +39,11 @@ const PostGuides = () => {
 
   const submit = async () => {
     const isTitlevalid = await isValidTitle('guide', title);
-    if (isTitlevalid) {
+    if (isTitlevalid && title && category) {
       uploadGuide({category, title, content});
       navigate('/guide');
     } else {
-      alert('중복된 제목이니 다른 제목을 쓰라우.');
+      alert('중복된 제목이니 다른 제목을 쓰라우 or 빈칸을 모두 채워주시오');
     }
   };
 

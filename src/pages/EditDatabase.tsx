@@ -67,8 +67,12 @@ const EditDatabase = () => {
   };
 
   const submit = () => {
-    updateDatabaseData({category, title, content, _id});
-    navigate(`/database/${id}`);
+    if (title && category) {
+      updateDatabaseData({category, title, content, _id});
+      navigate(`/database/${id}`);
+    } else {
+      alert('빈칸을 모두 채워주시요');
+    }
   };
 
   return (

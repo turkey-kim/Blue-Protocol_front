@@ -63,9 +63,12 @@ const EditGuide = () => {
   };
 
   const submit = () => {
-    updateGuideData({category, title, content, _id});
-    navigate(`/guide/${id}`);
-    console.log({category, title, content});
+    if (title && category) {
+      updateGuideData({category, title, content, _id});
+      navigate(`/guide/${id}`);
+    } else {
+      alert('빈칸을 모두 채워주시요');
+    }
   };
 
   return (
