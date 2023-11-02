@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useRecoilState} from 'recoil';
-import {databaseData, databaseList, isMobileNavOpen} from '../states/atoms';
+import {databaseList, isMobileNavOpen} from '../states/atoms';
 import {getDatabaseList} from '../api';
 import Intro from '../components/Intro';
 import {ReactComponent as DiaIcon} from '../assets/icons/borderIcon.svg';
