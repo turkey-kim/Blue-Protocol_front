@@ -6,8 +6,18 @@ import {ReactComponent as MenuLogo} from '../assets/icons/menu-logo.svg';
 import {ReactComponent as XLogo} from '../assets/icons/x-logo.svg';
 import {ReactComponent as MainLogo} from '../assets/icons/main-logo.svg';
 import SideBar from './Sidebar';
+import AdminButton from './AdminButton';
+import {loginState} from '../states/atoms';
+import {useRecoilState} from 'recoil';
+
 const Header = () => {
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useRecoilState(loginState);
+  const logOut = () => {
+    localStorage.removeItem('jwt');
+    setIsAdmin(false);
+    navigate('/');
+  };
   const goHome = () => {
     navigate('/');
   };
@@ -41,6 +51,14 @@ const Header = () => {
             <StyledLink to="/database">데이터베이스</StyledLink>
           </Nav>
         </Inner>
+        {isAdmin ? (
+          <LogOutBtn
+            text="로그아웃"
+            onClick={() => {
+              logOut();
+            }}
+          ></LogOutBtn>
+        ) : null}
         <HamburgerContainer>
           {clicked ? (
             <X
@@ -191,3 +209,5 @@ const Main = styled(MainLogo)`
     width: auto;
   }
 `;
+
+const LogOutBtn = styled(AdminButton)``;
