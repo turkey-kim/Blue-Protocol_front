@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+#   <img height="40" src="https://github.com/turkey-kim/Blue-Protocol_front/assets/37584686/d3bd7696-93e6-4658-94fd-211290f62ef5" /> 뮤리의 서재
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+뮤리의 서재는 2023년 하반기 퍼블리싱 예정인 스마일게이트사의 게임 Blue Protocol의 위키서비스입니다!  
 
-## Available Scripts
+게임 출시를 기다리는 플레이어들이 팀을 구성해 진행한 팬사이트 프로젝트입니다.  
 
-In the project directory, you can run:
+뮤리의 서재는 블루프로토콜 플레이어들을 위한 다양한 정보들을 담고 있습니다.  
 
-### `npm start`
+게임에 대한 최신 소식부터 다양한 정보, 그리고 스태프가 제공하는 수준 높은 공략 가이드를 열람하실 수 있습니다:smiley:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠 Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Frontend      |                                                |
+|:--------------|:-----------------------------------------------|
+| Language| Typescript|
+| Library     | React, Recoil, React-query, styled-components                             |
+| Design           | Figma                                          |
 
-### `npm test`
+| Backend       |                                                |
+|:--------------|:-----------------------------------------------|
+| Language| NodeJS|
+| Framework     | Express                             |
+| Database      | mongoDB      |
+| Infra         | AWS EB, Route 53, S3, mongoAtlas  |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## ⚙ Software Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📂 Frontend Folder Structure
+```
+📂 src
+┣ 📂 api
+┣ 📂 assets
+┣ 📂 components
+┃  ┣ 📂 database
+┃  ┃  ┣ DatabaseContent.tsx
+┃  ┃  ┣ DatabaseSidebar.tsx
+┃  ┃  ┣ DatabaseToggleMenu.tsx
+┃  ┣ 📂 guide
+┃  ┣ 📂 game
+┃  ┣ 📂 home
+┃  ┣ 📂 news
+┣ 📂 hooks
+┣ 📂 pages
+┃  ┣ Database.tsx
+┃  ┣ Guide.tsx
+┃  ┣ Game.tsx
+┃  ┣ Home.tsx
+┃  ┣ News.tsx
+...
+┣ 📂 routes
+┣ 📂 states
+┣ 📂 utils
+```
+## 📂 Backend Folder Structure
+```
+📂 build
+┣ index.html
+...
+📂 routes
+┣ api.js
+┣ auth.js
+aws.js
+db.js
+server.js
+```
+## 🔋 Contributors 
+|                                            김특희                                             |                                양재혁                                |
+|:------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------:|
+| <img height="100" src="https://avatars.githubusercontent.com/turkey-kim" width="100"/> |<img height="100" src="https://avatars.githubusercontent.com/yangjaehyuk" width="100"/>|
+|                           [turkey-kim](https://github.com/turkey-kim)                            |                 [yangjaehyuk](https://github.com/yangjaehyuk)                  |
