@@ -7,8 +7,6 @@ import {FileDrop} from 'react-file-drop';
 import {uploadImage, updateDatabaseData, getDatabaseContent} from '../api';
 import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
-import {databaseData, databaseList} from '../states/atoms';
-import {useRecoilState, useRecoilValue} from 'recoil';
 import {useQuery} from '@tanstack/react-query';
 
 const EditDatabase = () => {

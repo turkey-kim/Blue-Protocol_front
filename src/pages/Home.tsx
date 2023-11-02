@@ -3,10 +3,11 @@ import SectionMain from '../components/home/SectionMain';
 import SectionNews from '../components/home/SectionNews';
 import SectionInfo from '../components/home/SectionInfo';
 import TopScrollButton from '../components/TopScrollButton';
-import {allNewsState, recentNewsState} from '../states/atoms';
+import {recentNewsState} from '../states/atoms';
 import {useRecoilState} from 'recoil';
 import {useEffect} from 'react';
-import {getLatestNews, getNews} from '../api';
+import {getLatestNews} from '../api';
+
 const Home = () => {
   const [recentNews, setRecentNews] = useRecoilState(recentNewsState);
   useEffect(() => {

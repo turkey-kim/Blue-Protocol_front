@@ -1,8 +1,8 @@
-import styled, {useTheme} from 'styled-components';
+import styled from 'styled-components';
 import {submitLogin} from '../api/auth';
 import {useState} from 'react';
 import {useNavigate} from 'react-router';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 import {loginState} from '../states/atoms';
 
 const Login = () => {

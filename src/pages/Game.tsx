@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import styled from 'styled-components';
 import GameSideBar from '../components/game/GameSidebar';
 import Content from '../components/game/Content';
