@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {databaseData, databaseList, isMobileNavOpen} from '../../states/atoms';
-import {useQuery} from '@tanstack/react-query';
-import {getDatabaseList} from '../../api';
+import {databaseList, isMobileNavOpen} from '../../states/atoms';
 
 interface Props {
   focus?: boolean;

@@ -39,18 +39,13 @@ const NewsMain = () => {
   let intervals: NodeJS.Timeout[] = [];
 
   useEffect(() => {
-    console.log('체크 수:', intervalCheck);
-
     if (intervalCheck === 0) {
-      console.log('첫 인터벌…');
       const interval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);
       intervals.push(interval);
     } else {
-      console.log('인터벌 삭제…');
       intervals.forEach(interval => clearInterval(interval));
-      console.log('바뀐 인터벌…');
       const newInterval = setInterval(() => {
         setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       }, 3500);

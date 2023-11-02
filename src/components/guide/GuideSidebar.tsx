@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import {useState} from 'react';
 import ToggleMenu from './ToggleMenu';
 import SubToggle from './SubToggle';
 import {loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import {useNavigate} from 'react-router';
 import AdminButton from '../AdminButton';
-import {isMobileNavOpen} from '../../states/atoms';
 import useSidebarControl from '../../hooks/useSidebarControl';
 
 const menuList = [

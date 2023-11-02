@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import useSidebarControl from '../../hooks/useSidebarControl';
-import {useRecoilState} from 'recoil';
 
 interface Props {
   url?: string;
