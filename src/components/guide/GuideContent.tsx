@@ -4,7 +4,7 @@ import {useParams, useNavigate} from 'react-router';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
-import {guideData, loginState} from '../../states/atoms';
+import {loginState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import AdminButton from '../AdminButton';
 import {deleteGuideData, getGuideData} from '../../api';

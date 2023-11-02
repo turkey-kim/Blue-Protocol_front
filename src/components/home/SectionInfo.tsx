@@ -1,4 +1,3 @@
-import React from 'react';
 import {ReactComponent as BookLogo} from '../../assets/icons/main-logo.svg';
 import {ReactComponent as TextLogo} from '../../assets/icons/text-logo.svg';
 import styled from 'styled-components';

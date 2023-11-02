@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import {useNavigate} from 'react-router';
-import {useRecoilValue} from 'recoil';
-import {recentNewsState} from '../../states/atoms';
 
 interface Props {
   thumbnail: string;

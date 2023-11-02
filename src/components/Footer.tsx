@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom';
-import React from 'react';
 import {ReactComponent as ProtocolLogo} from '../assets/icons/blue-protocol.svg';
 import {ReactComponent as DiscordLogo} from '../assets/icons/discord-logo.svg';
 import {ReactComponent as KakaoLogo} from '../assets/icons/kakao-logo.svg';
