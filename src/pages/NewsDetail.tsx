@@ -103,7 +103,6 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 990px) {
-    width: auto;
     & > * {
       width: 100%;
     }
