@@ -33,7 +33,6 @@ function NewsDetail() {
       allNewsData.forEach((element: NewsProps | undefined) => {
         if (element && Number(id) === element.id) {
           setSelectNews(element);
-          console.log('실행');
         }
       });
     } catch (error) {
@@ -62,31 +61,38 @@ function NewsDetail() {
   }, [id, allNews, recentNews]);
 
   return (
-    <Container>
-      <Title>{selectNews?.title}</Title>
-      {isAdmin ? (
-        <AdminBar>
-          <AdminButton
-            text="수정"
-            onClick={() => {
-              navigate(`/news/edit/${id}`);
-            }}
-          />
-          <AdminButton
-            text="삭제"
-            onClick={() => {
-              deleteNews({id});
-              navigate('/');
-            }}
-          />
-        </AdminBar>
-      ) : null}
-      <Date>{selectNews?.date}</Date>
+    <>
+      <ImgContainer>
+        <ImgInner src={selectNews?.thumbnail}></ImgInner>
+        <ImgPreview src={selectNews?.thumbnail}></ImgPreview>
+        <ImgBorder></ImgBorder>
+      </ImgContainer>
+      <Container>
+        <Title>{selectNews?.title}</Title>
+        {isAdmin ? (
+          <AdminBar>
+            <AdminButton
+              text="수정"
+              onClick={() => {
+                navigate(`/news/edit/${id}`);
+              }}
+            />
+            <AdminButton
+              text="삭제"
+              onClick={() => {
+                deleteNews({id});
+                navigate('/');
+              }}
+            />
+          </AdminBar>
+        ) : null}
+        <Date>{selectNews?.date}</Date>
 
-      <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-        {selectNews?.content}
-      </ReactMarkdown>
-    </Container>
+        <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+          {selectNews?.content}
+        </ReactMarkdown>
+      </Container>
+    </>
   );
 }
 
@@ -94,8 +100,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95vw;
   & > * {
     background-color: #f8f9fa;
     width: 70%;
@@ -109,10 +117,61 @@ const Container = styled.div`
   }
 `;
 
+const ImgContainer = styled.div`
+  width: 100vw;
+  @media screen and (max-width: 990px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const ImgInner = styled.img`
+  display: flex;
+  transition: opacity 0.3s ease;
+  width: 100vw;
+  height: 80vh;
+  filter: blur(0.6vh);
+  @media screen and (max-width: 990px) {
+  }
+`;
+
+const ImgPreview = styled.img`
+  position: absolute;
+  width: 70vw;
+  height: 80vh;
+  top: 30vh;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%);
+  object-fit: cover;
+  background-position: center;
+  @media screen and (max-width: 990px) {
+    top: 55vh;
+    width: 55vw;
+    height: 30vh;
+  }
+`;
+
+const ImgBorder = styled.div`
+  position: absolute;
+  top: 27vh;
+  right: 13vw;
+  width: 70vw;
+  height: 80%;
+  border: 2px solid #ffffff;
+  z-index: 2;
+  @media screen and (max-width: 990px) {
+    width: 55vw;
+    right: 19vw;
+    top: 53vh;
+    max-height: 30vh;
+  }
+`;
+
 const Title = styled.div`
   min-height: 20vh;
   font-size: 4rem;
-  padding: 5rem 5rem 3rem 5rem;
+  padding: 10rem 5rem 3rem 5rem;
 
   @media screen and (max-width: 990px) {
     font-size: 2rem;
