@@ -64,8 +64,10 @@ function NewsDetail() {
     <>
       <ImgContainer>
         <ImgInner src={selectNews?.thumbnail}></ImgInner>
-        <ImgPreview src={selectNews?.thumbnail}></ImgPreview>
-        <ImgBorder></ImgBorder>
+        <ImgPrevContainer>
+          <ImgPreview src={selectNews?.thumbnail}></ImgPreview>
+          <ImgBorder></ImgBorder>
+        </ImgPrevContainer>
       </ImgContainer>
       <Container>
         <Title>{selectNews?.title}</Title>
@@ -118,10 +120,13 @@ const Container = styled.div`
 `;
 
 const ImgContainer = styled.div`
+  position: relative;
   width: 100vw;
+  height: 100vh;
   @media screen and (max-width: 990px) {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
   }
 `;
 
@@ -130,40 +135,53 @@ const ImgInner = styled.img`
   transition: opacity 0.3s ease;
   width: 100vw;
   height: 80vh;
-  filter: blur(0.6vh);
+  filter: blur(10px);
   @media screen and (max-width: 990px) {
   }
 `;
 
-const ImgPreview = styled.img`
+const ImgPrevContainer = styled.div`
   position: absolute;
+  top: 30vh;
   width: 70vw;
   height: 80vh;
-  top: 30vh;
   left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
-  transform: translate(-50%);
+  @media screen and (max-width: 990px) {
+    position: absolute;
+    top: 60vh;
+    width: 70vw;
+    height: 55vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+`;
+
+const ImgPreview = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   background-position: center;
   @media screen and (max-width: 990px) {
-    top: 55vh;
-    width: 55vw;
+    width: 100%;
     height: 30vh;
   }
 `;
 
 const ImgBorder = styled.div`
   position: absolute;
-  top: 27vh;
-  right: 13vw;
+  top: 3vh;
+  left: 1vw;
   width: 70vw;
-  height: 80%;
+  height: 80vh;
   border: 2px solid #ffffff;
-  z-index: 2;
+  z-index: 4;
   @media screen and (max-width: 990px) {
-    width: 55vw;
-    right: 19vw;
-    top: 53vh;
+    width: 70vw;
+    right: 20vw;
+    top: 1vh;
     max-height: 30vh;
   }
 `;
