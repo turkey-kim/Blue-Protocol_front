@@ -106,6 +106,7 @@ const Container = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 95vw;
+  margin-bottom: 100px;
   & > * {
     background-color: #f8f9fa;
     width: 70%;
