@@ -4,6 +4,8 @@ import {postLastNewsIndex} from '../../api';
 import {allNewsState} from '../../states/atoms';
 import {useRecoilState} from 'recoil';
 import {useNavigate} from 'react-router';
+import {sliceString} from '../../utils/string';
+
 const NewsList = () => {
   const [allNews, setAllNews] = useRecoilState(allNewsState) as any[];
   const [len, setLen] = useState(allNews.length);
@@ -41,8 +43,8 @@ const NewsList = () => {
                 />
                 <TextContainer>
                   <Category>{element.category}</Category>
-                  <Title>{element.title}</Title>
-                  <Content>{element.outline}</Content>
+                  <Title>{sliceString(element.title, 40)}</Title>
+                  <Content>{sliceString(element.outline, 50)}</Content>
                   <Time>{element.date}</Time>
                 </TextContainer>
               </Container>
@@ -64,10 +66,12 @@ const NewsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10vh 20vw 10vh 15vw;
-  border-right: 2px solid;
+  align-self: center;
+  width: 70%;
+  margin: 10vh 0;
+  /* border-right: 2px solid;
   border-image: linear-gradient(to bottom, #68c3c4 0%, #001fa9 99.49%);
-  border-image-slice: 1;
+  border-image-slice: 1; */
 
   @media screen and (max-width: 990px) {
     border: none;
@@ -78,12 +82,13 @@ const NewsContainer = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  border-radius: 1rem;
+  border-radius: 10px;
+  padding-right: 5rem;
   cursor: pointer;
   margin-bottom: 10vh;
+  transition: background-color 0.5s ease;
 
   &:hover {
-    transition: all 0.5s ease-in;
     background: linear-gradient(
       to right,
       rgba(106, 194, 195, 0.1) 60%,
@@ -95,6 +100,7 @@ const Container = styled.div`
   @media screen and (max-width: 990px) {
     flex-direction: column;
     margin-bottom: 10vh;
+    padding-right: 0;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
     &:hover {
@@ -104,10 +110,10 @@ const Container = styled.div`
 `;
 
 const Img = styled.div`
-  border-radius: 1rem;
+  border-radius: 10px;
   width: 510px;
-  min-width: 400px;
-  height: 200px;
+  min-width: 450px;
+  min-height: 200px;
   background-size: cover;
   background-position: center;
 
@@ -124,8 +130,11 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  margin-left: 10vw;
+  margin-left: 6rem;
   width: 100%;
+  & > * {
+    margin-bottom: 12px;
+  }
   @media screen and (max-width: 990px) {
     margin: 0;
     padding-bottom: 1rem;
@@ -142,12 +151,13 @@ const Category = styled.span`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 5px;
 `;
 
 const Title = styled.h1`
   font-size: 32px;
   font-weight: 800;
-  line-height: 38px;
+  line-height: 1.3;
   letter-spacing: 0em;
   text-align: left;
 
@@ -182,6 +192,7 @@ const BtnContainer = styled.div`
 const MoreBtn = styled.button`
   width: 300px;
   height: 60px;
+  border-radius: 5px;
   font-size: 24px;
   font-weight: 600;
   line-height: 28px;
