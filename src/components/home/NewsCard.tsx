@@ -44,12 +44,7 @@ const NewsContainer = styled.div`
   cursor: pointer;
   border-radius: 10px;
 
-  & > :first-child {
-    transition: transform 0.1s ease;
-  }
-
   &:hover {
-    transition: all 0.5s ease-in;
     background: linear-gradient(
       to right,
       rgba(106, 194, 195, 0.1) 60%,
@@ -58,8 +53,15 @@ const NewsContainer = styled.div`
     );
 
     & > :first-child {
-      transition: background-size 0.5s ease; /* 백그라운드 이미지 크기 변환을 위한 트랜지션 추가 */
+      transition: background-size 0.2s ease; /* 백그라운드 이미지 크기 변환을 위한 트랜지션 추가 */
       background-size: 100%; /* 백그라운드 이미지 크기를 확대 */
+    }
+  }
+
+  &:not(:hover) {
+    & > :first-child {
+      transition: background-size 0.2s ease;
+      background-size: 103%;
     }
   }
 
@@ -77,7 +79,6 @@ const NewsImage = styled.div`
   width: 510px;
   min-width: 400px;
   height: 200px;
-  background-size: 103%;
   background-position: center;
 
   @media (max-width: 990px) {
