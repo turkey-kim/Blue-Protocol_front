@@ -86,7 +86,11 @@ const Container = styled.div`
   padding-right: 5rem;
   cursor: pointer;
   margin-bottom: 10vh;
-  transition: background-color 0.5s ease;
+  transition: all 0.5 ease;
+
+  & > :first-child {
+    transition: transform 0.1s ease;
+  }
 
   &:hover {
     background: linear-gradient(
@@ -95,6 +99,11 @@ const Container = styled.div`
       rgba(106, 194, 195, 0.5) 80%,
       rgba(106, 194, 195, 1) 100%
     );
+
+    & > :first-child {
+      transition: background-size 0.5s ease; /* 백그라운드 이미지 크기 변환을 위한 트랜지션 추가 */
+      background-size: 100%; /* 백그라운드 이미지 크기를 확대 */
+    }
   }
 
   @media screen and (max-width: 990px) {
@@ -114,8 +123,9 @@ const Img = styled.div`
   width: 510px;
   min-width: 450px;
   min-height: 200px;
-  background-size: cover;
+  background-size: 103%;
   background-position: center;
+  background-repeat: no-repeat;
 
   @media screen and (max-width: 990px) {
     margin-bottom: 5vh;
