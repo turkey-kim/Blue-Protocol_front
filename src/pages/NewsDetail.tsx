@@ -41,7 +41,7 @@ function NewsDetail() {
   }
 
   useEffect(() => {
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 
     if (allNews.length === 0 && recentNews.length === 0) {
       fetchData();
