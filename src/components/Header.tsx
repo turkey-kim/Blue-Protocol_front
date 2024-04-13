@@ -88,7 +88,8 @@ const Container = styled.div`
   justify-content: center;
   @media screen and (max-width: 990px) {
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
+    top: 0;
     background-color: #fff;
     z-index: 20;
 
