@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {useNavigate} from 'react-router';
+import {sliceString} from '../../utils/string';
 
 interface Props {
   thumbnail: string;
@@ -24,8 +25,8 @@ const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
       ></NewsImage>
       <NewsOutlines>
         <Category>{category}</Category>
-        <Title>{title}</Title>
-        <Outline>{outline}</Outline>
+        <Title>{sliceString(title, 40)}</Title>
+        <Outline>{sliceString(outline, 50)}</Outline>
         <Date>{date}</Date>
       </NewsOutlines>
     </NewsContainer>
@@ -41,16 +42,27 @@ const NewsContainer = styled.div`
   height: auto;
   margin: 3rem 0;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 10px;
 
   &:hover {
-    transition: all 0.5s ease-in;
     background: linear-gradient(
       to right,
       rgba(106, 194, 195, 0.1) 60%,
       rgba(106, 194, 195, 0.5) 80%,
       rgba(106, 194, 195, 1) 100%
     );
+
+    & > :first-child {
+      transition: background-size 0.2s ease; /* 백그라운드 이미지 크기 변환을 위한 트랜지션 추가 */
+      background-size: 100%; /* 백그라운드 이미지 크기를 확대 */
+    }
+  }
+
+  &:not(:hover) {
+    & > :first-child {
+      transition: background-size 0.2s ease;
+      background-size: 103%;
+    }
   }
 
   @media (max-width: 990px) {
@@ -63,11 +75,10 @@ const NewsContainer = styled.div`
 `;
 
 const NewsImage = styled.div`
-  border-radius: 1rem;
+  border-radius: 10px;
   width: 510px;
   min-width: 400px;
   height: 200px;
-  background-size: cover;
   background-position: center;
 
   @media (max-width: 990px) {
@@ -86,6 +97,9 @@ const NewsOutlines = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: left;
+  & > * {
+    margin-bottom: 12px;
+  }
 
   @media (max-width: 990px) {
     width: 100%;
@@ -107,6 +121,7 @@ const Title = styled.h1`
   margin: 0.3rem 0;
   font-size: 1.8rem;
   font-weight: 800;
+  line-height: 1.3;
 
   @media (max-width: 990px) {
     font-size: 1.5rem;

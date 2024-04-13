@@ -41,7 +41,7 @@ function NewsDetail() {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     if (allNews.length === 0 && recentNews.length === 0) {
       fetchData();
@@ -63,13 +63,15 @@ function NewsDetail() {
   return (
     <>
       <ImgContainer>
-        <ImgInner src={selectNews?.thumbnail}></ImgInner>
+        <ImgInner img={selectNews?.thumbnail}></ImgInner>
         <ImgPrevContainer>
           <ImgPreview src={selectNews?.thumbnail}></ImgPreview>
           <ImgBorder></ImgBorder>
         </ImgPrevContainer>
+        <WhiteSpace />
       </ImgContainer>
-      <Container>
+      <ContentContainer>
+        <Date>{selectNews?.date}</Date>
         <Title>{selectNews?.title}</Title>
         {isAdmin ? (
           <AdminBar>
@@ -88,69 +90,53 @@ function NewsDetail() {
             />
           </AdminBar>
         ) : null}
-        <Date>{selectNews?.date}</Date>
-
-        <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-          {selectNews?.content}
-        </ReactMarkdown>
-      </Container>
+        <TextContainer>
+          <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+            {selectNews?.content}
+          </ReactMarkdown>
+        </TextContainer>
+      </ContentContainer>
     </>
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95vw;
-  margin-bottom: 100px;
-  & > * {
-    background-color: #f8f9fa;
-    width: 70%;
-    box-sizing: border-box;
-  }
-
-  @media screen and (max-width: 990px) {
-    & > * {
-      width: 100%;
-    }
-  }
-`;
-
 const ImgContainer = styled.div`
   position: relative;
   width: 100vw;
-  height: 100vh;
-  border: 10px solid transparent;
   border-image-slice: 1;
+
   @media screen and (max-width: 990px) {
-    position: relative;
-    width: 100vw;
-    height: 50vh;
+    display: none;
   }
 `;
 
-const ImgInner = styled.img`
+const ImgInner = styled.div<{img?: string}>`
   display: flex;
-  transition: opacity 0.3s ease;
   width: 100vw;
-  height: 80vh;
-  filter: blur(10px);
+  height: 70vh;
+  background: linear-gradient(
+      to bottom,
+      rgba(20, 20, 20, 0.7) 0.5%,
+      rgba(20, 20, 20, 0.7) 25%,
+      rgba(20, 20, 20, 0.7) 50%,
+      rgba(20, 20, 20, 0.7) 95%,
+      rgba(20, 20, 20, 0.7) 100%
+    ),
+    url(${props => props.img});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   @media screen and (max-width: 990px) {
-    height: auto;
-    transition: opacity 0.3s ease;
-    filter: blur(5px);
+    height: 60vh;
   }
 `;
 
 const ImgPrevContainer = styled.div`
   position: absolute;
-  top: 30vh;
+  top: 20vh;
   width: 70vw;
-  height: 80vh;
+  height: 70vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -161,6 +147,7 @@ const ImgPreview = styled.img`
   height: 100%;
   object-fit: cover;
   background-position: center;
+
   @media screen and (max-width: 990px) {
     height: 30vh;
   }
@@ -168,10 +155,10 @@ const ImgPreview = styled.img`
 
 const ImgBorder = styled.div`
   position: absolute;
-  top: -3vh;
-  left: 1vw;
+  top: -1.4rem;
+  left: 1.4rem;
   width: 70vw;
-  height: 80vh;
+  height: 70vh;
   border: 2px solid #ffffff;
   z-index: 4;
   @media screen and (max-width: 990px) {
@@ -182,24 +169,63 @@ const ImgBorder = styled.div`
   }
 `;
 
+const WhiteSpace = styled.div`
+  height: 20vh;
+
+  @media screen and (max-width: 990px) {
+    height: 0;
+  }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 100px;
+  align-self: center;
+
+  & > * {
+    width: 70%;
+  }
+
+  @media screen and (max-width: 990px) {
+    & > * {
+      width: 90%;
+    }
+  }
+`;
+
 const Title = styled.div`
-  min-height: 20vh;
-  font-size: 4rem;
-  padding: 10rem 5rem 3rem 5rem;
+  font-size: 3.5rem;
+  padding: 2rem 0rem 4rem 0rem;
+  text-align: center;
+  font-weight: 700;
 
   @media screen and (max-width: 990px) {
     font-size: 2rem;
-    padding: 6rem 3rem 3rem 3rem;
   }
 `;
 
 const Date = styled.div`
-  padding: 1rem 5rem;
+  padding-top: 2rem;
   color: #68c3c4;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 
   @media screen and (max-width: 990px) {
-    padding-left: 3rem;
+    font-size: 1.2rem;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: #fafafa;
+
+  & > * {
+    width: 80%;
   }
 `;
 

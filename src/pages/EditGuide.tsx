@@ -123,17 +123,18 @@ const Container = styled.div`
 `;
 
 const Editor = styled.textarea`
-  flex: 1;
+  width: 48%;
   box-sizing: border-box;
-  min-height: 100%;
+  height: 100vh;
   padding: 2rem;
   font-size: 1.2rem;
   overflow: scroll;
 `;
 
 const Preview = styled.div`
-  flex: 1;
-  min-height: 100%;
+  width: 48%;
+  height: 100vh;
+  overflow: scroll;
 `;
 
 const Button = styled.button`

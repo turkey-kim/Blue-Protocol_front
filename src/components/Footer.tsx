@@ -54,16 +54,29 @@ const Footer = () => {
             </LogoContainer>
           </NavContainer>
         </Nav>
-        <Nav>
-          <NavTitle>블루 프로토콜_한국공식</NavTitle>
-          <NavContainer>
-            <Url
-              onClick={() => {
-                window.open(OFFICIAL_URL);
-              }}
-            ></Url>
-          </NavContainer>
-        </Nav>
+        <ColumnNavBox>
+          <Nav>
+            <NavTitle>블루 프로토콜_한국공식</NavTitle>
+            <NavContainer>
+              <Url
+                onClick={() => {
+                  window.open(OFFICIAL_URL);
+                }}
+              ></Url>
+            </NavContainer>
+          </Nav>
+          <Nav>
+            <NavTitle>콘텐츠 라이센스</NavTitle>
+            <NavContainer>
+              <NavList>
+                <li>© Murie's Library. All Rights Reserved.</li>
+                <li>© Smilegate Megaport. All Rights Reserved.</li>
+                <li>© 2019 Bandai Namco Online Inc. </li>
+                <li>© 2019 Bandai Namco Studios Inc.</li>
+              </NavList>
+            </NavContainer>
+          </Nav>
+        </ColumnNavBox>
       </Inner>
     </Container>
   );
@@ -92,6 +105,11 @@ const Inner = styled.div`
     margin: 0;
     padding: 0;
   }
+`;
+
+const ColumnNavBox = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Nav = styled.nav`
@@ -129,6 +147,14 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   display: block;
   cursor: default;
+`;
+
+const NavList = styled.ul`
+  & > * {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 1rem;
+  }
 `;
 
 const FooterTextCommunity = styled.div`
