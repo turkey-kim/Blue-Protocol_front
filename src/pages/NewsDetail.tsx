@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import {useRecoilValue} from 'recoil';
 import {allNewsState, loginState, recentNewsState} from '../states/atoms';
 import {deleteNews, getNews} from '../api';
+import {changeDateFormat} from '../utils/string';
 import AdminButton from '../components/AdminButton';
 import '../styles/markdown.css';
 
@@ -41,7 +42,7 @@ function NewsDetail() {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     if (allNews.length === 0 && recentNews.length === 0) {
       fetchData();
@@ -71,8 +72,8 @@ function NewsDetail() {
         <WhiteSpace />
       </ImgContainer>
       <ContentContainer>
-        <Date>{selectNews?.date}</Date>
         <Title>{selectNews?.title}</Title>
+        <Date>{selectNews?.date ? changeDateFormat(selectNews.date) : null}</Date>
         {isAdmin ? (
           <AdminBar>
             <AdminButton
@@ -135,7 +136,7 @@ const ImgInner = styled.div<{img?: string}>`
 const ImgPrevContainer = styled.div`
   position: absolute;
   top: 20vh;
-  width: 70vw;
+  width: 65vw;
   height: 70vh;
   left: 50%;
   transform: translateX(-50%);
@@ -157,7 +158,7 @@ const ImgBorder = styled.div`
   position: absolute;
   top: -1.4rem;
   left: 1.4rem;
-  width: 70vw;
+  width: 65vw;
   height: 70vh;
   border: 2px solid #ffffff;
   z-index: 4;
@@ -186,7 +187,7 @@ const ContentContainer = styled.div`
   align-self: center;
 
   & > * {
-    width: 70%;
+    width: 65%;
   }
 
   @media screen and (max-width: 990px) {
@@ -198,7 +199,7 @@ const ContentContainer = styled.div`
 
 const Title = styled.div`
   font-size: 3.5rem;
-  padding: 2rem 0rem 4rem 0rem;
+  padding: 3rem 0rem;
   text-align: center;
   font-weight: 700;
 
@@ -208,7 +209,7 @@ const Title = styled.div`
 `;
 
 const Date = styled.div`
-  padding-top: 2rem;
+  padding-bottom: 2rem;
   color: #68c3c4;
   font-size: 1.4rem;
   font-weight: 600;
@@ -223,9 +224,18 @@ const TextContainer = styled.div`
   justify-content: center;
   border-radius: 20px;
   background-color: #fafafa;
+  padding: 3rem 0rem;
 
   & > * {
     width: 80%;
+  }
+
+  @media screen and (max-width: 990px) {
+    & > * {
+      padding: 0rem;
+      width: 90%;
+      line-height: 2;
+    }
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {useNavigate} from 'react-router';
-import {sliceString} from '../../utils/string';
+import {sliceString, changeDateFormat} from '../../utils/string';
 
 interface Props {
   thumbnail: string;
@@ -9,14 +9,16 @@ interface Props {
   outline: string;
   date: string;
   id: number;
+  pathname?: string | undefined;
 }
-const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
+const NewsCard = ({thumbnail, category, title, outline, date, id, pathname}: Props) => {
   const navigate = useNavigate();
   return (
     <NewsContainer
       onClick={() => {
         navigate(`/news/${id}`);
       }}
+      pathname={pathname}
     >
       <NewsImage
         style={{
@@ -27,7 +29,7 @@ const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
         <Category>{category}</Category>
         <Title>{sliceString(title, 40)}</Title>
         <Outline>{sliceString(outline, 50)}</Outline>
-        <Date>{date}</Date>
+        <Date>{changeDateFormat(date)}</Date>
       </NewsOutlines>
     </NewsContainer>
   );
@@ -35,10 +37,10 @@ const NewsCard = ({thumbnail, category, title, outline, date, id}: Props) => {
 
 export default NewsCard;
 
-const NewsContainer = styled.div`
+const NewsContainer = styled.div<{pathname: string | undefined}>`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: auto;
   margin: 3rem 0;
   cursor: pointer;
@@ -90,7 +92,7 @@ const NewsImage = styled.div`
 
 const NewsOutlines = styled.div`
   border-radius: 1rem;
-  width: 400px;
+  width: 500px;
   height: 200px;
   padding-left: 5rem;
   display: flex;
@@ -118,7 +120,7 @@ const Category = styled.span`
 `;
 
 const Title = styled.h1`
-  margin: 0.3rem 0;
+  margin: 0;
   font-size: 1.8rem;
   font-weight: 800;
   line-height: 1.3;
@@ -129,6 +131,7 @@ const Title = styled.h1`
 `;
 
 const Outline = styled.p`
+  margin: 10px 0;
   color: ${({theme}) => theme.color.dark100};
   font-size: 1rem;
 `;

@@ -51,7 +51,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
   font-size: 20px;
-  line-height: 2.5;
+  line-height: 1.6;
   word-wrap: break-word;
   padding: 2rem 2rem;
   border-radius: 10px;
@@ -1092,5 +1092,17 @@
     font-size: 12px;
     width: 100%;
     padding: 3rem 1rem 5rem 1rem;
+  }
+}
+
+.markdown-body iframe {
+  width: 100%;
+  height: 53vh;
+}
+
+@media (max-width: 990px) {
+  .markdown-body iframe {
+    width: 100%;
+    height: 250px;
   }
 }
