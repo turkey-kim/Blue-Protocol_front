@@ -33,7 +33,7 @@ const Footer = () => {
           <NavTitle>커뮤니티</NavTitle>
           <NavContainer>
             <FooterTextCommunity>
-              뮤리의 서재는 플레이어분들과 <FooterTextCommunityBR></FooterTextCommunityBR>
+              뮤리의 서재는 플레이어분들과 <FooterTextCommunityBR />
               소통하며 활동하고 있습니다.
             </FooterTextCommunity>
             <LogoContainer>
@@ -89,7 +89,11 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   background-color: #0000001a;
-  padding-bottom: 20vh;
+  padding-bottom: 10vh;
+
+  @media screen and (max-width: 990px) {
+    padding-bottom: 4rem;
+  }
 `;
 
 const Inner = styled.div`
@@ -101,7 +105,7 @@ const Inner = styled.div`
   padding: 0 1.5rem 0 2rem;
 
   @media screen and (max-width: 990px) {
-    display: block;
+    flex-direction: column;
     margin: 0;
     padding: 0;
   }
@@ -116,6 +120,7 @@ const Nav = styled.nav`
   display: block;
   cursor: default;
   color: #4d4d4d;
+
   @media screen and (max-width: 990px) {
     width: auto;
     padding-left: 5vw;
@@ -134,13 +139,18 @@ const NavTitle = styled.div`
   font-weight: 600;
   font-family: 'Roboto';
   line-height: 32px;
+
   @media screen and (max-width: 990px) {
+    padding-top: 3rem;
     font-size: 1.3rem;
   }
 `;
 
 const NavContainer = styled.div`
-  padding-top: 3rem;
+  padding-top: 2rem;
+  @media screen and (max-width: 990px) {
+    padding-top: 1rem;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -154,6 +164,7 @@ const NavList = styled.ul`
     margin-bottom: 10px;
     font-weight: 300;
     font-size: 1rem;
+    font-family: 'Roboto';
   }
 `;
 
@@ -165,6 +176,7 @@ const FooterTextCommunity = styled.div`
   color: gray;
   @media screen and (max-width: 990px) {
     font-size: 1rem;
+    line-height: 1.8;
   }
 `;
 
@@ -194,9 +206,10 @@ const Url = styled(ProtocolLogo)`
 
 const LogoContainer = styled.div`
   display: flex;
-  margin-top: 4rem;
+  margin-top: 1.5rem;
   right: 10%;
   @media screen and (max-width: 990px) {
+    margin-top: 5px;
     width: 60px;
     height: 60px;
   }
