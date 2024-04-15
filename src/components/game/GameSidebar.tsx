@@ -78,6 +78,7 @@ const Container = styled.div`
     background-color: white;
     top: 30px;
     width: 100%;
+    height: 100%;
     min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
