@@ -58,10 +58,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  width: 30%;
-  height: auto;
-  box-sizing: border-box;
+  width: 20%;
+  height: 50%;
   padding: 3rem;
+  padding-left: 0;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
 
   @media screen and (max-width: 990px) {
     display: flex;
@@ -71,6 +74,7 @@ const Container = styled.div`
     background-color: white;
     width: 100%;
     bottom: 0;
+    height: 100%;
     min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
@@ -81,7 +85,7 @@ const Container = styled.div`
     &.open {
       left: 0;
       transition: 0.5s ease;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 `;

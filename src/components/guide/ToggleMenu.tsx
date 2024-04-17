@@ -4,18 +4,24 @@ import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {useRecoilValue, useRecoilState} from 'recoil';
-import {guideList} from '../../states/atoms';
+import {guideList, textStartRef} from '../../states/atoms';
 import {isMobileNavOpen} from '../../states/atoms';
+import scrollToTextStarts from '../../utils/scrollToTextStart';
 
 interface Props {
   focus?: boolean;
 }
 
-const ToggleMenu = ({title}: {title: string}) => {
+type ToggleMenuProps = {
+  title: string;
+};
+
+const ToggleMenu = ({title}: ToggleMenuProps) => {
   const {id} = useParams();
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const list = useRecoilValue(guideList);
+  const textRef = useRecoilValue(textStartRef);
 
   const isFocused = (contentTitle: string): boolean => {
     if (id === contentTitle) {
@@ -42,6 +48,7 @@ const ToggleMenu = ({title}: {title: string}) => {
               focus={isFocused(element.title)}
               onClick={() => {
                 setIsNavOpen(false);
+                scrollToTextStarts(textRef);
               }}
             >
               {element.title}

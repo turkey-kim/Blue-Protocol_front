@@ -5,21 +5,23 @@ import {Link} from 'react-router-dom';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {guideList} from '../../states/atoms';
 import {useRecoilValue, useRecoilState} from 'recoil';
-import {isMobileNavOpen} from '../../states/atoms';
+import {isMobileNavOpen, textStartRef} from '../../states/atoms';
+import scrollToTextStart from '../../utils/scrollToTextStart';
 
-interface Props {
+interface SubtoggleProps {
   focus?: boolean;
   title?: string;
   isOpen?: boolean;
   setIsOpen?: any;
 }
 
-const SubToggle = ({title}: Props) => {
+const SubToggle = ({title}: SubtoggleProps) => {
   const {id} = useParams();
   const [menuId, setMenuId] = useState(id);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const list = useRecoilValue(guideList);
+  const textRef = useRecoilValue(textStartRef);
 
   useEffect(() => {
     setMenuId(id);
@@ -52,7 +54,10 @@ const SubToggle = ({title}: Props) => {
             <SubMenu
               to={`/guide/${element.title}`}
               focus={isFocused(element.title)}
-              onClick={() => setIsNavOpen(false)}
+              onClick={() => {
+                setIsNavOpen(false);
+                scrollToTextStart(textRef);
+              }}
             >
               {element?.title}
             </SubMenu>
@@ -87,19 +92,19 @@ const SubToggleMenu = styled.div`
   }
 `;
 
-const InnerContaianer = styled.div<Props>`
-  display: ${props => (props.focus ? 'flex' : 'none')};
+const InnerContaianer = styled.div<SubtoggleProps>`
+  display: ${SubtoggleProps => (SubtoggleProps.focus ? 'flex' : 'none')};
   flex-direction: column;
   box-sizing: border-box;
   margin-bottom: 1rem;
 `;
 
-const SubMenu = styled(Link)<Props>`
+const SubMenu = styled(Link)<SubtoggleProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  color: ${props => (props.focus ? 'black' : 'gray')};
+  color: ${SubtoggleProps => (SubtoggleProps.focus ? 'black' : 'gray')};
   font-size: 1rem;
   margin-left: 2rem;
   padding: 0.5rem;
@@ -111,9 +116,9 @@ const SubMenu = styled(Link)<Props>`
   }
 `;
 
-const ArrowIcon = styled(Arrow)<Props>`
+const ArrowIcon = styled(Arrow)<SubtoggleProps>`
   width: 20px;
   height: 20px;
   fill: gray;
-  transform: ${props => (props.focus ? 'rotate(180deg)' : null)};
+  transform: ${SubtoggleProps => (SubtoggleProps.focus ? 'rotate(180deg)' : null)};
 `;
