@@ -7,6 +7,7 @@ import OpenMobileNav from '../components/OpenMobileNav';
 import {ReactComponent as DiaBorder} from '../assets/icons/borderIcon.svg';
 import {isMobileNavOpen} from '../states/atoms';
 import {useRecoilState} from 'recoil';
+import TextStartPoint from '../components/TextStartPoint';
 
 const Game = () => {
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
@@ -14,6 +15,7 @@ const Game = () => {
   return (
     <Container>
       <Intro />
+      <TextStartPoint />
       <DiaBorderIcons />
       <ContentWrapper>
         <GameSideBar></GameSideBar>
