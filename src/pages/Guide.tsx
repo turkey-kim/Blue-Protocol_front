@@ -10,6 +10,7 @@ import GuideContent from '../components/guide/GuideContent';
 import TopScrollButton from '../components/TopScrollButton';
 import OpenMobileNav from '../components/OpenMobileNav';
 import {isMobileNavOpen} from '../states/atoms';
+import TextStartPoint from '../components/TextStartPoint';
 
 const Guide = () => {
   const [textData, setTextData] = useRecoilState(guideData);
@@ -29,6 +30,7 @@ const Guide = () => {
   return (
     <Container>
       <Intro />
+      <TextStartPoint />
       <DiaBorderIcon />
       <ContentWrapper>
         <GuideSideBar />
@@ -70,6 +72,7 @@ const ContentWrapper = styled.div`
   height: auto;
   min-height: 70vh;
   margin-bottom: 200px;
+  position: relative;
 
   @media screen and (max-width: 990px) {
     margin-top: 50px;

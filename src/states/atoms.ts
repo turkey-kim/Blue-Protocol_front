@@ -46,3 +46,8 @@ export const isMobileNavOpen = atom<boolean>({
   key: 'isMobileNavOpen',
   default: false,
 });
+
+export const textStartRef = atom<HTMLDivElement | null>({
+  key: 'textStartRef',
+  default: null,
+});

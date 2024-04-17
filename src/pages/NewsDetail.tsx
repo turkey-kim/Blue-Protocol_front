@@ -9,6 +9,7 @@ import {allNewsState, loginState, recentNewsState} from '../states/atoms';
 import {deleteNews, getNews} from '../api';
 import {changeDateFormat} from '../utils/string';
 import AdminButton from '../components/AdminButton';
+import TopScrollButton from '../components/TopScrollButton';
 import '../styles/markdown.css';
 
 interface NewsProps {
@@ -42,7 +43,7 @@ function NewsDetail() {
   }
 
   useEffect(() => {
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 
     if (allNews.length === 0 && recentNews.length === 0) {
       fetchData();
@@ -97,6 +98,7 @@ function NewsDetail() {
           </ReactMarkdown>
         </TextContainer>
       </ContentContainer>
+      <TopScrollButton />
     </>
   );
 }

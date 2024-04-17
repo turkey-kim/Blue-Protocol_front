@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import useSidebarControl from '../../hooks/useSidebarControl';
+import {textStartRef} from '../../states/atoms';
+import {useRecoilValue} from 'recoil';
+import scrollToTextStart from '../../utils/scrollToTextStart';
 
 interface Props {
   url?: string;
@@ -20,6 +23,7 @@ const SideBar = () => {
   const {id} = useParams();
   const [openSubMenu, setOpenSubMenu] = useState(true);
   const {isNavOpen, setIsNavOpen} = useSidebarControl();
+  const textRef = useRecoilValue(textStartRef);
 
   return (
     <Container className={isNavOpen ? 'open' : ''}>
@@ -38,6 +42,7 @@ const SideBar = () => {
             focus={element}
             onClick={() => {
               setIsNavOpen(false);
+              scrollToTextStart(textRef);
             }}
           >
             {element}
@@ -51,6 +56,7 @@ const SideBar = () => {
           focus={element}
           onClick={() => {
             setIsNavOpen(false);
+            scrollToTextStart(textRef);
           }}
         >
           {element}
@@ -66,10 +72,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  width: 30%;
-  height: auto;
+  width: 20%;
+  height: 50%;
   box-sizing: border-box;
   padding: 3rem;
+  padding-left: 0;
+  position: sticky;
+  top: 0;
 
   @media screen and (max-width: 990px) {
     display: flex;
@@ -85,9 +94,11 @@ const Container = styled.div`
     padding: 3rem;
     z-index: 3;
     transition: 0.5s ease;
+
     &.open {
       left: 0;
       transition: 0.5s ease;
+      overflow-y: auto;
     }
   }
 `;

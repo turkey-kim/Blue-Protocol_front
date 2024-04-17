@@ -15,11 +15,10 @@ const useSidebarControl = () => {
   useEffect(() => {
     if (isNavOpen) {
       setScrollPosition(window.scrollY);
-      document.body.style.position = 'fixed';
+      document.documentElement.style.overflow = 'hidden';
       window.addEventListener('resize', handleClientWidth);
     } else {
-      document.body.style.position = 'unset';
-      window.scroll(0, scrollPosition);
+      document.documentElement.style.overflow = 'auto';
     }
   }, [isNavOpen]);
 
