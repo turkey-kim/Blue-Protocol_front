@@ -9,6 +9,7 @@ import DatabaseSidebar from '../components/database/DatabaseSidebar';
 import DatabaseContent from '../components/database/DatabaseContent';
 import OpenMobileNav from '../components/OpenMobileNav';
 import TopScrollButton from '../components/TopScrollButton';
+import TextStartPoint from '../components/TextStartPoint';
 
 const Database = () => {
   const [list, setList] = useRecoilState(databaseList);
@@ -26,6 +27,7 @@ const Database = () => {
   return (
     <Container>
       <Intro />
+      <TextStartPoint />
       <DiaBorderIcon />
       <ContentWrapper>
         <DatabaseSidebar />

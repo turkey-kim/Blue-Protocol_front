@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import {ReactComponent as Arrow} from '../../assets/icons/arrow.svg';
 import {useParams} from 'react-router-dom';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {databaseList, isMobileNavOpen} from '../../states/atoms';
+import {databaseList, isMobileNavOpen, textStartRef} from '../../states/atoms';
+import scrollToTextStart from '../../utils/scrollToTextStart';
 
 interface Props {
   focus?: boolean;
@@ -15,6 +16,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
   const [openToggle, setOpenToggle] = useState(false);
   const [isNavOpen, setIsNavOpen] = useRecoilState(isMobileNavOpen);
   const list = useRecoilValue(databaseList);
+  const textRef = useRecoilValue(textStartRef);
 
   useEffect(() => {
     setMenuId(id);
@@ -52,6 +54,7 @@ const DatabaseToggleMenu = ({title}: {title: string}) => {
               focus={isFocused(element.title)}
               onClick={() => {
                 setIsNavOpen(false);
+                scrollToTextStart(textRef);
               }}
             >
               {element.title}

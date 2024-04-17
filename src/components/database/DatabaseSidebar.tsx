@@ -35,10 +35,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  width: 30%;
-  height: auto;
+  width: 20%;
+  height: 50%;
   box-sizing: border-box;
   padding: 3rem;
+  padding-left: 0;
+  position: sticky;
+  top: 0;
 
   @media screen and (max-width: 990px) {
     display: flex;
@@ -48,16 +51,18 @@ const Container = styled.div`
     flex-direction: column;
     background-color: white;
     width: 100%;
+    height: 100%;
     min-height: 50rem;
     left: -100%;
     box-sizing: border-box;
     padding: 3rem;
     z-index: 3;
     transition: 0.5s ease;
+
     &.open {
       left: 0;
       transition: 0.5s ease;
-      overflow: scroll;
+      overflow-y: auto;
     }
   }
 `;
