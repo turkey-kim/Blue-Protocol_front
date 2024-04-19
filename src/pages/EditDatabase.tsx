@@ -8,6 +8,7 @@ import {uploadImage, updateDatabaseData, getDatabaseContent} from '../api';
 import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
 import {useQuery} from '@tanstack/react-query';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 
 const EditDatabase = () => {
   const {id} = useParams();
@@ -96,6 +97,9 @@ const EditDatabase = () => {
       <InputWrapper>
         <Label>컨텐츠 제목 :</Label>
         <Input name="title" onChange={onChange} value={title}></Input>
+      </InputWrapper>
+      <InputWrapper>
+        <HtmlPrinter />
       </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>

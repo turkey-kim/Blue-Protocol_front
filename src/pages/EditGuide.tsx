@@ -9,6 +9,7 @@ import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
 import {useQuery} from '@tanstack/react-query';
 import {getGuideData} from '../api';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 
 const EditGuide = () => {
   const {id} = useParams();
@@ -99,6 +100,9 @@ const EditGuide = () => {
       <InputWrapper>
         <Label>컨텐츠 제목 :</Label>
         <Input name="title" onChange={onChange} value={title}></Input>
+      </InputWrapper>
+      <InputWrapper>
+        <HtmlPrinter />
       </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
