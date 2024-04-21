@@ -9,6 +9,7 @@ import {useNavigate, useParams} from 'react-router';
 import '../styles/markdown.css';
 import {allNewsState} from '../states/atoms';
 import {useRecoilValue} from 'recoil';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 
 interface NewsProps {
   _id: string;
@@ -121,6 +122,9 @@ function EditNews() {
         <Label>썸네일 이미지 업로드 </Label>
         <FileInput type="file" name="thumbnail" onChange={getThumbnailPath}></FileInput>
       </FileBox>
+      <InputWrapper>
+        <HtmlPrinter />
+      </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
         <Button
