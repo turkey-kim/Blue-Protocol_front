@@ -6,6 +6,7 @@ import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
 import {uploadImage, uploadGuide, isValidTitle} from '../api';
 import {useNavigate} from 'react-router';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 import '../styles/markdown.css';
 
 const PostGuides = () => {
@@ -76,7 +77,9 @@ const PostGuides = () => {
         <Label>컨텐츠 제목 :</Label>
         <Input name="title" onChange={onChange}></Input>
       </InputWrapper>
-
+      <InputWrapper>
+        <HtmlPrinter />
+      </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
         <Button onClick={submit}>SUBMIT</Button>

@@ -165,6 +165,7 @@ const NavList = styled.ul`
     font-weight: 300;
     font-size: 1rem;
     font-family: 'Roboto';
+    color: gray;
   }
 `;
 
