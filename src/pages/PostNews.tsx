@@ -6,6 +6,7 @@ import rehypeRaw from 'rehype-raw';
 import {FileDrop} from 'react-file-drop';
 import {uploadImage, uploadNews} from '../api';
 import {useNavigate} from 'react-router';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 import '../styles/markdown.css';
 
 function PostNews() {
@@ -89,6 +90,9 @@ function PostNews() {
         <Label>썸네일 이미지 업로드 </Label>
         <FileInput type="file" name="thumbnail" onChange={getThumbnailPath}></FileInput>
       </FileBox>
+      <InputWrapper>
+        <HtmlPrinter />
+      </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
         <Button onClick={submit}>SUBMIT</Button>

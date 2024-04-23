@@ -9,6 +9,7 @@ import {useNavigate} from 'react-router';
 import '../styles/markdown.css';
 import {databaseList} from '../states/atoms';
 import {useRecoilState} from 'recoil';
+import HtmlPrinter from '../components/textEditor/HtmlPrinter';
 
 const PostDatabase = () => {
   const [inputs, setInputs] = useState({
@@ -82,7 +83,9 @@ const PostDatabase = () => {
         <Label>컨텐츠 제목 :</Label>
         <Input name="title" onChange={onChange}></Input>
       </InputWrapper>
-
+      <InputWrapper>
+        <HtmlPrinter />
+      </InputWrapper>
       <Container>
         <Editor onChange={onChangeContent} value={content}></Editor>
         <Button onClick={submit}>SUBMIT</Button>
