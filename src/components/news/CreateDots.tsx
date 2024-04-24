@@ -30,7 +30,13 @@ const CreateDots = ({length, curr, onDotClick, intervalCheck}: Props) => {
 export default CreateDots;
 
 const Dots = styled.div`
+  position: absolute;
+  bottom: -50px;
   display: flex;
+
+  @media screen and (max-width: 990px) {
+    bottom: -25px;
+  }
 `;
 
 const DotsContainer = styled.div`

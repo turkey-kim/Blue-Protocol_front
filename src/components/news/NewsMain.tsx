@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {recentNewsState} from '../../states/atoms';
 import {useRecoilValue} from 'recoil';
 import {useNavigate} from 'react-router';
+import {sliceString, changeDateFormat} from '../../utils/string';
 
 interface Props {
   thumbnail?: string;
@@ -63,7 +64,6 @@ const NewsMain = () => {
     if (totalLen > 0) {
       setCurrentIndex(prevCurr => (prevCurr + 1) % totalLen);
       setIntervalCheck(intervalCheck + 1);
-      console.log(intervalCheck);
     }
   };
 
@@ -90,7 +90,8 @@ const NewsMain = () => {
           {recentNews.length
             ? recentNews.map((element: any, key: number) => (
                 <CarouselContainer key={element.key}>
-                  <CarouselImg src={element.thumbnail}></CarouselImg>
+                  <CarouselImg src={element.thumbnail} />
+                  <CarouselImgBottom />
                   <CarouselTextContainer>
                     <CarouselCategory>{element.category}</CarouselCategory>
                     <CarouselTitle
@@ -98,10 +99,10 @@ const NewsMain = () => {
                         navigate(`/news/${element.id}`);
                       }}
                     >
-                      {element.title}
+                      {sliceString(element.title, 40)}
                     </CarouselTitle>
-                    <CarouselContent>{element.outline}</CarouselContent>
-                    <CarouselTime>{element.time}</CarouselTime>
+                    <CarouselContent>{sliceString(element.outline, 50)}</CarouselContent>
+                    <CarouselTime>{changeDateFormat(element.date)}</CarouselTime>
                     <CarouselDotContainer>
                       <CreateDots
                         length={totalLen}
@@ -159,6 +160,7 @@ const Carousel = styled.div`
 const CarouselContainer = styled.div<Props>`
   position: relative;
   flex: 0 0 100vw;
+
   @media screen and (max-width: 990px) {
     display: flex;
     flex-direction: column;
@@ -166,10 +168,19 @@ const CarouselContainer = styled.div<Props>`
 `;
 
 const CarouselImg = styled.img<Props>`
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(0.4vh) brightness(40%) grayscale(100%);
+  filter: blur(0.3vh) brightness(40%) grayscale(100%);
+`;
+
+const CarouselImgBottom = styled.div`
+  position: absolute;
+  bottom: -10px;
+  background-color: white;
+  width: 100%;
+  height: 10px;
 `;
 
 const CarouselTextContainer = styled.div<Props>`
@@ -177,15 +188,18 @@ const CarouselTextContainer = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 65%;
-  min-height: 150px;
-  top: 55%;
+  gap: 10px;
+  width: 420px;
+  height: 150px;
+  top: 50%;
   left: 16vw;
   z-index: 1;
   @media screen and (max-width: 990px) {
     max-width: 300px;
     margin-top: 4vh;
+    top: 55%;
     left: 50%;
+    gap: 2px;
     transform: translateX(-50%);
     text-align: left;
     align-items: flex-start;
@@ -204,9 +218,9 @@ const CarouselCategory = styled.div<Props>`
 `;
 
 const CarouselTitle = styled.div<Props>`
-  font-size: 32px;
+  font-size: 30px;
   color: #ffffff;
-  line-height: 37.5px;
+  line-height: 1.4;
   font-weight: 600;
   font-family: 'Roboto';
   @media screen and (max-width: 990px) {
